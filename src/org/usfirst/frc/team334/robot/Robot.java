@@ -1,8 +1,7 @@
-
 package org.usfirst.frc.team334.robot;
 
-import org.usfirst.frc.team334.robot.subsystems.driveTrain;
-import org.usfirst.frc.team334.robot.subsystems.robotCompressor;
+import org.usfirst.frc.team334.robot.subsystems.Drive;
+import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -14,8 +13,8 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	
 	//Initialize subsystems
-	public static driveTrain chassis = new driveTrain();
-	public static robotCompressor compressor = new robotCompressor();
+	public static Drive chassis = new Drive();
+	public static Pneumatics compressor = new Pneumatics();
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

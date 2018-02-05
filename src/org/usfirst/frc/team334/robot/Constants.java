@@ -1,6 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
-public class RobotMap {
+public class Constants {
 	//Motors
 	public static int cimL1 = 0;
 	public static int cimL2 = 1;
