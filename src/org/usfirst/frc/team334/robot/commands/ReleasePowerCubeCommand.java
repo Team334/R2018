@@ -1,12 +1,14 @@
 package org.usfirst.frc.team334.robot.commands;
 
+import org.usfirst.frc.team334.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ReleasePowerCubeCommand extends Command {
 	
 	public ReleasePowerCubeCommand() {
 		// Use requires() here to declare subsystem dependencies
-		
+		requires(Robot.sRollerIntake);
 	}
 
 	// Called just before this Command runs the first time

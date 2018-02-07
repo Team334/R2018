@@ -4,11 +4,11 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GrabPowerCubeCommand extends Command {
+public class SetElevatorToIntakeCommand extends Command {
 	
-	public GrabPowerCubeCommand() {
+	public SetElevatorToIntakeCommand() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sRollerIntake);
+		requires(Robot.sElevator);
 	}
 
 	// Called just before this Command runs the first time

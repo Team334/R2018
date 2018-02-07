@@ -23,4 +23,7 @@ public class Constants {
 	//Elevator
 	public static int elCim1 = 6;
 	public static int elCim2 = 7;
+	
+	// Vision
+	public static String VISION_NT_NAME = "vision";
 }

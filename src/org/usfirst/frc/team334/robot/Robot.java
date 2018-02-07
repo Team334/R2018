@@ -1,7 +1,9 @@
 package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.subsystems.Drive;
+import org.usfirst.frc.team334.robot.subsystems.Elevator;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
+import org.usfirst.frc.team334.robot.subsystems.RollerIntake;
 
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,8 +15,10 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 	
 	//Initialize subsystems
-	public static Drive chassis = new Drive();
-	public static Pneumatics compressor = new Pneumatics();
+	public static Drive sDrive = new Drive();
+	public static Elevator sElevator = new Elevator();
+	public static Pneumatics sPneumatics = new Pneumatics();
+	public static RollerIntake sRollerIntake = new RollerIntake();
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -38,7 +42,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousInit() {
 		m_autonomousCommand = m_chooser.getSelected();
-
 
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();

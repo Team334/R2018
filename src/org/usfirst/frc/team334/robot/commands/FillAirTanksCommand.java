@@ -1,12 +1,14 @@
 package org.usfirst.frc.team334.robot.commands;
 
+import org.usfirst.frc.team334.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FillAirTanksCommand extends Command {
 	
 	public FillAirTanksCommand() {
 		// Use requires() here to declare subsystem dependencies
-		
+		requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time
