@@ -14,10 +14,12 @@ public class Constants {
 	*/
 	public static final int SWITCH_TO_TWO_SPEED_TRANSMISSION_CONTROL = 0;
 	public static final int SWITCH_TO_ONE_SPEED_TRANSIMISSION_CONTROL = 0;
+	public static final int TANK_DRIVE_CONTROL = 0;
 
 	// Button mappings. The controller device for each button is set above.
 	public static final int SWITCH_TO_TWO_SPEED_TRANSMISSION_BUTTON = 1;
 	public static final int SWITCH_TO_ONE_SPEED_TRANSMISSION_BUTTON = 1; // toggles with two speed
+	public static final int TANK_DRIVE_BUTTON = 2;
 
 	// Motors
 	public static final int DRIVETRAIN_L_FRONT = 0;

@@ -18,8 +18,8 @@ public class OI {
 	private XboxController xbox;
 	private ArrayList<GenericHID> controls;
 	
-	//Buttons
-	private Button button = new JoystickButton(leftJoystick, 2);
+	// Declare Buttons
+	private Button tankDriveButton;
 	
 	public OI() {
 		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -28,8 +28,11 @@ public class OI {
 		controls = new ArrayList<>(
 			Arrays.asList(leftJoystick, rightJoystick, xbox));
 		
-		// every time this button is pressed, new instance of Tank Drive starts
-		button.whileHeld(new TankDriveCommand());
+		// Init Buttons
+		tankDriveButton = new JoystickButton(controls.get(Constants.TANK_DRIVE_CONTROL), Constants.TANK_DRIVE_BUTTON);
+		
+		// Button Actions
+		tankDriveButton.whenPressed(new TankDriveCommand());
 	 }
 	
 	public Joystick getLeftJoystick() {

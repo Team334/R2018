@@ -13,13 +13,11 @@ public class TankDriveCommand extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("TANK INITIALIZED");
-		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.out.println("TANK RUNNING");
 		Robot.sDrive.setLeft(Robot.m_oi.getLeftJoystick().getY());
 		Robot.sDrive.setRight(Robot.m_oi.getRightJoystick().getY());
 	}
