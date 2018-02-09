@@ -55,8 +55,8 @@ public class Robot extends TimedRobot {
 		
 		// Gets info from "Game Data" in FRC Driver Station
 		String fieldConfig = fms.getGameSpecificMessage(); 
-        SmartDashboard.putString("Field Config", fieldConfig);
-        SmartDashboard.putNumber("Start Location", fms.getLocation());
+		SmartDashboard.putString("Field Config", fieldConfig);
+		SmartDashboard.putNumber("Start Location", fms.getLocation());
         
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();

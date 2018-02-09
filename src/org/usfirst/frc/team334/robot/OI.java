@@ -22,7 +22,6 @@ public class OI {
 	private XboxController xbox;
 	private ArrayList<GenericHID> controls;
 	
-	//Buttons
 	
 	public OI() {
 		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -30,10 +29,11 @@ public class OI {
 		xbox = new XboxController(Constants.XBOX);
 		controls = new ArrayList<>(
 			Arrays.asList(leftJoystick, rightJoystick, xbox));
-		
-		// every time this button is pressed, new instance of Tank Drive starts
+    
+		// Init Buttons
 		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 		
+    // Button Actions
 		shiftGears.whenPressed(new ToggleTransmissionCommand(shiftState));
 	 }
 	

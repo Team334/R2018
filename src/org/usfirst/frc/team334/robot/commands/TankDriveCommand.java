@@ -12,8 +12,7 @@ public class TankDriveCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("TANK DRIVE INITIALIZED");
-		
+		System.out.println("TANK DRIVE INITIALIZED");	
 	}
 
 	// Called repeatedly when this Command is scheduled to run

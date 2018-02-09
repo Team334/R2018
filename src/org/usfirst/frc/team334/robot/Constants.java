@@ -12,6 +12,7 @@ public class Constants {
 	 * 1 -> Right Joystick
 	 * 2 -> Xbox
 	*/
+
 	public static final int SWITCH_GEAR_CONTROL = 0;
 
 	// Button mappings. The controller device for each button is set above.
