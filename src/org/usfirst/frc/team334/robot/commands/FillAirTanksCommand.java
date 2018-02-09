@@ -8,7 +8,7 @@ public class FillAirTanksCommand extends Command {
 	
 	public FillAirTanksCommand() {
 		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sPneumatics);
+		// requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class FillAirTanksCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		
+		System.out.println("FILLING AIRTANKS");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

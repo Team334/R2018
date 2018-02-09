@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class GrabPowerCubeCommand extends Command {
 	
 	public GrabPowerCubeCommand() {
-		// Use requires() here to declare subsystem dependencies
 		requires(Robot.sRollerIntake);
 	}
 

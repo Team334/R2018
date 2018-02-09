@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class SetElevatorToIntakeCommand extends Command {
 	
 	public SetElevatorToIntakeCommand() {
-		// Use requires() here to declare subsystem dependencies
 		requires(Robot.sElevator);
 	}
 
