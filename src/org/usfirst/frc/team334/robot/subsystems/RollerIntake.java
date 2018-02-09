@@ -6,7 +6,6 @@ public class RollerIntake extends Subsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 		
 	}
 

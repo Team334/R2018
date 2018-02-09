@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShiftToOneSpeedTransmissionCommand extends Command {
 	
 	public ShiftToOneSpeedTransmissionCommand() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sPneumatics);
+//		 requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time

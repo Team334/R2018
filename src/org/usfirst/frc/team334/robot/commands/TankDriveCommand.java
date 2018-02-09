@@ -4,22 +4,24 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToScaleCommand extends Command {
-	
-	public SetElevatorToScaleCommand() {
-		requires(Robot.sElevator);
+public class TankDriveCommand extends Command {
+	public TankDriveCommand() {
+		requires(Robot.sDrive);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		System.out.println("TANK INITIALIZED");
 		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		
+		System.out.println("TANK RUNNING");
+		Robot.sDrive.setLeft(Robot.m_oi.getLeftJoystick().getY());
+		Robot.sDrive.setRight(Robot.m_oi.getRightJoystick().getY());
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -31,13 +33,15 @@ public class SetElevatorToScaleCommand extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		
+		System.out.println("STOPPED TANK");
+		Robot.sDrive.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		
+		System.out.println("Interrupted");
+		Robot.sDrive.stop();
 	}
 }
