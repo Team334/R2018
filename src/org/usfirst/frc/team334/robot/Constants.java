@@ -12,11 +12,10 @@ public class Constants {
 	 * 1 -> Right Joystick
 	 * 2 -> Xbox
 	*/
-	public static final int SWITCH_TO_HIGH_SPEED_TRANSMISSION_CONTROL = 0;
+	public static final int SWITCH_GEAR_CONTROL = 0;
 
 	// Button mappings. The controller device for each button is set above.
-	public static final int SWITCH_TO_HIGH_SPEED_TRANSMISSION_BUTTON = 1;
-	public static final int SWITCH_TO_LOW_SPEED_TRANSMISSION_BUTTON = 1; // toggles with two speed
+	public static final int SWITCH_GEAR_BUTTON = 1;
 
 	// Motors
 	public static final int DRIVETRAIN_LEFT = 0;

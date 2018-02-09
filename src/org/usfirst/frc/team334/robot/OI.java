@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.usfirst.frc.team334.robot.commands.ShiftToHighSpeedTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.ShiftToLowSpeedTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.ToggleTransmissionCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
+	boolean shiftState;
 	// Joysticks and Xbox controls
 	private Joystick leftJoystick;
 	private Joystick rightJoystick;
@@ -30,11 +32,9 @@ public class OI {
 			Arrays.asList(leftJoystick, rightJoystick, xbox));
 		
 		// every time this button is pressed, new instance of Tank Drive starts
-		Button toLowSpeed = new JoystickButton(controls.get(Constants.SWITCH_TO_LOW_SPEED_TRANSIMISSION_CONTROL), Constants.SWITCH_TO_LOW_SPEED_TRANSMISSION_BUTTON);
-		Button toHighSpeed = new JoystickButton(controls.get(Constants.SWITCH_TO_HIGH_SPEED_TRANSMISSION_CONTROL), Constants.SWITCH_TO_HIGH_SPEED_TRANSMISSION_BUTTON);
+		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 		
-		toHighSpeed.whenPressed(new ShiftToHighSpeedTransmissionCommand());
-		toLowSpeed.whenPressed(new ShiftToLowSpeedTransmissionCommand());
+		shiftGears.whenPressed(new ToggleTransmissionCommand(shiftState));
 	 }
 	
 	public Joystick getLeftJoystick() {
@@ -47,5 +47,13 @@ public class OI {
 	
 	public XboxController getXBoxController() {
 		return this.xbox;
+	}
+	
+	//Toggle gearing functions
+	public void setShiftState(boolean newShiftState) {
+		shiftState = newShiftState;
+	}
+	public boolean getShiftState() {
+		return shiftState;
 	}
 }
