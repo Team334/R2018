@@ -1,14 +1,14 @@
-package org.usfirst.frc.team334.robot.commands;
+package org.usfirst.frc.team334.robot.commands.Elevator;
 
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class FillAirTanksCommand extends Command {
+public class SetElevatorToSwitchCommand extends Command {
 	
-	public FillAirTanksCommand() {
+	public SetElevatorToSwitchCommand() {
 		// Use requires() here to declare subsystem dependencies
-		// requires(Robot.sPneumatics);
+		requires(Robot.sElevator);
 	}
 
 	// Called just before this Command runs the first time
@@ -20,7 +20,7 @@ public class FillAirTanksCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		System.out.println("FILLING AIRTANKS");
+		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

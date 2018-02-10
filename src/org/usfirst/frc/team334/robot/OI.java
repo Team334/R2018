@@ -3,7 +3,7 @@ package org.usfirst.frc.team334.robot;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.usfirst.frc.team334.robot.commands.ToggleTransmissionCommand;
+import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
