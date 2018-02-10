@@ -40,4 +40,5 @@ public class GrabPowerCubeCommand extends Command {
 	protected void interrupted() {
 		
 	}
+	
 }

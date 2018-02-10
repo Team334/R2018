@@ -40,4 +40,5 @@ public class ShiftToHighSpeedTransmissionCommand extends Command {
 	protected void interrupted() {
 		
 	}
+	
 }

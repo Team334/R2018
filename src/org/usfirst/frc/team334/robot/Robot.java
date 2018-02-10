@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
+	
 	// FMS -> retrieves auton information
 	public DriverStation fms = DriverStation.getInstance();
 	
@@ -86,10 +87,11 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		// Runs any commands that are queued from OI
 		Scheduler.getInstance().run();
-		
 	}
 
 	@Override
 	public void testPeriodic() {
+		
 	}
+	
 }

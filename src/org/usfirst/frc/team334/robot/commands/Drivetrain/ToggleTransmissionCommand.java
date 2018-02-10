@@ -49,4 +49,5 @@ public class ToggleTransmissionCommand extends Command {
 	protected void interrupted() {
 		
 	}
+	
 }

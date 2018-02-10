@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * DriveTrain for 2018 Robot
  * 6 Victors (3 per side)
  */
+
 public class Drive extends Subsystem {
 
 	public enum DriveControlState {
@@ -18,6 +19,7 @@ public class Drive extends Subsystem {
 		DRIVE_TOWARDS_SWITCH, // for auton
 		DRIVE_TOWARDS_SCALE // for auton
 	}
+	
 	private DriveControlState mDriveControlState;
 	
 	private VictorSP left;
@@ -45,5 +47,5 @@ public class Drive extends Subsystem {
     public void initDefaultCommand() {
     	
     }
+    
 }
-

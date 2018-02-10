@@ -5,6 +5,7 @@ import org.usfirst.frc.team334.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class TankDriveCommand extends Command {
+	
 	public TankDriveCommand() {
 		requires(Robot.sDrive);
 	}
@@ -42,4 +43,5 @@ public class TankDriveCommand extends Command {
 		System.out.println("TANK DRIVE INTERRUPTED");
 		Robot.sDrive.stop();
 	}
+	
 }
