@@ -1,8 +1,10 @@
 package org.usfirst.frc.team334.robot.subsystems;
 
-
 import org.usfirst.frc.team334.robot.Constants;
+import org.usfirst.frc.team334.robot.pids.BNO055;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,6 +23,12 @@ public class Drive extends Subsystem {
 	}
 	
 	private DriveControlState mDriveControlState;
+	
+	// Sensor declarations
+	public static Encoder rEncoder = new Encoder(0, 1);
+	public static Ultrasonic rUltrasonicR = new Ultrasonic(8, 9);
+	public static Ultrasonic rUltrasonicL = new Ultrasonic(8, 9);
+	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 	
 	private VictorSP left;
 	private VictorSP right;

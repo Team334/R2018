@@ -1,5 +1,9 @@
 package org.usfirst.frc.team334.robot;
 
+import org.usfirst.frc.team334.robot.auto.scenarios.StartLeftEndLeftScenario;
+import org.usfirst.frc.team334.robot.auto.scenarios.StartLeftEndRightScenario;
+import org.usfirst.frc.team334.robot.auto.scenarios.StartRightEndLeftScenario;
+import org.usfirst.frc.team334.robot.auto.scenarios.StartRightEndRightScenario;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
@@ -10,6 +14,7 @@ import org.usfirst.frc.team334.robot.vision.VisionData;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -23,6 +28,12 @@ public class Robot extends TimedRobot {
 	public static Elevator sElevator;
 	public static Pneumatics sPneumatics;
 	public static RollerIntake sRollerIntake;
+	
+	// Initialize commands
+	private Command leftLeft = new StartLeftEndLeftScenario();
+	private Command leftRight = new StartLeftEndRightScenario();
+	private Command rightRight = new StartRightEndRightScenario();
+	private Command rightLeft = new StartRightEndLeftScenario();
 	
 	public static OI m_oi = new OI();
 	
@@ -62,6 +73,29 @@ public class Robot extends TimedRobot {
 		String fieldConfig = fms.getGameSpecificMessage(); 
 		SmartDashboard.putString("Field Config", fieldConfig);
 		SmartDashboard.putNumber("Start Location", fms.getLocation());
+		
+		switch (fieldConfig) {
+			case "LLR":
+				Scheduler.getInstance().add(leftLeft);
+				break;
+			case "LRR":
+				Scheduler.getInstance().add(leftRight);
+				break;
+			case "LRL":
+				Scheduler.getInstance().add(leftRight);
+				break;
+			case "RRL":
+				Scheduler.getInstance().add(rightRight);
+				break;
+			case "RLL":
+				Scheduler.getInstance().add(rightLeft);
+				break;
+			case "RLR":
+				Scheduler.getInstance().add(rightLeft);
+				break;
+			default:
+				System.out.println("FAILURE IN AUTON");
+		}
         
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
