@@ -48,6 +48,10 @@ public class Pneumatics extends Subsystem {
 			sPancakeR.set(DoubleSolenoid.Value.kForward);
 		}
 	}
+
+	public TransmissionState getTransmissionState() {
+		return mTransmissionState;
+	}
 	
 	public int getPressure() {
 		return compressorPressure.getAverageValue();

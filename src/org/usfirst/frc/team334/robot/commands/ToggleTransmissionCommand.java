@@ -1,46 +1,40 @@
 package org.usfirst.frc.team334.robot.commands;
 
-import org.usfirst.frc.team334.robot.OI;
 import org.usfirst.frc.team334.robot.Robot;
+import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ToggleTransmissionCommand extends Command {
-	public static OI m_oi = new OI();
-	
-	private boolean isFinished = false, isShifted;
-	
-	public ToggleTransmissionCommand(boolean shiftState) {
+		
+	public ToggleTransmissionCommand() {
 		 requires(Robot.sPneumatics);
-		 isShifted = shiftState;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+		//If ENUM TransMissionState is set to HIGH_SPEED shift to low speed otherwise shift to high speed
+		//Transmission state is set internally within the Pneumatics Subsystem when the Command is called
+		if(Robot.sPneumatics.getTransmissionState() == Pneumatics.TransmissionState.HIGH_SPEED){
+			ShiftToLowSpeedTransmissionCommand shiftLow = new ShiftToLowSpeedTransmissionCommand();
+			shiftLow.start();
+		} else {
+			ShiftToHighSpeedTransmissionCommand shiftHigh = new ShiftToHighSpeedTransmissionCommand();
+			shiftHigh.start();
+		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if(isShifted){
-			ShiftToLowSpeedTransmissionCommand shiftLow = new ShiftToLowSpeedTransmissionCommand();
-			shiftLow.start();
-			m_oi.setShiftState(false);
-		}else {
-			ShiftToHighSpeedTransmissionCommand shiftHigh = new ShiftToHighSpeedTransmissionCommand();
-			shiftHigh.start();
-			m_oi.setShiftState(true);
-		}
-		isFinished = true;
 		
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isFinished;
+		return true;
 	}
 
 	// Called once after isFinished returns true

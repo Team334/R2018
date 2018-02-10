@@ -3,9 +3,6 @@ package org.usfirst.frc.team334.robot;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.usfirst.frc.team334.robot.commands.ShiftToHighSpeedTransmissionCommand;
-import org.usfirst.frc.team334.robot.commands.ShiftToLowSpeedTransmissionCommand;
-import org.usfirst.frc.team334.robot.commands.TankDriveCommand;
 import org.usfirst.frc.team334.robot.commands.ToggleTransmissionCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
@@ -33,8 +30,9 @@ public class OI {
 		// Init Buttons
 		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 		
-    // Button Actions
-		shiftGears.whenPressed(new ToggleTransmissionCommand(shiftState));
+		// Button Actions
+		shiftGears.whenPressed(new ToggleTransmissionCommand());
+
 	 }
 	
 	public Joystick getLeftJoystick() {
@@ -49,11 +47,4 @@ public class OI {
 		return this.xbox;
 	}
 	
-	//Toggle gearing functions
-	public void setShiftState(boolean newShiftState) {
-		shiftState = newShiftState;
-	}
-	public boolean getShiftState() {
-		return shiftState;
-	}
 }
