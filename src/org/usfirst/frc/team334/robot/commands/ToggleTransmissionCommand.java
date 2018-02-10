@@ -14,9 +14,9 @@ public class ToggleTransmissionCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		//If ENUM TransMissionState is set to HIGH_SPEED shift to low speed otherwise shift to high speed
-		//Transmission state is set internally within the Pneumatics Subsystem when the Command is called
-		if(Robot.sPneumatics.getTransmissionState() == Pneumatics.TransmissionState.HIGH_SPEED){
+		// If ENUM TransMissionState is set to HIGH_SPEED shift to low speed otherwise shift to high speed
+		// Transmission state is set internally within the Pneumatics Subsystem when the Command is called
+		if (Robot.sPneumatics.getTransmissionState() == Pneumatics.TransmissionState.HIGH_SPEED){
 			ShiftToLowSpeedTransmissionCommand shiftLow = new ShiftToLowSpeedTransmissionCommand();
 			shiftLow.start();
 		} else {

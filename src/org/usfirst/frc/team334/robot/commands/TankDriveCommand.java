@@ -39,7 +39,7 @@ public class TankDriveCommand extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("TANK DRIVE INTERUPTED");
+		System.out.println("TANK DRIVE INTERRUPTED");
 		Robot.sDrive.stop();
 	}
 }

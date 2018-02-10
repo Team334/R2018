@@ -26,19 +26,12 @@ public class Drive extends Subsystem {
 	public Drive() {
 		left = new VictorSP(Constants.DRIVETRAIN_LEFT);
 		right = new VictorSP(Constants.DRIVETRAIN_RIGHT);
+		right.setInverted(true);
 	}
 	
 	public void stop() {
 		setLeft(0);
 		setRight(0);
-	}
-	
-	public void setInverted(int port) {
-		if(port == Constants.DRIVETRAIN_LEFT) {
-			left.setInverted(true);
-		}else if(port == Constants.DRIVETRAIN_RIGHT) {
-			right.setInverted(true);
-		}
 	}
 	
 	public void setLeft(double speed) {
