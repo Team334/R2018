@@ -1,4 +1,4 @@
-package org.usfirst.frc.team334.robot.commands;
+package org.usfirst.frc.team334.robot.commands.Drivetrain;
 
 import org.usfirst.frc.team334.robot.Robot;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
@@ -16,7 +16,7 @@ public class ToggleTransmissionCommand extends Command {
 	protected void initialize() {
 		// If ENUM TransMissionState is set to HIGH_SPEED shift to low speed otherwise shift to high speed
 		// Transmission state is set internally within the Pneumatics Subsystem when the Command is called
-		if (Robot.sPneumatics.getTransmissionState() == Pneumatics.TransmissionState.HIGH_SPEED){
+		if (Robot.sPneumatics.getTransmissionState() == Pneumatics.TransmissionState.HIGH_SPEED) {
 			ShiftToLowSpeedTransmissionCommand shiftLow = new ShiftToLowSpeedTransmissionCommand();
 			shiftLow.start();
 		} else {

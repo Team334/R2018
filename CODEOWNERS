@@ -1,0 +1,39 @@
+# CodeOwners for R2018
+
+* @Team334/programmers
+
+# Eric Jiang - Programming Lead
+# *placeholder*
+
+
+# Dan Shafman - Vision
+/src/org/usfirst/frc/team334/robot/vision @DanShafman
+
+
+# Joseph Babbitt - Drivetrain and Pneumatics
+/src/org/usfirst/frc/team334/robot/subsystems/Drive.java @babbitt
+/src/org/usfirst/frc/team334/robot/subsystems/Pneumatics.java @babbitt
+
+/src/org/usfirst/frc/team334/robot/commands/Drivetrain @babbitt
+
+
+# Samuel Piltch - Elevator
+/src/org/usfirst/frc/team334/robot/subsystems/Drive.java @samuelpiltch
+
+/src/org/usfirst/frc/team334/robot/commands/Elevator @samuelpiltch
+
+
+# Patrick Fan - PIDS
+# *placeholder*
+
+
+# Aleksey Panas - Intake and Climber
+/src/org/usfirst/frc/team334/robot/subsystems/RollerIntake.java @apanas9246
+
+/src/org/usfirst/frc/team334/robot/commands/Intake @apanas9246
+
+
+# Saikanam Siam - Cube Detection
+# *placeholder*
+
+

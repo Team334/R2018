@@ -1,14 +1,13 @@
-package org.usfirst.frc.team334.robot.commands;
+package org.usfirst.frc.team334.robot.commands.Intake;
 
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToSwitchCommand extends Command {
+public class GrabPowerCubeCommand extends Command {
 	
-	public SetElevatorToSwitchCommand() {
-		// Use requires() here to declare subsystem dependencies
-		requires(Robot.sElevator);
+	public GrabPowerCubeCommand() {
+		requires(Robot.sRollerIntake);
 	}
 
 	// Called just before this Command runs the first time

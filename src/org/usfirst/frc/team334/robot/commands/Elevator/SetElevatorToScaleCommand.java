@@ -1,12 +1,12 @@
-package org.usfirst.frc.team334.robot.commands;
+package org.usfirst.frc.team334.robot.commands.Elevator;
 
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToIntakeCommand extends Command {
+public class SetElevatorToScaleCommand extends Command {
 	
-	public SetElevatorToIntakeCommand() {
+	public SetElevatorToScaleCommand() {
 		requires(Robot.sElevator);
 	}
 

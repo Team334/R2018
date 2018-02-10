@@ -1,6 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
-import org.usfirst.frc.team334.robot.commands.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;

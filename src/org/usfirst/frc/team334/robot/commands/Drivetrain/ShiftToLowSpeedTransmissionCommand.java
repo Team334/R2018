@@ -1,19 +1,19 @@
-package org.usfirst.frc.team334.robot.commands;
+package org.usfirst.frc.team334.robot.commands.Drivetrain;
 
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GrabPowerCubeCommand extends Command {
+public class ShiftToLowSpeedTransmissionCommand extends Command {
 	
-	public GrabPowerCubeCommand() {
-		requires(Robot.sRollerIntake);
+	public ShiftToLowSpeedTransmissionCommand() {
+		 requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+		Robot.sPneumatics.setLowSpeedTransmission();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -25,7 +25,7 @@ public class GrabPowerCubeCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true
