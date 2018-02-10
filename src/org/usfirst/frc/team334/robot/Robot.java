@@ -1,5 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
+import org.usfirst.frc.team334.robot.commands.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
@@ -17,10 +18,10 @@ public class Robot extends TimedRobot {
 	public DriverStation fms = DriverStation.getInstance();
 	
 	// Initialize subsystems
-	public static Drive sDrive = new Drive();
-	public static Elevator sElevator = new Elevator();
-	// public static Pneumatics sPneumatics = new Pneumatics();
-	public static RollerIntake sRollerIntake = new RollerIntake();
+	public static Drive sDrive;
+	public static Elevator sElevator;
+	public static Pneumatics sPneumatics;
+	public static RollerIntake sRollerIntake;
 	
 	public static OI m_oi = new OI();
 	
@@ -28,6 +29,11 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void robotInit() {
+		sDrive = new Drive();
+		sElevator = new Elevator();
+		sPneumatics = new Pneumatics();
+		sRollerIntake = new RollerIntake();
+		
 		System.out.println("ROBOT INITIALIZED");
 		
 		// Shows current commands that are running
@@ -72,12 +78,15 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 		Scheduler.getInstance().removeAll();
+		TankDriveCommand tankDrive = new TankDriveCommand();
+		tankDrive.start();
 	}
 
 	@Override
 	public void teleopPeriodic() {
 		// Runs any commands that are queued from OI
 		Scheduler.getInstance().run();
+		
 	}
 
 	@Override

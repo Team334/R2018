@@ -12,7 +12,7 @@ public class TankDriveCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("TANK INITIALIZED");
+		System.out.println("TANK DRIVE INITIALIZED");	
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,7 +31,7 @@ public class TankDriveCommand extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		System.out.println("STOPPED TANK");
+		System.out.println("STOPPED TANK DRIVE");
 		Robot.sDrive.stop();
 	}
 
@@ -39,7 +39,7 @@ public class TankDriveCommand extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("Interrupted");
+		System.out.println("TANK DRIVE INTERRUPTED");
 		Robot.sDrive.stop();
 	}
 }

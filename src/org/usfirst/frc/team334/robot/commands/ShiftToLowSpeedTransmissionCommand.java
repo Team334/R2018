@@ -4,16 +4,16 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShiftToOneSpeedTransmissionCommand extends Command {
+public class ShiftToLowSpeedTransmissionCommand extends Command {
 	
-	public ShiftToOneSpeedTransmissionCommand() {
-//		 requires(Robot.sPneumatics);
+	public ShiftToLowSpeedTransmissionCommand() {
+		 requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+		Robot.sPneumatics.setLowSpeedTransmission();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -25,7 +25,7 @@ public class ShiftToOneSpeedTransmissionCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 	// Called once after isFinished returns true

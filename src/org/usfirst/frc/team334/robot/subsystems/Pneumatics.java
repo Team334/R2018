@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Pneumatics extends Subsystem {
 	
 	public enum TransmissionState {
-		ONE_SPEED,
-		TWO_SPEED
+		LOW_SPEED,
+		HIGH_SPEED
 	}
 	private TransmissionState mTransmissionState;
 	
@@ -29,24 +29,28 @@ public class Pneumatics extends Subsystem {
 		sPancakeR = new DoubleSolenoid(Constants.PANCAKE_R_INPUT, Constants.PANCAKE_R_OUTPUT);
 		
 		// default = one transmission
-		mTransmissionState = TransmissionState.ONE_SPEED;
-		setOneSpeedTransmission();
+		mTransmissionState = TransmissionState.LOW_SPEED;
+		setLowSpeedTransmission();
 	}
 	
-	public void setOneSpeedTransmission() {
-		if (mTransmissionState != TransmissionState.ONE_SPEED) {
-			mTransmissionState = TransmissionState.ONE_SPEED;
+	public void setLowSpeedTransmission() {
+		if (mTransmissionState != TransmissionState.LOW_SPEED) {
+			mTransmissionState = TransmissionState.LOW_SPEED;
 			sPancakeL.set(DoubleSolenoid.Value.kReverse);
 			sPancakeR.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	
-	public void setTwoSpeedTransmission() {
-		if (mTransmissionState != TransmissionState.TWO_SPEED) {
-			mTransmissionState = TransmissionState.TWO_SPEED;
+	public void setHighSpeedTransmission() {
+		if (mTransmissionState != TransmissionState.HIGH_SPEED) {
+			mTransmissionState = TransmissionState.HIGH_SPEED;
 			sPancakeL.set(DoubleSolenoid.Value.kForward);
 			sPancakeR.set(DoubleSolenoid.Value.kForward);
 		}
+	}
+
+	public TransmissionState getTransmissionState() {
+		return mTransmissionState;
 	}
 	
 	public int getPressure() {

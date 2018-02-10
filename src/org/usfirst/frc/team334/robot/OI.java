@@ -3,7 +3,7 @@ package org.usfirst.frc.team334.robot;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.usfirst.frc.team334.robot.commands.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.ToggleTransmissionCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -12,14 +12,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
+	boolean shiftState;
 	// Joysticks and Xbox controls
 	private Joystick leftJoystick;
 	private Joystick rightJoystick;
 	private XboxController xbox;
 	private ArrayList<GenericHID> controls;
 	
-	// Declare Buttons
-	private Button tankDriveButton;
 	
 	public OI() {
 		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -27,12 +26,13 @@ public class OI {
 		xbox = new XboxController(Constants.XBOX);
 		controls = new ArrayList<>(
 			Arrays.asList(leftJoystick, rightJoystick, xbox));
-		
+    
 		// Init Buttons
-		tankDriveButton = new JoystickButton(controls.get(Constants.TANK_DRIVE_CONTROL), Constants.TANK_DRIVE_BUTTON);
+		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 		
 		// Button Actions
-		tankDriveButton.whenPressed(new TankDriveCommand());
+		shiftGears.whenPressed(new ToggleTransmissionCommand());
+
 	 }
 	
 	public Joystick getLeftJoystick() {
@@ -46,4 +46,5 @@ public class OI {
 	public XboxController getXBoxController() {
 		return this.xbox;
 	}
+	
 }
