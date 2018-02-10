@@ -25,9 +25,9 @@ public class Drive extends Subsystem {
 	private DriveControlState mDriveControlState;
 	
 	// Sensor declarations
-	public static Encoder rEncoder = new Encoder(0, 1);
-	public static Ultrasonic rUltrasonicR = new Ultrasonic(8, 9);
-	public static Ultrasonic rUltrasonicL = new Ultrasonic(8, 9);
+	public static Encoder rEncoder = new Encoder(Constants.ENCODER_A, Constants.ENCODER_B);
+	public static Ultrasonic rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_R_PING, Constants.ULTRASONIC_R_ECHO);
+	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_L_PING, Constants.ULTRASONIC_L_ECHO);
 	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 	
 	private VictorSP left;

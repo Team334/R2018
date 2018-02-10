@@ -50,14 +50,16 @@ public class FollowLeftWallAutonCommand extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		
+		drive.disable();
+		Robot.sDrive.stop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		
+		System.out.println("FOLLOW LEFT WALL INTERRUPTED");
+		end();
 	}
 	
 }

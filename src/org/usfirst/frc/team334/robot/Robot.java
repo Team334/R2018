@@ -74,6 +74,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putString("Field Config", fieldConfig);
 		SmartDashboard.putNumber("Start Location", fms.getLocation());
 		
+		// Checks info from FMS to schedule correct auton command.
 		switch (fieldConfig) {
 			case "LLR":
 				Scheduler.getInstance().add(leftLeft);
