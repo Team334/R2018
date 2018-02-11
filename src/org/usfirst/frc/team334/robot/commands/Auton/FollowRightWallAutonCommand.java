@@ -26,7 +26,7 @@ public class FollowRightWallAutonCommand extends Command {
 	protected void initialize() {
 		Drive.rUltrasonicR.setAutomaticMode(true);
 		Drive.rUltrasonicR.setEnabled(true);
-		Drive.rEncoder.reset();
+		Drive.rEncoderRight.reset();
 		drive.reset();
 		drive.setSetpoint(20);
 		drive.setAbsoluteTolerance(0);
@@ -44,7 +44,8 @@ public class FollowRightWallAutonCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return (Drive.rEncoder.get() > 4000) ? true : false;
+		// 4000 is estimated distance to cross auton line (in encoder ticks)
+		return (Drive.rEncoderRight.get() > 4000) ? true : false;
 	}
 
 	// Called once after isFinished returns true

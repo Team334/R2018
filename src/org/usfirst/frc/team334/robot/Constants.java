@@ -38,15 +38,17 @@ public class Constants {
 	public static final int ELEVATOR_MOTOR_1 = 6;
 	public static final int ELEVATOR_MOTOR_2 = 7;
 	
-	// Ultrasonics (can be changed later)
+	// Ultrasonics
 	public static final int ULTRASONIC_L_PING = 0;
 	public static final int ULTRASONIC_L_ECHO = 1;
 	public static final int ULTRASONIC_R_PING = 2;
 	public static final int ULTRASONIC_R_ECHO = 3;
 	
-	// Encoder (can be changed later)
-	public static final int ENCODER_A = 4;
-	public static final int ENCODER_B = 5;
+	// Encoder
+	public static final int DRIVETRAIN_ENCODER_L_A = 4;
+	public static final int DRIVETRAIN_ENCODER_L_B = 5;
+	public static final int DRIVETRAIN_ENCODER_R_A = 8;
+	public static final int DRIVETRAIN_ENCODER_R_B = 9;
 
 	// Vision
 	public static final String VISION_NT_NAME = "vision";

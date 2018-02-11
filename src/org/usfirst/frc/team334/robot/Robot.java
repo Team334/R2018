@@ -1,9 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
-import org.usfirst.frc.team334.robot.auto.scenarios.StartLeftEndLeftScenario;
-import org.usfirst.frc.team334.robot.auto.scenarios.StartLeftEndRightScenario;
-import org.usfirst.frc.team334.robot.auto.scenarios.StartRightEndLeftScenario;
-import org.usfirst.frc.team334.robot.auto.scenarios.StartRightEndRightScenario;
+import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
@@ -14,7 +11,6 @@ import org.usfirst.frc.team334.robot.vision.VisionData;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -36,8 +32,6 @@ public class Robot extends TimedRobot {
 	private Command rightLeft = new StartRightEndLeftScenario();
 	
 	public static OI m_oi = new OI();
-	
-	Command m_autonomousCommand;
 
 	@Override
 	public void robotInit() {
@@ -97,10 +91,6 @@ public class Robot extends TimedRobot {
 			default:
 				System.out.println("FAILURE IN AUTON");
 		}
-        
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
-		}
 	}
 
 	@Override
@@ -110,9 +100,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
-		}
 		Scheduler.getInstance().removeAll();
 		TankDriveCommand tankDrive = new TankDriveCommand();
 		tankDrive.start();

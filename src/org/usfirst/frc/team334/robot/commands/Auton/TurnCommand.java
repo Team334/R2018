@@ -45,7 +45,7 @@ public class TurnCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return (Drive.rGyro.getHeading() > 88 && Drive.rGyro.getHeading() > 92) ? true : false;
+		return (Drive.rGyro.getHeading() > angle - 2 && Drive.rGyro.getHeading() > angle + 2) ? true : false;
 	}
 
 	// Called once after isFinished returns true
