@@ -16,18 +16,18 @@ public class Pneumatics extends Subsystem {
 	
 	private TransmissionState mTransmissionState;
 	
-	private Compressor rCompressor;
+	private Compressor compressor;
 	private AnalogInput compressorPressure;
 	
-	private DoubleSolenoid rPancakeL;
-	private DoubleSolenoid rPancakeR;
+	private DoubleSolenoid pancakeL;
+	private DoubleSolenoid pancakeR;
 
 	public Pneumatics() {
-		rCompressor = new Compressor(Constants.COMPRESSOR);
+		compressor = new Compressor(Constants.COMPRESSOR);
 		compressorPressure = new AnalogInput(Constants.PRESSURE_SENSOR);
 		
-		rPancakeL = new DoubleSolenoid(Constants.PANCAKE_L_INPUT, Constants.PANCAKE_L_OUTPUT);
-		rPancakeR = new DoubleSolenoid(Constants.PANCAKE_R_INPUT, Constants.PANCAKE_R_OUTPUT);
+		pancakeL = new DoubleSolenoid(Constants.PANCAKE_L_INPUT, Constants.PANCAKE_L_OUTPUT);
+		pancakeR = new DoubleSolenoid(Constants.PANCAKE_R_INPUT, Constants.PANCAKE_R_OUTPUT);
 		
 		// default = one transmission
 		mTransmissionState = TransmissionState.LOW_SPEED;
@@ -37,16 +37,16 @@ public class Pneumatics extends Subsystem {
 	public void setLowSpeedTransmission() {
 		if (mTransmissionState != TransmissionState.LOW_SPEED) {
 			mTransmissionState = TransmissionState.LOW_SPEED;
-			rPancakeL.set(DoubleSolenoid.Value.kReverse);
-			rPancakeR.set(DoubleSolenoid.Value.kReverse);
+			pancakeL.set(DoubleSolenoid.Value.kReverse);
+			pancakeR.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	
 	public void setHighSpeedTransmission() {
 		if (mTransmissionState != TransmissionState.HIGH_SPEED) {
 			mTransmissionState = TransmissionState.HIGH_SPEED;
-			rPancakeL.set(DoubleSolenoid.Value.kForward);
-			rPancakeR.set(DoubleSolenoid.Value.kForward);
+			pancakeL.set(DoubleSolenoid.Value.kForward);
+			pancakeR.set(DoubleSolenoid.Value.kForward);
 		}
 	}
 
@@ -65,11 +65,11 @@ public class Pneumatics extends Subsystem {
 	// Running these commands will turn off compressor automatic mode 
 	// (Compressor runs when pressure <110psi)
 	public void runCompressor() {
-		rCompressor.start();
+		compressor.start();
 	}
 
 	public void stopCompressor() {
-		rCompressor.stop();
+		compressor.stop();
 	}
 
     public void initDefaultCommand() {
