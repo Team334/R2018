@@ -1,8 +1,7 @@
 package org.usfirst.frc.team334.robot.commands.Auton;
 
+import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
-import org.usfirst.frc.team334.robot.pids.DriveAlongRightPIDOutput;
-import org.usfirst.frc.team334.robot.pids.DriveAlongRightPIDSource;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -11,15 +10,22 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FollowRightWallAutonCommand extends Command {
+	
+	private int kP, kI, kD;
+	
+	private PIDSource rightUltrasonic;
+	private PIDOutput out;
 		
 	public FollowRightWallAutonCommand() {
-		 requires(Robot.sDrive);
+		requires(Robot.sDrive);
+		rightUltrasonic = Drive.rEncoderRight;
+		out = new PIDOutput() {
+			@Override
+			public void pidWrite(double output) { }
+		};
 	}
-	
-	private PIDSource src = new DriveAlongRightPIDSource();
-	private PIDOutput out = new DriveAlongRightPIDOutput();
 
-	private PIDController drive = new PIDController(0.075, 0, 0, src, out);
+	private PIDController wallFollowPID = new PIDController(kP, kI, kD, rightUltrasonic, out);
 
 	// Called just before this Command runs the first time
 	@Override
@@ -27,31 +33,30 @@ public class FollowRightWallAutonCommand extends Command {
 		Drive.rUltrasonicR.setAutomaticMode(true);
 		Drive.rUltrasonicR.setEnabled(true);
 		Drive.rEncoderRight.reset();
-		drive.reset();
-		drive.setSetpoint(20);
-		drive.setAbsoluteTolerance(0);
-		drive.setOutputRange(-1, 1);
-		drive.enable();
+		wallFollowPID.reset();
+		wallFollowPID.setSetpoint(Constants.DISTANCE_FROM_WALL);
+		wallFollowPID.setAbsoluteTolerance(0);
+		wallFollowPID.setOutputRange(-1, 1);
+		wallFollowPID.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.sDrive.setLeft(0.5 + drive.get() * 0.5);
-		Robot.sDrive.setRight(0.5 - drive.get() * 0.5);
+		Robot.sDrive.setLeft(Constants.WALL_FOLLOW_PID_SPEED + wallFollowPID.get() * 0.5);
+		Robot.sDrive.setRight(Constants.WALL_FOLLOW_PID_SPEED - wallFollowPID.get() * 0.5);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		// 4000 is estimated distance to cross auton line (in encoder ticks)
-		return (Drive.rEncoderRight.get() > 4000) ? true : false;
+		return (Drive.rEncoderRight.get() > Constants.DISTANCE_TO_BASELINE) ? true : false;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		drive.disable();
+		wallFollowPID.disable();
 		Robot.sDrive.stop();
 	}
 

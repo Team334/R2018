@@ -25,10 +25,10 @@ public class Drive extends Subsystem {
 	private DriveControlState mDriveControlState;
 	
 	// Sensor declarations
-	public static Encoder rEncoderLeft = new Encoder(Constants.DRIVETRAIN_ENCODER_L_A, Constants.DRIVETRAIN_ENCODER_L_B);
-	public static Encoder rEncoderRight = new Encoder(Constants.DRIVETRAIN_ENCODER_R_A, Constants.DRIVETRAIN_ENCODER_R_B);
-	public static Ultrasonic rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_R_PING, Constants.ULTRASONIC_R_ECHO);
-	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_L_PING, Constants.ULTRASONIC_L_ECHO);
+	public static Encoder rEncoderLeft = new Encoder(Constants.ENCODER_L_DRIVETRAIN_A, Constants.ENCODER_L_DRIVETRAIN_B);
+	public static Encoder rEncoderRight = new Encoder(Constants.ENCODER_R_DRIVETRAIN_A, Constants.ENCODER_R_DRIVETRAIN_B);
+	public static Ultrasonic rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_L_DRIVETRAIN_PING, Constants.ULTRASONIC_L_DRIVETRAIN_ECHO);
+	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_R_DRIVETRAIN_PING, Constants.ULTRASONIC_R_DRIVETRAIN_ECHO);
 	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 	
 	private VictorSP left;
