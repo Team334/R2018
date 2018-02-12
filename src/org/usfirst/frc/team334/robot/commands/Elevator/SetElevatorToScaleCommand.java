@@ -40,4 +40,5 @@ public class SetElevatorToScaleCommand extends Command {
 	protected void interrupted() {
 		
 	}
+	
 }

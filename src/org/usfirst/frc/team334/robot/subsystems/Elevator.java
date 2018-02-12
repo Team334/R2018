@@ -6,8 +6,9 @@ import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Elevator extends Subsystem {
+	
     public void initDefaultCommand() {
     	
     }
+    
 }
-

@@ -40,4 +40,5 @@ public class ReleasePowerCubeCommand extends Command {
 	protected void interrupted() {
 		
 	}
+	
 }

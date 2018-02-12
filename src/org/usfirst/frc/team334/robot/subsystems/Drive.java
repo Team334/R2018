@@ -1,8 +1,10 @@
 package org.usfirst.frc.team334.robot.subsystems;
 
-
 import org.usfirst.frc.team334.robot.Constants;
+import org.usfirst.frc.team334.robot.pids.BNO055;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -10,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * DriveTrain for 2018 Robot
  * 6 Victors (3 per side)
  */
+
 public class Drive extends Subsystem {
 
 	public enum DriveControlState {
@@ -18,7 +21,15 @@ public class Drive extends Subsystem {
 		DRIVE_TOWARDS_SWITCH, // for auton
 		DRIVE_TOWARDS_SCALE // for auton
 	}
+	
 	private DriveControlState mDriveControlState;
+	
+	// Sensor declarations
+	public static Encoder rEncoderLeft = new Encoder(Constants.ENCODER_L_DRIVETRAIN_A, Constants.ENCODER_L_DRIVETRAIN_B);
+	public static Encoder rEncoderRight = new Encoder(Constants.ENCODER_R_DRIVETRAIN_A, Constants.ENCODER_R_DRIVETRAIN_B);
+	public static Ultrasonic rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_L_DRIVETRAIN_PING, Constants.ULTRASONIC_L_DRIVETRAIN_ECHO);
+	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_R_DRIVETRAIN_PING, Constants.ULTRASONIC_R_DRIVETRAIN_ECHO);
+	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 	
 	private VictorSP left;
 	private VictorSP right;
@@ -45,5 +56,5 @@ public class Drive extends Subsystem {
     public void initDefaultCommand() {
     	
     }
+    
 }
-

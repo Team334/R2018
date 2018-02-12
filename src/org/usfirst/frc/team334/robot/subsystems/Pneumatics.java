@@ -13,20 +13,21 @@ public class Pneumatics extends Subsystem {
 		LOW_SPEED,
 		HIGH_SPEED
 	}
+	
 	private TransmissionState mTransmissionState;
 	
-	private Compressor sCompressor;
+	private Compressor compressor;
 	private AnalogInput compressorPressure;
 	
-	private DoubleSolenoid sPancakeL;
-	private DoubleSolenoid sPancakeR;
+	private DoubleSolenoid pancakeL;
+	private DoubleSolenoid pancakeR;
 
 	public Pneumatics() {
-		sCompressor = new Compressor(Constants.COMPRESSOR);
+		compressor = new Compressor(Constants.COMPRESSOR);
 		compressorPressure = new AnalogInput(Constants.PRESSURE_SENSOR);
 		
-		sPancakeL = new DoubleSolenoid(Constants.PANCAKE_L_INPUT, Constants.PANCAKE_L_OUTPUT);
-		sPancakeR = new DoubleSolenoid(Constants.PANCAKE_R_INPUT, Constants.PANCAKE_R_OUTPUT);
+		pancakeL = new DoubleSolenoid(Constants.PANCAKE_L_INPUT, Constants.PANCAKE_L_OUTPUT);
+		pancakeR = new DoubleSolenoid(Constants.PANCAKE_R_INPUT, Constants.PANCAKE_R_OUTPUT);
 		
 		// default = one transmission
 		mTransmissionState = TransmissionState.LOW_SPEED;
@@ -36,16 +37,16 @@ public class Pneumatics extends Subsystem {
 	public void setLowSpeedTransmission() {
 		if (mTransmissionState != TransmissionState.LOW_SPEED) {
 			mTransmissionState = TransmissionState.LOW_SPEED;
-			sPancakeL.set(DoubleSolenoid.Value.kReverse);
-			sPancakeR.set(DoubleSolenoid.Value.kReverse);
+			pancakeL.set(DoubleSolenoid.Value.kReverse);
+			pancakeR.set(DoubleSolenoid.Value.kReverse);
 		}
 	}
 	
 	public void setHighSpeedTransmission() {
 		if (mTransmissionState != TransmissionState.HIGH_SPEED) {
 			mTransmissionState = TransmissionState.HIGH_SPEED;
-			sPancakeL.set(DoubleSolenoid.Value.kForward);
-			sPancakeR.set(DoubleSolenoid.Value.kForward);
+			pancakeL.set(DoubleSolenoid.Value.kForward);
+			pancakeR.set(DoubleSolenoid.Value.kForward);
 		}
 	}
 
@@ -58,21 +59,21 @@ public class Pneumatics extends Subsystem {
 	}
 
 	public boolean isCompressorLowPressure() {
-		return ((getPressure() < 500) ? true : false);
+		return (getPressure() < 500) ? true : false;
 	}
 
 	// Running these commands will turn off compressor automatic mode 
 	// (Compressor runs when pressure <110psi)
 	public void runCompressor() {
-		sCompressor.start();
+		compressor.start();
 	}
 
 	public void stopCompressor() {
-		sCompressor.stop();
+		compressor.stop();
 	}
 
     public void initDefaultCommand() {
     	
     }
+    
 }
-

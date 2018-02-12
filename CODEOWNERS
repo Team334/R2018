@@ -23,8 +23,10 @@
 /src/org/usfirst/frc/team334/robot/commands/Elevator @samuelpiltch
 
 
-# Patrick Fan - PIDS
-# *placeholder*
+# Patrick Fan - PIDS (& Auton??)
+/src/org/usfirst/frc/team334/robot/auto @Cyfurion
+/src/org/usfirst/frc/team334/robot/pids @Cyfurion
+/src/org/usfirst/frc/team334/robot/commands/Auton @Cyfurion
 
 
 # Aleksey Panas - Intake and Climber

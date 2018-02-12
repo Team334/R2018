@@ -1,5 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
+import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
+	
 	// FMS -> retrieves auton information
 	public DriverStation fms = DriverStation.getInstance();
 	
@@ -23,9 +25,13 @@ public class Robot extends TimedRobot {
 	public static Pneumatics sPneumatics;
 	public static RollerIntake sRollerIntake;
 	
-	public static OI m_oi = new OI();
+	// Initialize commands
+	private Command leftLeft = new StartLeftEndLeftScenario();
+	private Command leftRight = new StartLeftEndRightScenario();
+	private Command rightRight = new StartRightEndRightScenario();
+	private Command rightLeft = new StartRightEndLeftScenario();
 	
-	Command m_autonomousCommand;
+	public static OI m_oi = new OI();
 
 	@Override
 	public void robotInit() {
@@ -61,9 +67,29 @@ public class Robot extends TimedRobot {
 		String fieldConfig = fms.getGameSpecificMessage(); 
 		SmartDashboard.putString("Field Config", fieldConfig);
 		SmartDashboard.putNumber("Start Location", fms.getLocation());
-        
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+		
+		// Checks info from FMS to schedule correct auton command.
+		switch (fieldConfig) {
+			case "LLR":
+				Scheduler.getInstance().add(leftLeft);
+				break;
+			case "LRR":
+				Scheduler.getInstance().add(leftRight);
+				break;
+			case "LRL":
+				Scheduler.getInstance().add(leftRight);
+				break;
+			case "RRL":
+				Scheduler.getInstance().add(rightRight);
+				break;
+			case "RLL":
+				Scheduler.getInstance().add(rightLeft);
+				break;
+			case "RLR":
+				Scheduler.getInstance().add(rightLeft);
+				break;
+			default:
+				System.out.println("FAILURE IN AUTON");
 		}
 	}
 
@@ -74,9 +100,6 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
-		}
 		Scheduler.getInstance().removeAll();
 		TankDriveCommand tankDrive = new TankDriveCommand();
 		tankDrive.start();
@@ -86,10 +109,11 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		// Runs any commands that are queued from OI
 		Scheduler.getInstance().run();
-		
 	}
 
 	@Override
 	public void testPeriodic() {
+		
 	}
+	
 }

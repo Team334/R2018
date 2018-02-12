@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
+	
 	boolean shiftState;
 	// Joysticks and Xbox controls
 	private Joystick leftJoystick;
 	private Joystick rightJoystick;
 	private XboxController xbox;
 	private ArrayList<GenericHID> controls;
-	
 	
 	public OI() {
 		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -32,8 +32,7 @@ public class OI {
 		
 		// Button Actions
 		shiftGears.whenPressed(new ToggleTransmissionCommand());
-
-	 }
+	}
 	
 	public Joystick getLeftJoystick() {
 		return this.leftJoystick;

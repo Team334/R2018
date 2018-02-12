@@ -11,7 +11,9 @@ import edu.wpi.first.networktables.NetworkTableInstance;
  * VisionData.initTable();
  * double offset = VisionData.getOffset();
  */
+
 public class VisionData {
+	
 	private static NetworkTable visionTable;
 	
 	private static double offset = 0;
@@ -32,9 +34,10 @@ public class VisionData {
 				case "distance":
 					switchDistance = value.getDouble();
 					break;
-          }
-      }, EntryListenerFlags.kUpdate);
+			}
+		}, EntryListenerFlags.kUpdate);
 	}
+	
 	public static double getOffset() {
         return offset;
     }
@@ -42,4 +45,5 @@ public class VisionData {
 	public static double getSwitchDistance() {
 		return switchDistance;
 	}
+	
 }
