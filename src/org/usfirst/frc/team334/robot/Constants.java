@@ -71,8 +71,8 @@ public class Constants {
 	public static final double DRIVE_HEADING_PID_TARGET = 0;
 	
 	// Auton Distances
-	public static final double ENCODER_REVOLUTIONS_PER_INCH = 20.38216560509554;
-	public static final double DISTANCE_TO_BASELINE = ENCODER_REVOLUTIONS_PER_INCH * 15; // ~20 revolutions per inch (4 in wheels) * 15 inches to baseline
-	public static final int DISTANCE_FROM_WALL = 20; //inches
+	public static final double ENCODER_TICKS_PER_INCH = 20.38216560509554;
+	public static final double DISTANCE_TO_BASELINE = ENCODER_TICKS_PER_INCH * 15; // 15 inches to baseline
+	public static final int DISTANCE_FROM_WALL = 20; // Inches
 	
 }

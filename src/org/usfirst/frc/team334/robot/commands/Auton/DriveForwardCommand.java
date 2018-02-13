@@ -32,7 +32,7 @@ public class DriveForwardCommand extends Command {
 			@Override
 			public void pidWrite(double output) { }
 		};
-		this.distance = Constants.ENCODER_REVOLUTIONS_PER_INCH * distance;
+		this.distance = Constants.ENCODER_TICKS_PER_INCH * distance;
 		gyroInput = new ForwardPIDSource();
 		encoderInput = Drive.rEncoderLeft;
 		driveForwardHeadingPID = new PIDController(Constants.DRIVE_HEADING_PID_kP, Constants.DRIVE_HEADING_PID_kI, Constants.DRIVE_HEADING_PID_kD, gyroInput, outputHeadingPID);
