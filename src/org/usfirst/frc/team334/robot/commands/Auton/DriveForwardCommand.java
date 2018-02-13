@@ -21,6 +21,7 @@ public class DriveForwardCommand extends Command {
 	private PIDController driveForwardHeadingPID;
 	private PIDController driveForwardDistancePID;
 	
+	// Distance argument is in INCHES
 	public DriveForwardCommand(double distance) {
 		requires(Robot.sDrive);
 		outputHeadingPID = new PIDOutput() {
@@ -31,7 +32,7 @@ public class DriveForwardCommand extends Command {
 			@Override
 			public void pidWrite(double output) { }
 		};
-		this.distance = distance;
+		this.distance = Constants.ENCODER_REVOLUTIONS_PER_INCH * distance;
 		gyroInput = new ForwardPIDSource();
 		encoderInput = Drive.rEncoderLeft;
 		driveForwardHeadingPID = new PIDController(Constants.DRIVE_HEADING_PID_kP, Constants.DRIVE_HEADING_PID_kI, Constants.DRIVE_HEADING_PID_kD, gyroInput, outputHeadingPID);
