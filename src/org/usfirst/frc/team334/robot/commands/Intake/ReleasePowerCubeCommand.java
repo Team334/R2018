@@ -21,10 +21,10 @@ public class ReleasePowerCubeCommand extends Command {
 	@Override
 	protected void execute() {
 		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON)) {
-			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED_HIGH * -1);
+			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED_HIGH);
 		}
 		else {
-			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED * -1);
+			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED);
 		}
 	}
 
