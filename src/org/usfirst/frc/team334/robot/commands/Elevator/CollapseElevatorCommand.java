@@ -1,6 +1,5 @@
 package org.usfirst.frc.team334.robot.commands.Elevator;
 
-import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -17,7 +16,7 @@ public class CollapseElevatorCommand extends Command {
 	protected void initialize() {
 		System.out.println("COLLAPSING ELEVATOR");
 	}
-	
+
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {

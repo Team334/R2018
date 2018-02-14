@@ -16,7 +16,7 @@ public class SetElevatorToExchangeCommand extends Command {
 	protected void initialize() {
 		System.out.println("MOVING ELEVATOR TO EXCHANGE POSITION");
 	}
-	
+
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {

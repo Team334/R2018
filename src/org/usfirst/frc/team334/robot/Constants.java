@@ -34,7 +34,7 @@ public class Constants {
 	public static final int PRESSURE_SENSOR = 0;
 	public static final int FORCE_COMPRESSOR_BUTTON = 2;
 
-    // Elevator
+	// Elevator
 	public static final int ELEVATOR_MOTOR_LEFT = 6;
 	public static final int ELEVATOR_MOTOR_RIGHT = 7;
 
