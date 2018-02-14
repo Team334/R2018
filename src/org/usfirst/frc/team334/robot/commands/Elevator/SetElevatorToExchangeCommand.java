@@ -5,22 +5,22 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToScaleCommand extends Command {
+public class SetElevatorToExchangeCommand extends Command {
 	
-	public SetElevatorToScaleCommand() {
+	public SetElevatorToExchangeCommand() {
 		requires(Robot.sElevator);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("MOVING ELEVATOR TO SCALE POSITION");
+		System.out.println("MOVING ELEVATOR TO EXCHANGE POSITION");
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.sElevator.setSetpoint(Constants.ELEVATOR_SCALE);
+		Robot.sElevator.setSetpoint(Constants.ELEVATOR_EXCHANGE);
 		Robot.sElevator.enable();
 	}
 

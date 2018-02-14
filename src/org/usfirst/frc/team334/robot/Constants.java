@@ -34,9 +34,23 @@ public class Constants {
 	public static final int PRESSURE_SENSOR = 0;
 	public static final int FORCE_COMPRESSOR_BUTTON = 2;
 
-	// Elevator
-	public static final int ELEVATOR_MOTOR_1 = 6;
-	public static final int ELEVATOR_MOTOR_2 = 7;
+    // Elevator
+	public static final int ELEVATOR_MOTOR_LEFT = 6;
+	public static final int ELEVATOR_MOTOR_RIGHT = 7;
+
+	// Elevator Sensors (Limit Switches + Encoder)
+	public static final int ELEVATOR_LIMIT_TOP = 0;
+	public static final int ELEVATOR_LIMIT_BOTTOM = 2;
+	public static final int ELEVATOR_ENCODER_A = 4;
+	public static final int ELEVATOR_ENCODER_B = 5;
+	// Elevator PID
+	public static final double ELEVATOR_P = 0;
+	public static final double ELEVATOR_I = 0;
+	public static final double ELEVATOR_D = 0;
+	// Elevator Encoder Height Positions
+	public static final int ELEVATOR_SWITCH = 5;
+	public static final int ELEVATOR_SCALE = 5;
+	public static final int ELEVATOR_EXCHANGE = 5;
 	
 	// Ultrasonics
 	public static final int ULTRASONIC_L_DRIVETRAIN_PING = 0;
