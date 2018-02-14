@@ -55,10 +55,24 @@ public class Constants {
 	
 	// Auton
 	public static final double WALL_FOLLOW_PID_SPEED = .5;
+	public static final double DRIVE_PID_SPEED = .75;
+	public static final double WALL_FOLLOW_kP = 0.1;
+	public static final double WALL_FOLLOW_kI = 0;
+	public static final double WALL_FOLLOW_kD = 0.1;
+	public static final double DRIVE_HEADING_PID_kP = 0.01;
+	public static final double DRIVE_HEADING_PID_kI = 0;
+	public static final double DRIVE_HEADING_PID_kD = 0;
+	public static final double DRIVE_DISTANCE_PID_kP = 0.085;
+	public static final double DRIVE_DISTANCE_PID_kI = 0;
+	public static final double DRIVE_DISTANCE_PID_kD = 0.02;
+	public static final double TURN_kP = 0.07;
+	public static final double TURN_kI = 0;
+	public static final double TURN_kD = 0;
+	public static final double DRIVE_HEADING_PID_TARGET = 0;
 	
 	// Auton Distances
-	public static final double ENCODER_REVOLUTIONS_PER_INCH = 20.38216560509554;
-	public static final double DISTANCE_TO_BASELINE = ENCODER_REVOLUTIONS_PER_INCH * 15; // ~20 revolutions per inch (4 in wheels) * 15 inches to baseline
-	public static final int DISTANCE_FROM_WALL = 20; //inches
+	public static final double ENCODER_TICKS_PER_INCH = 20.38216560509554;
+	public static final double DISTANCE_TO_BASELINE = ENCODER_TICKS_PER_INCH * 15; // 15 inches to baseline
+	public static final int DISTANCE_FROM_WALL = 20; // Inches
 	
 }
