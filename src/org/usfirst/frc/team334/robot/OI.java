@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
+import org.usfirst.frc.team334.robot.commands.Intake.GrabPowerCubeCommand;
+import org.usfirst.frc.team334.robot.commands.Intake.ReleasePowerCubeCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -26,13 +28,18 @@ public class OI {
 		xbox = new XboxController(Constants.XBOX);
 		controls = new ArrayList<>(
 			Arrays.asList(leftJoystick, rightJoystick, xbox));
-    
+
 		// Init Buttons
 		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
+		Button grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL),Constants.GRAB_BUTTON);
+		Button releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL),Constants.RELEASE_BUTTON);
 		
 		// Button Actions
 		shiftGears.whenPressed(new ToggleTransmissionCommand());
-	}
+		grabBox.whileHeld(new GrabPowerCubeCommand());
+		releaseBox.whileHeld(new ReleasePowerCubeCommand());
+
+	 }
 	
 	public Joystick getLeftJoystick() {
 		return this.leftJoystick;

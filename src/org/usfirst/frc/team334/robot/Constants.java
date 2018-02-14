@@ -20,8 +20,8 @@ public class Constants {
 	public static final int SWITCH_GEAR_BUTTON = 1;
 
 	// Motors
-	public static final int DRIVETRAIN_LEFT = 0;
-	public static final int DRIVETRAIN_RIGHT = 1;
+	public static final int DRIVETRAIN_L = 0;
+	public static final int DRIVETRAIN_R = 1;
 
 	// Pancake Solenoids - Drivetrain
 	public static final int PANCAKE_L_INPUT = 0;
@@ -61,4 +61,19 @@ public class Constants {
 	public static final double DISTANCE_TO_BASELINE = ENCODER_REVOLUTIONS_PER_INCH * 15; // ~20 revolutions per inch (4 in wheels) * 15 inches to baseline
 	public static final int DISTANCE_FROM_WALL = 20; //inches
 	
+	//Intake
+	public static final int INTAKE_MOTOR_L = 0;
+	public static final int INTAKE_MOTOR_R = 1;
+	public static final int GRAB_CONTROL = 1;
+	public static final int GRAB_BUTTON = 10;
+	public static final int RELEASE_CONTROL = 1;
+	public static final int RELEASE_BUTTON = 9;
+	public static final int INTAKE_HIGH_BUTTON = 11;
+	public static final int INTAKE_HIGH_CONTROL = 1;
+	public static final int INTAKE_ULTRASONIC_PING = 3;
+	public static final int INTAKE_ULTRASONIC_OUTPUT = 4;
+	public static final double INTAKE_GRAB_DISTANCE = 0.5;
+	public static final double INTAKE_RELEASE_DISTANCE = 10;
+	public static final double INTAKE_SPEED = 0.25;
+	public static final double INTAKE_SPEED_HIGH = 1;
 }
