@@ -68,12 +68,14 @@ public class Constants {
 	public static final int GRAB_BUTTON = 10;
 	public static final int RELEASE_CONTROL = 1;
 	public static final int RELEASE_BUTTON = 9;
-	public static final int INTAKE_HIGH_BUTTON = 11;
-	public static final int INTAKE_HIGH_CONTROL = 1;
+	public static final int INTAKE_SPEED_HIGH_BUTTON = 11;
+	public static final int INTAKE_SPEED_HIGH_CONTROL = 1;
 	public static final int INTAKE_ULTRASONIC_PING = 3;
 	public static final int INTAKE_ULTRASONIC_OUTPUT = 4;
 	public static final double INTAKE_GRAB_DISTANCE = 0.5;
 	public static final double INTAKE_RELEASE_DISTANCE = 10;
 	public static final double INTAKE_SPEED = 0.25;
 	public static final double INTAKE_SPEED_HIGH = 1;
+	public static final double INTAKE_OUT_SPEED = -0.25;
+	public static final double INTAKE_OUT_SPEED_HIGH = -1;
 }

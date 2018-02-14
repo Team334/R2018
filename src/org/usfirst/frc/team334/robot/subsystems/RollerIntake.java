@@ -16,17 +16,17 @@ public class RollerIntake extends Subsystem {
 		sUltrasonic = new Ultrasonic(Constants.INTAKE_ULTRASONIC_PING,Constants.INTAKE_ULTRASONIC_OUTPUT);
 		sUltrasonic.setAutomaticMode(true);
 	}
-    public void SetMotorSpeed(double speed){
+    public void setMotorSpeed(double speed){
     	leftMotor.set(speed * -1);
     	rightMotor.set(speed);
     }
     
-    public void StopMotors(){
+    public void stopMotors(){
     	leftMotor.set(0);
     	rightMotor.set(0);
     }
 
-    public double GetInchesUltrasonic(){
+    public double getRangeInches(){
     	return sUltrasonic.getRangeInches();
     } 
     

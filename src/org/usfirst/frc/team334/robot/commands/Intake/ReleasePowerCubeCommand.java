@@ -20,11 +20,11 @@ public class ReleasePowerCubeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		if(Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_HIGH_BUTTON)){
-			Robot.sRollerIntake.SetMotorSpeed(Constants.INTAKE_SPEED_HIGH * -1);
+		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON)) {
+			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED_HIGH * -1);
 		}
-		else{
-			Robot.sRollerIntake.SetMotorSpeed(Constants.INTAKE_SPEED * -1);
+		else {
+			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED * -1);
 		}
 	}
 
@@ -32,18 +32,13 @@ public class ReleasePowerCubeCommand extends Command {
 	@Override
 	protected boolean isFinished() {
 		// if cube goes outside of a certain range(INTAKE_GRAB_DISTANCE) of the ultrasonic, the command stops running
-		if(Robot.sRollerIntake.GetInchesUltrasonic() >= Constants.INTAKE_RELEASE_DISTANCE){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return Robot.sRollerIntake.getRangeInches() >= Constants.INTAKE_RELEASE_DISTANCE;
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.sRollerIntake.SetMotorSpeed(0);
+		Robot.sRollerIntake.setMotorSpeed(0);
 		
 		System.out.println("ReleasePowerCubeCommand has ended");
 	}
@@ -52,7 +47,7 @@ public class ReleasePowerCubeCommand extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.sRollerIntake.SetMotorSpeed(0);
+		Robot.sRollerIntake.setMotorSpeed(0);
 		
 		System.out.println("ReleasePowerCubeCommand has been interrupted");
 	}
