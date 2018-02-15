@@ -1,5 +1,6 @@
 package org.usfirst.frc.team334.robot.commands.Elevator;
 
+import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,13 +16,18 @@ public class CollapseElevatorCommand extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("COLLAPSING ELEVATOR");
+		
+		Robot.sElevator.setSetpoint(Constants.ELEVATOR_BOTTOM);
+		Robot.sElevator.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.sElevator.setSetpoint(0);
-		Robot.sElevator.enable();
+		// End command if either limit switches are triggered.
+		if (Robot.sElevator.getTopLimitSwitch() || Robot.sElevator.getBottomLimitSwitch()) {
+			end();
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

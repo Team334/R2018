@@ -29,8 +29,8 @@ public class Elevator extends PIDSubsystem {
 		rElevatorEncoder = new Encoder(Constants.ELEVATOR_ENCODER_A, Constants.ELEVATOR_ENCODER_B);
 		
 		this.disable();
-		this.setAbsoluteTolerance(0);
-		this.setOutputRange(-1, 0);
+		this.setAbsoluteTolerance(5);
+		this.setOutputRange(-1, 1);
 	}
 	
 	public void setMotors(double speed) {
@@ -50,8 +50,8 @@ public class Elevator extends PIDSubsystem {
 	
 	@Override
 	protected void usePIDOutput(double output) {
-//		System.out.println("Error: " + output + "Encoder Value: " + rElevatorEncoder.get());
-		setMotors(output);
+		// System.out.println("Error: " + output + "Encoder Value: " + rElevatorEncoder.get());
+		setMotors(output * .1);
 	}
 	
 	public boolean getTopLimitSwitch() {

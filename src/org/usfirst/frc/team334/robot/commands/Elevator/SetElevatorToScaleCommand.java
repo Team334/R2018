@@ -15,13 +15,18 @@ public class SetElevatorToScaleCommand extends Command {
 	@Override
 	protected void initialize() {
 		System.out.println("MOVING ELEVATOR TO SCALE POSITION");
+		
+		Robot.sElevator.setSetpoint(Constants.ELEVATOR_SCALE);
+		Robot.sElevator.enable();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.sElevator.setSetpoint(Constants.ELEVATOR_SCALE);
-		Robot.sElevator.enable();
+		// End command if either limit switches are triggered.
+		if (Robot.sElevator.getTopLimitSwitch() || Robot.sElevator.getBottomLimitSwitch()) {
+			end();
+		}
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

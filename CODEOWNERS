@@ -18,7 +18,6 @@
 
 
 # Samuel Piltch - Elevator
-/src/org/usfirst/frc/team334/robot/subsystems/Drive.java @samuelpiltch
 /src/org/usfirst/frc/team334/robot/subsystems/Elevator.java @samuelpiltch
 
 /src/org/usfirst/frc/team334/robot/commands/Elevator @samuelpiltch

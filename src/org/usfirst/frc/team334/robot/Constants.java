@@ -15,10 +15,16 @@ public class Constants {
 	*/
 
 	public static final int SWITCH_GEAR_CONTROL = 0;
+	public static final int ELEVATOR_CONTROL = 1;
 
 	// Button mappings. The controller device for each button is set above.
 	public static final int SWITCH_GEAR_BUTTON = 1;
-
+	
+	public static final int ELEVATOR_TO_SWITCH_BUTTON = 2;
+	public static final int ELEVATOR_TO_SCALE_BUTTON = 3;
+	public static final int ELEVATOR_TO_EXCHANGE_BUTTON = 4;
+	public static final int COLLAPSE_ELEVATOR_BUTTON = 5;
+	
 	// Motors
 	public static final int DRIVETRAIN_LEFT = 0;
 	public static final int DRIVETRAIN_RIGHT = 1;
@@ -35,14 +41,14 @@ public class Constants {
 	public static final int FORCE_COMPRESSOR_BUTTON = 2;
 
 	// Elevator
-	public static final int ELEVATOR_MOTOR_LEFT = 6;
-	public static final int ELEVATOR_MOTOR_RIGHT = 7;
+	public static final int ELEVATOR_MOTOR_LEFT = -1;
+	public static final int ELEVATOR_MOTOR_RIGHT = -1;
 
 	// Elevator Sensors (Limit Switches + Encoder)
-	public static final int ELEVATOR_LIMIT_TOP = 0;
-	public static final int ELEVATOR_LIMIT_BOTTOM = 2;
-	public static final int ELEVATOR_ENCODER_A = 4;
-	public static final int ELEVATOR_ENCODER_B = 5;
+	public static final int ELEVATOR_LIMIT_TOP = -1;
+	public static final int ELEVATOR_LIMIT_BOTTOM = -1;
+	public static final int ELEVATOR_ENCODER_A = -1;
+	public static final int ELEVATOR_ENCODER_B = -1;
 	// Elevator PID
 	public static final double ELEVATOR_P = 0;
 	public static final double ELEVATOR_I = 0;
@@ -51,6 +57,7 @@ public class Constants {
 	public static final int ELEVATOR_SWITCH = 5;
 	public static final int ELEVATOR_SCALE = 5;
 	public static final int ELEVATOR_EXCHANGE = 5;
+	public static final int ELEVATOR_BOTTOM = 5;
 	
 	// Ultrasonics
 	public static final int ULTRASONIC_L_DRIVETRAIN_PING = 0;
