@@ -3,6 +3,8 @@ package org.usfirst.frc.team334.robot;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.usfirst.frc.team334.robot.commands.Climber.ExtendClimber;
+import org.usfirst.frc.team334.robot.commands.Climber.RetractClimber;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.Intake.GrabPowerCubeCommand;
 import org.usfirst.frc.team334.robot.commands.Intake.ReleasePowerCubeCommand;
@@ -33,11 +35,15 @@ public class OI {
 		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 		Button grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL),Constants.GRAB_BUTTON);
 		Button releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL),Constants.RELEASE_BUTTON);
+		Button extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL),Constants.EXTEND_BUTTON);
+		Button retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL),Constants.RETRACT_BUTTON);
 		
 		// Button Actions
 		shiftGears.whenPressed(new ToggleTransmissionCommand());
 		grabBox.whileHeld(new GrabPowerCubeCommand());
 		releaseBox.whileHeld(new ReleasePowerCubeCommand());
+		extendClimber.whenPressed(new ExtendClimber());
+		retractClimber.whenPressed(new RetractClimber());
 
 	 }
 	

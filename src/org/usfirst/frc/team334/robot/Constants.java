@@ -78,4 +78,16 @@ public class Constants {
 	public static final double INTAKE_SPEED_HIGH = 1;
 	public static final double INTAKE_OUT_SPEED = -0.25;
 	public static final double INTAKE_OUT_SPEED_HIGH = -1;
+	
+	//Climber
+	public static final int CLIMBER_MOTOR_1 = 10000;
+	public static final int CLIMER_MOTOR_2 = 10001;
+	public static final int CLIMBER_LIMITSWITCH_BOTTOM = 7;
+	public static final int CLIMBER_LIMITSWITCH_TOP = 9;
+	public static final double CLIMBER_RETRACT_SPEED = -0.5;
+	public static final double CLIMBER_EXTEND_SPEED = 0.5;
+	public static final int EXTEND_CONTROL = 1;
+	public static final int EXTEND_BUTTON = 11;
+	public static final int RETRACT_CONTROL = 1;
+	public static final int RETRACT_BUTTON = 3;
 }
