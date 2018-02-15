@@ -2,8 +2,8 @@ package org.usfirst.frc.team334.robot.subsystems;
 
 import org.usfirst.frc.team334.robot.Constants;
 
+import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
@@ -15,7 +15,7 @@ public class Elevator extends PIDSubsystem {
 	private DigitalInput rTopLimit;
 	private DigitalInput rBottomLimit;
 
-	private Encoder rElevatorEncoder;
+	private AnalogPotentiometer rPotentiometer;
 
 	public Elevator() {
 		super(Constants.ELEVATOR_P, Constants.ELEVATOR_I, Constants.ELEVATOR_D);
@@ -26,10 +26,10 @@ public class Elevator extends PIDSubsystem {
 		rTopLimit = new DigitalInput(Constants.ELEVATOR_LIMIT_TOP);
 		rBottomLimit = new DigitalInput(Constants.ELEVATOR_LIMIT_BOTTOM);
 		
-		rElevatorEncoder = new Encoder(Constants.ELEVATOR_ENCODER_A, Constants.ELEVATOR_ENCODER_B);
+		rPotentiometer = new AnalogPotentiometer(Constants.ELEVATOR_POTENTIOMETER);
 		
 		this.disable();
-		this.setAbsoluteTolerance(5);
+		this.setAbsoluteTolerance(1);
 		this.setOutputRange(-1, 1);
 	}
 	
@@ -45,12 +45,12 @@ public class Elevator extends PIDSubsystem {
 	
 	@Override
 	protected double returnPIDInput() {
-		return rElevatorEncoder.get();
+		return rPotentiometer.get();
 	}
 	
 	@Override
 	protected void usePIDOutput(double output) {
-		// System.out.println("Error: " + output + "Encoder Value: " + rElevatorEncoder.get());
+		// System.out.println("Error: " + output + "Potentiometer Value: " + rPotentiometer.get());
 		setMotors(output * .1);
 	}
 	
@@ -62,8 +62,8 @@ public class Elevator extends PIDSubsystem {
 		return rBottomLimit.get();
 	}
 	
-	public Encoder getEncoder() {
-		return rElevatorEncoder;
+	public AnalogPotentiometer getPotentiometer() {
+		return rPotentiometer;
 	}
 	
     public void initDefaultCommand() {

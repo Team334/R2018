@@ -44,20 +44,19 @@ public class Constants {
 	public static final int ELEVATOR_MOTOR_LEFT = -1;
 	public static final int ELEVATOR_MOTOR_RIGHT = -1;
 
-	// Elevator Sensors (Limit Switches + Encoder)
+	// Elevator Sensors (Limit Switches + Potentiometer)
 	public static final int ELEVATOR_LIMIT_TOP = -1;
 	public static final int ELEVATOR_LIMIT_BOTTOM = -1;
-	public static final int ELEVATOR_ENCODER_A = -1;
-	public static final int ELEVATOR_ENCODER_B = -1;
+	public static final int ELEVATOR_POTENTIOMETER = -1;
 	// Elevator PID
 	public static final double ELEVATOR_P = 0;
 	public static final double ELEVATOR_I = 0;
 	public static final double ELEVATOR_D = 0;
-	// Elevator Encoder Height Positions
+	// Elevator Potentiometer Height Positions
 	public static final int ELEVATOR_SWITCH = 5;
 	public static final int ELEVATOR_SCALE = 5;
 	public static final int ELEVATOR_EXCHANGE = 5;
-	public static final int ELEVATOR_BOTTOM = 5;
+	public static final int ELEVATOR_BOTTOM = 0;
 	
 	// Ultrasonics
 	public static final int ULTRASONIC_L_DRIVETRAIN_PING = 0;
