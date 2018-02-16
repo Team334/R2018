@@ -25,10 +25,14 @@ public class Constants {
 	public static final int ELEVATOR_TO_EXCHANGE_BUTTON = 4;
 	public static final int COLLAPSE_ELEVATOR_BUTTON = 5;
 	
-	// Motors
-	public static final int DRIVETRAIN_LEFT = 0;
-	public static final int DRIVETRAIN_RIGHT = 1;
-
+	// DriveTrain
+	public static final int DRIVETRAIN_MC_L = 5;
+	public static final int DRIVETRAIN_C1_L = 3;
+	public static final int DRIVETRAIN_C2_L = 4;
+	public static final int DRIVETRAIN_MC_R = 0;
+	public static final int DRIVETRAIN_C1_R = 1;
+	public static final int DRIVETRAIN_C2_R = 2;
+	
 	// Pancake Solenoids - Drivetrain
 	public static final int PANCAKE_L_INPUT = 0;
 	public static final int PANCAKE_L_OUTPUT = 1;

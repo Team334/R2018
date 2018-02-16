@@ -1,11 +1,14 @@
 package org.usfirst.frc.team334.robot.subsystems;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.pids.BNO055;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Ultrasonic;
-import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -31,13 +34,24 @@ public class Drive extends Subsystem {
 	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_R_DRIVETRAIN_PING, Constants.ULTRASONIC_R_DRIVETRAIN_ECHO);
 	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 	
-	private VictorSP left;
-	private VictorSP right;
+	private TalonSRX miniCimL,miniCimR,cim1L,cim2L,cim1R,cim2R;
+	
+	ArrayList<TalonSRX> left,right;
 	
 	public Drive() {
-		left = new VictorSP(Constants.DRIVETRAIN_LEFT);
-		right = new VictorSP(Constants.DRIVETRAIN_RIGHT);
-		right.setInverted(true);
+		miniCimL = new TalonSRX(Constants.DRIVETRAIN_MC_L);
+		cim1L = new TalonSRX(Constants.DRIVETRAIN_C1_L);
+		cim2L = new TalonSRX(Constants.DRIVETRAIN_C2_L);
+		miniCimR = new TalonSRX(Constants.DRIVETRAIN_MC_R);
+		cim1R = new TalonSRX(Constants.DRIVETRAIN_C1_R);
+		cim2R = new TalonSRX(Constants.DRIVETRAIN_C2_R);
+
+		left.add(miniCimL);
+		left.add(cim1L);
+		left.add(cim2L);
+		right.add(miniCimR);
+		right.add(cim1R);
+		right.add(cim2R);
 	}
 	
 	public void stop() {
@@ -46,11 +60,15 @@ public class Drive extends Subsystem {
 	}
 	
 	public void setLeft(double speed) {
-		left.set(speed);
+		for(TalonSRX TSRX : left) {
+			TSRX.set(com.ctre.phoenix.motorcontrol.ControlMode.Current, speed);
+		}
 	}
 	
 	public void setRight(double speed) {
-		right.set(speed);
+		for(TalonSRX TSRX : right) {
+			TSRX.set(com.ctre.phoenix.motorcontrol.ControlMode.Current, speed);
+		}
 	}
 
     public void initDefaultCommand() {
