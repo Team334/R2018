@@ -1,56 +1,78 @@
 package org.usfirst.frc.team334.robot.subsystems;
 
-import org.usfirst.frc.team334.robot.Constants;
+import java.util.ArrayList;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.VictorSP;
+import org.usfirst.frc.team334.robot.Constants;
+import org.usfirst.frc.team334.robot.pids.BNO055;
+
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * DriveTrain for 2018 Robot
- * 6 Cims (3 Each)
+ * 6 Victors (3 per side)
  */
+
 public class Drive extends Subsystem {
 
-	VictorSP LC1 = new VictorSP(Constants.cimL1);
-	VictorSP LC2 = new VictorSP(Constants.cimL2);
-	VictorSP LC3 = new VictorSP(Constants.miniCimL);
-	VictorSP RC1 = new VictorSP(Constants.cimR1);
-	VictorSP RC2 = new VictorSP(Constants.cimR2);
-	VictorSP RC3 = new VictorSP(Constants.miniCimR);
-
-	public void setInvert(){
-		LC1.setInverted(true);
-		LC2.setInverted(true);
-		LC3.setInverted(true);
-		RC1.setInverted(true);
-		RC2.setInverted(true);
-		RC3.setInverted(true);
+	public enum DriveControlState {
+		TANK_DRIVE_JOYSTICK_CONTROL,
+		TURN_TO_HEADING,
+		DRIVE_TOWARDS_SWITCH, // for auton
+		DRIVE_TOWARDS_SCALE // for auton
 	}
 	
+	private DriveControlState mDriveControlState;
 	
-	public void setAll(double speed) {
-		LC1.set(speed);
-		LC2.set(speed);
-		LC3.set(speed);
-		RC1.set(speed);
-		RC2.set(speed);
-		RC3.set(speed);
+	// Sensor declarations
+	public static Encoder rEncoderLeft = new Encoder(Constants.ENCODER_L_DRIVETRAIN_A, Constants.ENCODER_L_DRIVETRAIN_B);
+	public static Encoder rEncoderRight = new Encoder(Constants.ENCODER_R_DRIVETRAIN_A, Constants.ENCODER_R_DRIVETRAIN_B);
+	public static Ultrasonic rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_L_DRIVETRAIN_PING, Constants.ULTRASONIC_L_DRIVETRAIN_ECHO);
+	public static Ultrasonic rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_R_DRIVETRAIN_PING, Constants.ULTRASONIC_R_DRIVETRAIN_ECHO);
+	public static BNO055 rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
+	
+	private TalonSRX miniCimL,miniCimR,cim1L,cim2L,cim1R,cim2R;
+	
+	ArrayList<TalonSRX> left,right;
+	
+	public Drive() {
+		miniCimL = new TalonSRX(Constants.DRIVETRAIN_MC_L);
+		cim1L = new TalonSRX(Constants.DRIVETRAIN_C1_L);
+		cim2L = new TalonSRX(Constants.DRIVETRAIN_C2_L);
+		miniCimR = new TalonSRX(Constants.DRIVETRAIN_MC_R);
+		cim1R = new TalonSRX(Constants.DRIVETRAIN_C1_R);
+		cim2R = new TalonSRX(Constants.DRIVETRAIN_C2_R);
+
+		left.add(miniCimL);
+		left.add(cim1L);
+		left.add(cim2L);
+		right.add(miniCimR);
+		right.add(cim1R);
+		right.add(cim2R);
+	}
+	
+	public void stop() {
+		setLeft(0);
+		setRight(0);
 	}
 	
 	public void setLeft(double speed) {
-		LC1.set(speed);
-		LC2.set(speed);
-		LC3.set(speed);
+		for(TalonSRX TSRX : left) {
+			TSRX.set(com.ctre.phoenix.motorcontrol.ControlMode.Current, speed);
+		}
 	}
 	
 	public void setRight(double speed) {
-		RC1.set(speed);
-		RC2.set(speed);
-		RC3.set(speed);
+		for(TalonSRX TSRX : right) {
+			TSRX.set(com.ctre.phoenix.motorcontrol.ControlMode.Current, speed);
+		}
 	}
 
     public void initDefaultCommand() {
+    	
     }
+    
 }
-
