@@ -49,5 +49,4 @@ public class GrabPowerCubeCommand extends Command {
 		
 		System.out.println("GrabPowerCubeCommand has been interrupted");
 	}
-	
 }

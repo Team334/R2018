@@ -2,11 +2,9 @@ package org.usfirst.frc.team334.robot.commands.Intake;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ReleasePowerCubeCommand extends Command {
-	
 	public ReleasePowerCubeCommand() {
 		requires(Robot.sRollerIntake);
 	}
@@ -51,5 +49,4 @@ public class ReleasePowerCubeCommand extends Command {
 		
 		System.out.println("ReleasePowerCubeCommand has been interrupted");
 	}
-	
 }

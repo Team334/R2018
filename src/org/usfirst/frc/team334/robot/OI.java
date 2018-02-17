@@ -1,8 +1,6 @@
 package org.usfirst.frc.team334.robot;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.usfirst.frc.team334.robot.commands.Climber.ExtendClimber;
 import org.usfirst.frc.team334.robot.commands.Climber.RetractClimber;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
@@ -19,63 +17,75 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
-	
-	boolean shiftState;
-	// Joysticks and Xbox controls
-	private Joystick leftJoystick;
-	private Joystick rightJoystick;
-	private XboxController xbox;
-	private ArrayList<GenericHID> controls;
-	
-	Button shiftGears;
-	Button grabBox;
-	Button releaseBox;
-	Button extendClimber; 
-	Button retractClimber;
-	Button raiseElevatorToSwitch;
-	Button raiseElevatorToScale;
-	Button raiseElevatorToExchange;
-	Button collapseElevator;
-	
-	public OI() {
-		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
-		rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
-		xbox = new XboxController(Constants.XBOX);
-		controls = new ArrayList<>(Arrays.asList(leftJoystick, rightJoystick, xbox));
+    // Joysticks and Xbox controls
+    private Joystick leftJoystick;
+    private Joystick rightJoystick;
+    private XboxController xbox;
+    private ArrayList<GenericHID> controls;
+
+    // Button controls
+    private Button shiftGears;
     
-		// Init Buttons
-		shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
-		grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), Constants.GRAB_BUTTON);
-		releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), Constants.RELEASE_BUTTON);
-		extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL), Constants.EXTEND_BUTTON);
-		retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL), Constants.RETRACT_BUTTON);
-		raiseElevatorToSwitch = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_SWITCH_BUTTON);
-		raiseElevatorToScale = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_SCALE_BUTTON);
-		raiseElevatorToExchange = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
-		collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.COLLAPSE_ELEVATOR_BUTTON);
-		
-		// Button Actions
-		shiftGears.whenPressed(new ToggleTransmissionCommand());
-		grabBox.whileHeld(new GrabPowerCubeCommand());
+    private Button raiseElevatorToSwitch;
+    private Button raiseElevatorToScale;
+    private Button raiseElevatorToExchange;
+    private Button collapseElevator;
+    private Button grabBox;
+    private Button releaseBox;
+    private Button extendClimber; 
+    private Button retractClimber;
+
+    public OI() {
+        leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
+        rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
+        xbox = new XboxController(Constants.XBOX);
+        controls = new ArrayList<>();
+        controls.add(leftJoystick);
+        controls.add(rightJoystick);
+        controls.add(xbox);
+
+        // Init Buttons
+        shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
+
+        raiseElevatorToSwitch = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
+                Constants.ELEVATOR_TO_SWITCH_BUTTON);
+        raiseElevatorToScale = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
+                Constants.ELEVATOR_TO_SCALE_BUTTON);
+        raiseElevatorToExchange = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
+                Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
+        collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
+                Constants.COLLAPSE_ELEVATOR_BUTTON);
+        grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
+        		Constants.GRAB_BUTTON);
+		releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
+				Constants.RELEASE_BUTTON);
+		extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL), 
+				Constants.EXTEND_BUTTON);
+		retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL), 
+				Constants.RETRACT_BUTTON);
+
+        // Button Actions
+        shiftGears.whenPressed(new ToggleTransmissionCommand());
+
+        raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
+        raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
+        raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
+        collapseElevator.whenPressed(new CollapseElevatorCommand());
+        grabBox.whileHeld(new GrabPowerCubeCommand());
 		releaseBox.whileHeld(new ReleasePowerCubeCommand());
 		extendClimber.whenPressed(new ExtendClimber());
 		retractClimber.whenPressed(new RetractClimber());
-		raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
-		raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
-		raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
-		collapseElevator.whenPressed(new CollapseElevatorCommand());
-	}
-	
-	public Joystick getLeftJoystick() {
-		return this.leftJoystick;
-	}
-	
-	public Joystick getRightJoystick() {
-		return this.rightJoystick;
-	}
-	
-	public XboxController getXBoxController() {
-		return this.xbox;
-	}
-	
+    }
+
+    public Joystick getLeftJoystick() {
+        return this.leftJoystick;
+    }
+
+    public Joystick getRightJoystick() {
+        return this.rightJoystick;
+    }
+
+    public XboxController getXBoxController() {
+        return this.xbox;
+    }
 }
