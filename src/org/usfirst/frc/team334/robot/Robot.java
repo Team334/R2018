@@ -20,12 +20,12 @@ public class Robot extends TimedRobot {
     private DriverStation fms = DriverStation.getInstance();
 
     // Initialize subsystems
-    private static Drive sDrive;
-    private static Elevator sElevator;
-    private static Pneumatics sPneumatics;
-    public static RollerIntake sRollerIntake;
     public static Climber sClimber;
-
+    public static Drive sDrive;
+    public static Elevator sElevator;
+    public static Pneumatics sPneumatics;
+    public static RollerIntake sRollerIntake;
+    
     // Initialize commands
     private Command leftLeft;
     private Command leftRight;

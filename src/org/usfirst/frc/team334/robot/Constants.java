@@ -1,6 +1,7 @@
 package org.usfirst.frc.team334.robot;
 
 public class Constants {
+	
     // Joystick ports
     public static final int JOYSTICK_LEFT = 0;
     public static final int JOYSTICK_RIGHT = 1;

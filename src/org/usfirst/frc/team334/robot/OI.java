@@ -25,7 +25,6 @@ public class OI {
 
     // Button controls
     private Button shiftGears;
-    
     private Button raiseElevatorToSwitch;
     private Button raiseElevatorToScale;
     private Button raiseElevatorToExchange;
