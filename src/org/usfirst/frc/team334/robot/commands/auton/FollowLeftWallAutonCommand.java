@@ -6,8 +6,6 @@ import org.usfirst.frc.team334.robot.pids.DefaultPIDOutput;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class FollowLeftWallAutonCommand extends Command {
