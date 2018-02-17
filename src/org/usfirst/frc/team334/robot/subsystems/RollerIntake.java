@@ -10,18 +10,18 @@ public class RollerIntake extends Subsystem {
 	private VictorSP rightMotor;
 	private Ultrasonic rUltrasonic;
 	
-	public RollerIntake(){
+	public RollerIntake() {
 		leftMotor = new VictorSP(Constants.INTAKE_MOTOR_L);
 		rightMotor = new VictorSP(Constants.INTAKE_MOTOR_R);
 		rUltrasonic = new Ultrasonic(Constants.INTAKE_ULTRASONIC_PING,Constants.INTAKE_ULTRASONIC_OUTPUT);
 		rUltrasonic.setAutomaticMode(true);
 	}
-    public void setMotorSpeed(double speed){
-    	leftMotor.set(speed * -1);
+    public void setMotorSpeed(double speed) {
+    	leftMotor.set(-speed);
     	rightMotor.set(speed);
     }
 
-    public double getRangeInches(){
+    public double getRangeInches() {
     	return rUltrasonic.getRangeInches();
     } 
     

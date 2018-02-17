@@ -8,7 +8,10 @@ import org.usfirst.frc.team334.robot.commands.Climber.RetractClimber;
 import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.Intake.GrabPowerCubeCommand;
 import org.usfirst.frc.team334.robot.commands.Intake.ReleasePowerCubeCommand;
-
+import org.usfirst.frc.team334.robot.commands.Elevator.CollapseElevatorCommand;
+import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToExchangeCommand;
+import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToScaleCommand;
+import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToSwitchCommand;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -24,19 +27,32 @@ public class OI {
 	private XboxController xbox;
 	private ArrayList<GenericHID> controls;
 	
+	Button shiftGears;
+	Button grabBox;
+	Button releaseBox;
+	Button extendClimber; 
+	Button retractClimber;
+	Button raiseElevatorToSwitch;
+	Button raiseElevatorToScale;
+	Button raiseElevatorToExchange;
+	Button collapseElevator;
+	
 	public OI() {
 		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
 		rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
 		xbox = new XboxController(Constants.XBOX);
-		controls = new ArrayList<>(
-			Arrays.asList(leftJoystick, rightJoystick, xbox));
-
+		controls = new ArrayList<>(Arrays.asList(leftJoystick, rightJoystick, xbox));
+    
 		// Init Buttons
-		Button shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
-		Button grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL),Constants.GRAB_BUTTON);
-		Button releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL),Constants.RELEASE_BUTTON);
-		Button extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL),Constants.EXTEND_BUTTON);
-		Button retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL),Constants.RETRACT_BUTTON);
+		shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
+		grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), Constants.GRAB_BUTTON);
+		releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), Constants.RELEASE_BUTTON);
+		extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL), Constants.EXTEND_BUTTON);
+		retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL), Constants.RETRACT_BUTTON);
+		raiseElevatorToSwitch = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_SWITCH_BUTTON);
+		raiseElevatorToScale = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_SCALE_BUTTON);
+		raiseElevatorToExchange = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
+		collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.COLLAPSE_ELEVATOR_BUTTON);
 		
 		// Button Actions
 		shiftGears.whenPressed(new ToggleTransmissionCommand());
@@ -44,8 +60,11 @@ public class OI {
 		releaseBox.whileHeld(new ReleasePowerCubeCommand());
 		extendClimber.whenPressed(new ExtendClimber());
 		retractClimber.whenPressed(new RetractClimber());
-
-	 }
+		raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
+		raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
+		raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
+		collapseElevator.whenPressed(new CollapseElevatorCommand());
+	}
 	
 	public Joystick getLeftJoystick() {
 		return this.leftJoystick;

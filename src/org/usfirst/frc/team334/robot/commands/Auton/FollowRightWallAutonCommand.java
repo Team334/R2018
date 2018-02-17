@@ -11,25 +11,24 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class FollowRightWallAutonCommand extends Command {
 	
-	private int kP, kI, kD;
-	
 	private PIDSource rightUltrasonic;
 	private PIDOutput out;
+	private PIDController wallFollowPID;
 		
 	public FollowRightWallAutonCommand() {
 		requires(Robot.sDrive);
-		rightUltrasonic = Drive.rEncoderRight;
 		out = new PIDOutput() {
 			@Override
 			public void pidWrite(double output) { }
 		};
+		rightUltrasonic = Drive.rEncoderRight;
+		wallFollowPID = new PIDController(Constants.WALL_FOLLOW_kP, Constants.WALL_FOLLOW_kI, Constants.WALL_FOLLOW_kD, rightUltrasonic, out);
 	}
-
-	private PIDController wallFollowPID = new PIDController(kP, kI, kD, rightUltrasonic, out);
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
+		// Set automatic mode required for multiple sensors
 		Drive.rUltrasonicR.setAutomaticMode(true);
 		Drive.rUltrasonicR.setEnabled(true);
 		Drive.rEncoderRight.reset();
@@ -50,7 +49,7 @@ public class FollowRightWallAutonCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return (Drive.rEncoderRight.get() > Constants.DISTANCE_TO_BASELINE) ? true : false;
+		return Drive.rEncoderRight.get() > Constants.DISTANCE_TO_BASELINE;
 	}
 
 	// Called once after isFinished returns true
@@ -64,8 +63,9 @@ public class FollowRightWallAutonCommand extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		System.out.println("FOLLOW RIGHT WALL INTERRUPTED");
-		end();
+		System.out.println("FOLLOW RIGHT WALL COMMAND INTERRUPTED");
+		wallFollowPID.disable();
+		Robot.sDrive.stop();
 	}
 	
 }

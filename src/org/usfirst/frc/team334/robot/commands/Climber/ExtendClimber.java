@@ -22,7 +22,7 @@ public class ExtendClimber extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.sClimber.getTopLimitswitch() == true;
+        return Robot.sClimber.getTopLimitSwitch();
     }
 
     // Called once after isFinished returns true

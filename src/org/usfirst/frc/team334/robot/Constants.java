@@ -15,14 +15,39 @@ public class Constants {
 	*/
 
 	public static final int SWITCH_GEAR_CONTROL = 0;
-
+	public static final int ELEVATOR_CONTROL = 1;
+	public static final int GRAB_CONTROL = 1;
+	public static final int RELEASE_CONTROL = 1;
+	public static final int INTAKE_SPEED_HIGH_CONTROL = 1;
+	public static final int EXTEND_CONTROL = 1;
+	public static final int RETRACT_CONTROL = 1;
+	
 	// Button mappings. The controller device for each button is set above.
 	public static final int SWITCH_GEAR_BUTTON = 1;
-
+	public static final int GRAB_BUTTON = 10;
+	public static final int RELEASE_BUTTON = 9;
+	public static final int INTAKE_SPEED_HIGH_BUTTON = 11;
+	public static final int EXTEND_BUTTON = 11;
+	public static final int RETRACT_BUTTON = 3;
+	
 	// Motors
 	public static final int DRIVETRAIN_L = 0;
 	public static final int DRIVETRAIN_R = 1;
 
+	
+	public static final int ELEVATOR_TO_SWITCH_BUTTON = 2;
+	public static final int ELEVATOR_TO_SCALE_BUTTON = 3;
+	public static final int ELEVATOR_TO_EXCHANGE_BUTTON = 4;
+	public static final int COLLAPSE_ELEVATOR_BUTTON = 5;
+	
+	// DriveTrain
+	public static final int DRIVETRAIN_MC_L = 5;
+	public static final int DRIVETRAIN_C1_L = 3;
+	public static final int DRIVETRAIN_C2_L = 4;
+	public static final int DRIVETRAIN_MC_R = 0;
+	public static final int DRIVETRAIN_C1_R = 1;
+	public static final int DRIVETRAIN_C2_R = 2;
+	
 	// Pancake Solenoids - Drivetrain
 	public static final int PANCAKE_L_INPUT = 0;
 	public static final int PANCAKE_L_OUTPUT = 1;
@@ -35,8 +60,22 @@ public class Constants {
 	public static final int FORCE_COMPRESSOR_BUTTON = 2;
 
 	// Elevator
-	public static final int ELEVATOR_MOTOR_1 = 6;
-	public static final int ELEVATOR_MOTOR_2 = 7;
+	public static final int ELEVATOR_MOTOR_LEFT = -1;
+	public static final int ELEVATOR_MOTOR_RIGHT = -1;
+
+	// Elevator Sensors (Limit Switches + Potentiometer)
+	public static final int ELEVATOR_LIMIT_TOP = -1;
+	public static final int ELEVATOR_LIMIT_BOTTOM = -1;
+	public static final int ELEVATOR_POTENTIOMETER = -1;
+	// Elevator PID
+	public static final double ELEVATOR_P = 0;
+	public static final double ELEVATOR_I = 0;
+	public static final double ELEVATOR_D = 0;
+	// Elevator Potentiometer Height Positions
+	public static final int ELEVATOR_SWITCH = 5;
+	public static final int ELEVATOR_SCALE = 5;
+	public static final int ELEVATOR_EXCHANGE = 5;
+	public static final int ELEVATOR_BOTTOM = 0;
 	
 	// Ultrasonics
 	public static final int ULTRASONIC_L_DRIVETRAIN_PING = 0;
@@ -55,21 +94,29 @@ public class Constants {
 	
 	// Auton
 	public static final double WALL_FOLLOW_PID_SPEED = .5;
+	public static final double DRIVE_PID_SPEED = .75;
+	public static final double WALL_FOLLOW_kP = 0.1;
+	public static final double WALL_FOLLOW_kI = 0;
+	public static final double WALL_FOLLOW_kD = 0.1;
+	public static final double DRIVE_HEADING_PID_kP = 0.01;
+	public static final double DRIVE_HEADING_PID_kI = 0;
+	public static final double DRIVE_HEADING_PID_kD = 0;
+	public static final double DRIVE_DISTANCE_PID_kP = 0.085;
+	public static final double DRIVE_DISTANCE_PID_kI = 0;
+	public static final double DRIVE_DISTANCE_PID_kD = 0.02;
+	public static final double TURN_kP = 0.07;
+	public static final double TURN_kI = 0;
+	public static final double TURN_kD = 0;
+	public static final double DRIVE_HEADING_PID_TARGET = 0;
 	
 	// Auton Distances
-	public static final double ENCODER_REVOLUTIONS_PER_INCH = 20.38216560509554;
-	public static final double DISTANCE_TO_BASELINE = ENCODER_REVOLUTIONS_PER_INCH * 15; // ~20 revolutions per inch (4 in wheels) * 15 inches to baseline
-	public static final int DISTANCE_FROM_WALL = 20; //inches
+	public static final double ENCODER_TICKS_PER_INCH = 20.38216560509554;
+	public static final double DISTANCE_TO_BASELINE = ENCODER_TICKS_PER_INCH * 15; // 15 inches to baseline
+	public static final int DISTANCE_FROM_WALL = 20; // Inches
 	
 	//Intake
 	public static final int INTAKE_MOTOR_L = 0;
 	public static final int INTAKE_MOTOR_R = 1;
-	public static final int GRAB_CONTROL = 1;
-	public static final int GRAB_BUTTON = 10;
-	public static final int RELEASE_CONTROL = 1;
-	public static final int RELEASE_BUTTON = 9;
-	public static final int INTAKE_SPEED_HIGH_BUTTON = 11;
-	public static final int INTAKE_SPEED_HIGH_CONTROL = 1;
 	public static final int INTAKE_ULTRASONIC_PING = 3;
 	public static final int INTAKE_ULTRASONIC_OUTPUT = 4;
 	public static final double INTAKE_GRAB_DISTANCE = 0.5;
@@ -86,8 +133,4 @@ public class Constants {
 	public static final int CLIMBER_LIMITSWITCH_TOP = 9;
 	public static final double CLIMBER_RETRACT_SPEED = -0.5;
 	public static final double CLIMBER_EXTEND_SPEED = 0.5;
-	public static final int EXTEND_CONTROL = 1;
-	public static final int EXTEND_BUTTON = 11;
-	public static final int RETRACT_CONTROL = 1;
-	public static final int RETRACT_BUTTON = 3;
 }
