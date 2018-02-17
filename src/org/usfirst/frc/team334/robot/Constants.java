@@ -45,8 +45,8 @@ public class Constants {
 	public static final int FORCE_COMPRESSOR_BUTTON = 2;
 
 	// Elevator
-	public static final int ELEVATOR_MOTOR_LEFT = -1;
-	public static final int ELEVATOR_MOTOR_RIGHT = -1;
+	public static final int ELEVATOR_MOTOR_LEFT = 0;
+	public static final int ELEVATOR_MOTOR_RIGHT = 1;
 
 	// Elevator Sensors (Limit Switches + Potentiometer)
 	public static final int ELEVATOR_LIMIT_TOP = -1;

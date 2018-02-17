@@ -1,31 +1,30 @@
-package org.usfirst.frc.team334.robot.commands.Drivetrain;
-
-import org.usfirst.frc.team334.robot.Robot;
+package org.usfirst.frc.team334.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShiftToLowSpeedTransmissionCommand extends Command {
+public class FillAirTanksCommand extends Command {
 	
-	public ShiftToLowSpeedTransmissionCommand() {
-		 requires(Robot.sPneumatics);
+	public FillAirTanksCommand() {
+		// Use requires() here to declare subsystem dependencies
+		// requires(Robot.sPneumatics);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.sPneumatics.setLowSpeedTransmission();
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		
+		System.out.println("FILLING AIRTANKS");
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return false;
 	}
 
 	// Called once after isFinished returns true

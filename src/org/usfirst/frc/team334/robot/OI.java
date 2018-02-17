@@ -3,11 +3,11 @@ package org.usfirst.frc.team334.robot;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.CollapseElevatorCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToExchangeCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToScaleCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToSwitchCommand;
+import org.usfirst.frc.team334.robot.commands.drivetrain.ToggleTransmissionCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToScaleCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToSwitchCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;

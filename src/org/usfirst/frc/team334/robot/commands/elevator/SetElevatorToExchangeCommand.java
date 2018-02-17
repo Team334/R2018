@@ -1,23 +1,22 @@
-package org.usfirst.frc.team334.robot.commands.Elevator;
+package org.usfirst.frc.team334.robot.commands.elevator;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class CollapseElevatorCommand extends Command {
+public class SetElevatorToExchangeCommand extends Command {
 	
-	public CollapseElevatorCommand() {
-		// Use requires() here to declare subsystem dependencies
+	public SetElevatorToExchangeCommand() {
 		requires(Robot.sElevator);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("COLLAPSING ELEVATOR");
+		System.out.println("MOVING ELEVATOR TO EXCHANGE POSITION");
 		
-		Robot.sElevator.setSetpoint(Constants.ELEVATOR_BOTTOM);
+		Robot.sElevator.setSetpoint(Constants.ELEVATOR_EXCHANGE);
 		Robot.sElevator.enable();
 	}
 

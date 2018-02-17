@@ -1,7 +1,7 @@
 package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
-import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
@@ -26,12 +26,12 @@ public class Robot extends TimedRobot {
 	public static RollerIntake sRollerIntake;
 	
 	// Initialize commands
-	private Command leftLeft = new StartLeftEndLeftScenario();
-	private Command leftRight = new StartLeftEndRightScenario();
-	private Command rightRight = new StartRightEndRightScenario();
-	private Command rightLeft = new StartRightEndLeftScenario();
+	private Command leftLeft;
+	private Command leftRight;
+	private Command rightRight;
+	private Command rightLeft;
 	
-	public static OI m_oi = new OI();
+	public static OI m_oi;
 
 	@Override
 	public void robotInit() {
@@ -39,6 +39,13 @@ public class Robot extends TimedRobot {
 		sElevator = new Elevator();
 		sPneumatics = new Pneumatics();
 		sRollerIntake = new RollerIntake();
+		
+		leftLeft = new StartLeftEndLeftScenario();
+		leftRight = new StartLeftEndRightScenario();
+		rightRight = new StartRightEndRightScenario();
+		rightLeft = new StartRightEndLeftScenario();
+		
+		m_oi = new OI();
 		
 		System.out.println("ROBOT INITIALIZED");
 		

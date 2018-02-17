@@ -1,4 +1,4 @@
-package org.usfirst.frc.team334.robot.commands.Auton;
+package org.usfirst.frc.team334.robot.commands.auton;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;

@@ -45,6 +45,9 @@ public class Drive extends Subsystem {
 		miniCimR = new TalonSRX(Constants.DRIVETRAIN_MC_R);
 		cim1R = new TalonSRX(Constants.DRIVETRAIN_C1_R);
 		cim2R = new TalonSRX(Constants.DRIVETRAIN_C2_R);
+		
+		left = new ArrayList<TalonSRX>();
+		right = new ArrayList<TalonSRX>();
 
 		left.add(miniCimL);
 		left.add(cim1L);

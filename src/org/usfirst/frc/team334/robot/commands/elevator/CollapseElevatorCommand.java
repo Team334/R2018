@@ -1,22 +1,23 @@
-package org.usfirst.frc.team334.robot.commands.Elevator;
+package org.usfirst.frc.team334.robot.commands.elevator;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToScaleCommand extends Command {
+public class CollapseElevatorCommand extends Command {
 	
-	public SetElevatorToScaleCommand() {
+	public CollapseElevatorCommand() {
+		// Use requires() here to declare subsystem dependencies
 		requires(Robot.sElevator);
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("MOVING ELEVATOR TO SCALE POSITION");
+		System.out.println("COLLAPSING ELEVATOR");
 		
-		Robot.sElevator.setSetpoint(Constants.ELEVATOR_SCALE);
+		Robot.sElevator.setSetpoint(Constants.ELEVATOR_BOTTOM);
 		Robot.sElevator.enable();
 	}
 
