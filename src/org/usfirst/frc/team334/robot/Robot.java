@@ -1,7 +1,7 @@
 package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
-import org.usfirst.frc.team334.robot.commands.Drivetrain.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
 import org.usfirst.frc.team334.robot.subsystems.Climber;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
@@ -56,7 +56,7 @@ public class Robot extends TimedRobot {
         // Shows current commands that are running
         SmartDashboard.putData(Scheduler.getInstance());
 
-        System.out.println("ROBOT INITIALIZED");
+        System.out.println("ROBOT INITIALIZED"); 
     }
 
     @Override

@@ -1,18 +1,18 @@
-package org.usfirst.frc.team334.robot.commands.Climber;
+package org.usfirst.frc.team334.robot.commands.climber;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ExtendClimber extends Command {
+public class ExtendClimberCommand extends Command {
 
-    public ExtendClimber() {
+    public ExtendClimberCommand() {
         requires(Robot.sClimber);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("ExtendClimber has been instantiated");
+    	System.out.println("EXTENDCLIMBERCOMMAND HAS BEEN INITIALIZED");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,13 +28,13 @@ public class ExtendClimber extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.sClimber.setClimberSpeed(0);
-    	System.out.println("ExtendClimber has ended");
+    	System.out.println("EXTENDCLIMBERCOMMAND HAS ENDED");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sClimber.setClimberSpeed(0);
-    	System.out.println("ExtendClimber has been interrupted");
+    	System.out.println("EXTENDCLIMBERCOMMAND HAS BEEN INTERRUPTED");
     }
 }

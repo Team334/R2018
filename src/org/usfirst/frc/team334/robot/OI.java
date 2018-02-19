@@ -1,15 +1,17 @@
 package org.usfirst.frc.team334.robot;
 
 import java.util.ArrayList;
-import org.usfirst.frc.team334.robot.commands.Climber.ExtendClimber;
-import org.usfirst.frc.team334.robot.commands.Climber.RetractClimber;
-import org.usfirst.frc.team334.robot.commands.Drivetrain.ToggleTransmissionCommand;
+
 import org.usfirst.frc.team334.robot.commands.Intake.GrabPowerCubeCommand;
 import org.usfirst.frc.team334.robot.commands.Intake.ReleasePowerCubeCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.CollapseElevatorCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToExchangeCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToScaleCommand;
-import org.usfirst.frc.team334.robot.commands.Elevator.SetElevatorToSwitchCommand;
+import org.usfirst.frc.team334.robot.commands.climber.ExtendClimberCommand;
+import org.usfirst.frc.team334.robot.commands.climber.RetractClimberCommand;
+import org.usfirst.frc.team334.robot.commands.drivetrain.ToggleTransmissionCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToScaleCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToSwitchCommand;
+
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -65,15 +67,15 @@ public class OI {
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
-
+        
         raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
         collapseElevator.whenPressed(new CollapseElevatorCommand());
         grabBox.whileHeld(new GrabPowerCubeCommand());
 		releaseBox.whileHeld(new ReleasePowerCubeCommand());
-		extendClimber.whenPressed(new ExtendClimber());
-		retractClimber.whenPressed(new RetractClimber());
+		extendClimber.whenPressed(new ExtendClimberCommand());
+		retractClimber.whenPressed(new RetractClimberCommand());
     }
 
     public Joystick getLeftJoystick() {
