@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
         // Shows current commands that are running
         SmartDashboard.putData(Scheduler.getInstance());
 
-        System.out.println("ROBOT INITIALIZED");
+        System.out.println("ROBOT INITIALIZED"); 
     }
 
     @Override

@@ -49,10 +49,11 @@ public class OI {
                 Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
         collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.COLLAPSE_ELEVATOR_BUTTON);
+        
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
-
+        
         raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());

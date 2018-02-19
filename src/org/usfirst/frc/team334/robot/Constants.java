@@ -61,9 +61,9 @@ public class Constants {
     public static final int ELEVATOR_MOTOR_R = 1;
 
     // Elevator Sensors (Limit Switches + Potentiometer)
-    public static final int ELEVATOR_LIMIT_TOP = -1;
-    public static final int ELEVATOR_LIMIT_BOTTOM = -1;
-    public static final int ELEVATOR_POTENTIOMETER = -1;
+    public static final int ELEVATOR_LIMIT_TOP = 6;
+    public static final int ELEVATOR_LIMIT_BOTTOM = 7;
+    public static final int ELEVATOR_POTENTIOMETER = 4;
 
     // Elevator Pot PID
     public static final double ELEVATOR_POT_P = 0;
