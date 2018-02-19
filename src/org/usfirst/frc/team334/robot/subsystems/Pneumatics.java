@@ -1,6 +1,7 @@
 package org.usfirst.frc.team334.robot.subsystems;
 
 import org.usfirst.frc.team334.robot.Constants;
+import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;

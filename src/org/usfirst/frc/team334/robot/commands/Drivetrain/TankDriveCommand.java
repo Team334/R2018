@@ -1,50 +1,48 @@
-package org.usfirst.frc.team334.robot.commands.elevator;
+package org.usfirst.frc.team334.robot.commands.drivetrain;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToSwitchCommand extends Command {
+public class TankDriveCommand extends Command {
 
-    public SetElevatorToSwitchCommand() {
-        // Use requires() here to declare subsystem dependencies
-        requires(Robot.sElevator);
+    public TankDriveCommand() {
+        requires(Robot.sDrive);
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        System.out.println("MOVING ELEVATOR TO SWITCH POSITION");
-
-        Robot.sElevator.setSetpoint(Constants.ELEVATOR_SWITCH_HEIGHT);
-        Robot.sElevator.enable();
+        System.out.println("TANK DRIVE INITIALIZED");
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.sDrive.setLeft(Constants.DRIVETRAIN_SPEED_MULTIPLIER * Robot.m_oi.getLeftJoystick().getY());
+        Robot.sDrive.setRight(Constants.DRIVETRAIN_SPEED_MULTIPLIER * Robot.m_oi.getRightJoystick().getY());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.sElevator.onTarget() || Robot.sElevator.isTooHigh()
-                || Robot.sElevator.isTooLow();
+        return false;
     }
 
     // Called once after isFinished returns true
     @Override
     protected void end() {
-        Robot.sElevator.stop();
-        Robot.sElevator.disable();
+        System.out.println("STOPPED TANK DRIVE");
+        Robot.sDrive.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
-        Robot.sElevator.stop();
-        Robot.sElevator.disable();
+        System.out.println("TANK DRIVE INTERRUPTED");
+        Robot.sDrive.stop();
     }
+
 }

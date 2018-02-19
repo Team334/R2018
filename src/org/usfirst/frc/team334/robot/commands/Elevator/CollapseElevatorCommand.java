@@ -5,9 +5,9 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SetElevatorToSwitchCommand extends Command {
+public class CollapseElevatorCommand extends Command {
 
-    public SetElevatorToSwitchCommand() {
+    public CollapseElevatorCommand() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.sElevator);
     }
@@ -15,22 +15,22 @@ public class SetElevatorToSwitchCommand extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        System.out.println("MOVING ELEVATOR TO SWITCH POSITION");
+        System.out.println("COLLAPSING ELEVATOR");
 
-        Robot.sElevator.setSetpoint(Constants.ELEVATOR_SWITCH_HEIGHT);
+        Robot.sElevator.setSetpoint(Constants.ELEVATOR_BOTTOM_HEIGHT);
         Robot.sElevator.enable();
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.sElevator.onTarget() || Robot.sElevator.isTooHigh()
-                || Robot.sElevator.isTooLow();
+        return Robot.sElevator.onTarget() || Robot.sElevator.isTooLow();
     }
 
     // Called once after isFinished returns true

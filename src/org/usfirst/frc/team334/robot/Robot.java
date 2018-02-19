@@ -2,6 +2,7 @@ package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
+import org.usfirst.frc.team334.robot.subsystems.Climber;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 import org.usfirst.frc.team334.robot.subsystems.Elevator;
 import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
@@ -15,16 +16,16 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
-
     // FMS -> retrieves auton information
     private DriverStation fms = DriverStation.getInstance();
 
     // Initialize subsystems
+    public static Climber sClimber;
     public static Drive sDrive;
     public static Elevator sElevator;
     public static Pneumatics sPneumatics;
     public static RollerIntake sRollerIntake;
-
+    
     // Initialize commands
     private Command leftLeft;
     private Command leftRight;
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
         sElevator = new Elevator();
         sPneumatics = new Pneumatics();
         sRollerIntake = new RollerIntake();
+        sClimber = new Climber();
 
         leftLeft = new StartLeftEndLeftScenario();
         leftRight = new StartLeftEndRightScenario();
@@ -122,5 +124,4 @@ public class Robot extends TimedRobot {
     public void testPeriodic() {
 
     }
-
 }
