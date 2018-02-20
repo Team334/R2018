@@ -8,7 +8,6 @@ import org.usfirst.frc.team334.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -26,8 +25,6 @@ public class Drive extends Subsystem {
     // Sensor declarations
     public static Encoder rEncoderLeft;
     public static Encoder rEncoderRight;
-    public static Ultrasonic rUltrasonicR;
-    public static Ultrasonic rUltrasonicL;
     public static BNO055 rGyro;
 
     private WPI_TalonSRX miniCimL;
@@ -43,9 +40,6 @@ public class Drive extends Subsystem {
     public Drive() {
         rEncoderLeft = new Encoder(Constants.ENCODER_L_DRIVETRAIN_A, Constants.ENCODER_L_DRIVETRAIN_B);
         rEncoderRight = new Encoder(Constants.ENCODER_R_DRIVETRAIN_A, Constants.ENCODER_R_DRIVETRAIN_B);
-
-        rUltrasonicR = new Ultrasonic(Constants.ULTRASONIC_L_DRIVETRAIN_PING, Constants.ULTRASONIC_L_DRIVETRAIN_ECHO);
-        rUltrasonicL = new Ultrasonic(Constants.ULTRASONIC_R_DRIVETRAIN_PING, Constants.ULTRASONIC_R_DRIVETRAIN_ECHO);
 
         rGyro = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS, BNO055.vector_type_t.VECTOR_EULER);
 
@@ -65,12 +59,12 @@ public class Drive extends Subsystem {
         right.add(miniCimR);
         right.add(cim1R);
         right.add(cim2R);
-        
+
         for (WPI_TalonSRX talon : left) {
-        	talon.setInverted(true);
+            talon.setInverted(false);
         }
         for (WPI_TalonSRX talon : right) {
-        	talon.setInverted(true);
+            talon.setInverted(false);
         }
     }
 
@@ -88,6 +82,24 @@ public class Drive extends Subsystem {
     public void setRight(double speed) {
         for (WPI_TalonSRX talon : right) {
             talon.set(speed);
+        }
+    }
+
+    public void setInvert() {
+        for (WPI_TalonSRX talon : left) {
+            talon.setInverted(true);
+        }
+        for (WPI_TalonSRX talon : right) {
+            talon.setInverted(true);
+        }
+    }
+
+    public void setNormal() {
+        for (WPI_TalonSRX talon : left) {
+            talon.setInverted(false);
+        }
+        for (WPI_TalonSRX talon : right) {
+            talon.setInverted(false);
         }
     }
 

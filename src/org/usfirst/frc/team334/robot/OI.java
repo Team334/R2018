@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
+    
     // Joysticks and Xbox controls
     private Joystick leftJoystick;
     private Joystick rightJoystick;
@@ -53,6 +54,7 @@ public class OI {
                 Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
         collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.COLLAPSE_ELEVATOR_BUTTON);
+
         grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
         		Constants.GRAB_BUTTON);
         releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
@@ -60,7 +62,7 @@ public class OI {
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
-        
+
         raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());

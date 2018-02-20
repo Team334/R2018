@@ -303,14 +303,14 @@ public class BNO055 {
     }
 
     /**
-     * Get an instance of the IMU object plugged into the onboard I2C header.
-     * Using the default address (0x28)
+     * Get an instance of the IMU object plugged into the onboard I2C header. Using
+     * the default address (0x28)
      * 
      * @param mode
      *            the operating mode to run the sensor in.
      * @param vectorType
-     *            the format the position vector data should be returned in (if
-     *            you don't know use VECTOR_EULER).
+     *            the format the position vector data should be returned in (if you
+     *            don't know use VECTOR_EULER).
      * @return the instantiated BNO055 object
      */
     public static BNO055 getInstance(opmode_t mode, vector_type_t vectorType) {
@@ -503,20 +503,20 @@ public class BNO055 {
         write8(reg_t.BNO055_PAGE_ID_ADDR, (byte) 0x00);
 
         /*
-         * System Status (see section 4.3.58) ---------------------------------
-         * 0 = Idle 1 = System Error 2 = Initializing Peripherals 3 = System
-         * Initalization 4 = Executing Self-Test 5 = Sensor fusion algorithm
-         * running 6 = System running without fusion algorithms
+         * System Status (see section 4.3.58) --------------------------------- 0 = Idle
+         * 1 = System Error 2 = Initializing Peripherals 3 = System Initalization 4 =
+         * Executing Self-Test 5 = Sensor fusion algorithm running 6 = System running
+         * without fusion algorithms
          */
 
         status.system_status = read8(reg_t.BNO055_SYS_STAT_ADDR);
 
         /*
-         * Self Test Results (see section ) -------------------------------- 1 =
-         * test passed, 0 = test failed
+         * Self Test Results (see section ) -------------------------------- 1 = test
+         * passed, 0 = test failed
          * 
-         * Bit 0 = Accelerometer self test Bit 1 = Magnetometer self test Bit 2
-         * = Gyroscope self test Bit 3 = MCU self test
+         * Bit 0 = Accelerometer self test Bit 1 = Magnetometer self test Bit 2 =
+         * Gyroscope self test Bit 3 = MCU self test
          * 
          * 0x0F = all good!
          */
@@ -524,13 +524,13 @@ public class BNO055 {
         status.self_test_result = read8(reg_t.BNO055_SELFTEST_RESULT_ADDR);
 
         /*
-         * System Error (see section 4.3.59) --------------------------------- 0
-         * = No error 1 = Peripheral initialization error 2 = System
-         * initialization error 3 = Self test result failed 4 = Register map
-         * value out of range 5 = Register map address out of range 6 = Register
-         * map write error 7 = BNO low power mode not available for selected
-         * operation mode 8 = Accelerometer power mode not available 9 = Fusion
-         * algorithm configuration error A = Sensor configuration error
+         * System Error (see section 4.3.59) --------------------------------- 0 = No
+         * error 1 = Peripheral initialization error 2 = System initialization error 3 =
+         * Self test result failed 4 = Register map value out of range 5 = Register map
+         * address out of range 6 = Register map write error 7 = BNO low power mode not
+         * available for selected operation mode 8 = Accelerometer power mode not
+         * available 9 = Fusion algorithm configuration error A = Sensor configuration
+         * error
          */
         status.system_error = read8(reg_t.BNO055_SYS_ERR_ADDR);
         return status;
@@ -565,10 +565,10 @@ public class BNO055 {
     }
 
     /**
-     * Diagnostic method to determine if communications with the sensor are
-     * active. Note this method returns true after first establishing
-     * communications with the sensor. Communications are not actively monitored
-     * once sensor initialization has started.
+     * Diagnostic method to determine if communications with the sensor are active.
+     * Note this method returns true after first establishing communications with
+     * the sensor. Communications are not actively monitored once sensor
+     * initialization has started.
      * 
      * @return true if the sensor is found on the I2C bus
      */
@@ -578,9 +578,9 @@ public class BNO055 {
 
     /**
      * After power is applied, the sensor needs to be configured for use. During
-     * this initialization period the sensor will not return position vector
-     * data. Once initialization is complete, data can be read, although the
-     * sensor may not have completed calibration. See isCalibrated.
+     * this initialization period the sensor will not return position vector data.
+     * Once initialization is complete, data can be read, although the sensor may
+     * not have completed calibration. See isCalibrated.
      * 
      * @return true when the sensor is initialized.
      */
@@ -591,8 +591,7 @@ public class BNO055 {
     /**
      * Gets current calibration state.
      * 
-     * @return each value will be set to 0 if not calibrated, 3 if fully
-     *         calibrated.
+     * @return each value will be set to 0 if not calibrated, 3 if fully calibrated.
      */
     public CalData getCalibration() {
         CalData data = new CalData();
@@ -607,13 +606,12 @@ public class BNO055 {
     }
 
     /**
-     * Returns true if all required sensors (accelerometer, magnetometer,
-     * gyroscope) have completed their respective calibration sequence. Only
-     * sensors required by the current operating mode are checked. See Section
-     * 3.3.
+     * Returns true if all required sensors (accelerometer, magnetometer, gyroscope)
+     * have completed their respective calibration sequence. Only sensors required
+     * by the current operating mode are checked. See Section 3.3.
      * 
-     * @return true if calibration is complete for all sensors required for the
-     *         mode the sensor is currently operating in.
+     * @return true if calibration is complete for all sensors required for the mode
+     *         the sensor is currently operating in.
      */
     public boolean isCalibrated() {
         boolean retVal = true;
@@ -678,9 +676,9 @@ public class BNO055 {
 
     /**
      * The heading of the sensor (x axis) in continuous format. Eg rotating the
-     * sensor clockwise two full rotations will return a value of 720 degrees.
-     * The getVector method will return heading in a constrained 0 - 360 deg
-     * format if required.
+     * sensor clockwise two full rotations will return a value of 720 degrees. The
+     * getVector method will return heading in a constrained 0 - 360 deg format if
+     * required.
      * 
      * @return heading in degrees
      */
@@ -696,8 +694,8 @@ public class BNO055 {
     }
 
     /**
-     * Changes the heading back to its true value (as if resetHeading() was
-     * never called)
+     * Changes the heading back to its true value (as if resetHeading() was never
+     * called)
      */
     public void trueHeading() {
         this.headingOffset = 0.0;
@@ -710,8 +708,8 @@ public class BNO055 {
      *            the register to write the data to
      * @param value
      *            a byte of data to write
-     * @return whatever I2CJNI.i2CWrite returns. It's not documented in the
-     *         wpilib javadocs!
+     * @return whatever I2CJNI.i2CWrite returns. It's not documented in the wpilib
+     *         javadocs!
      */
     private boolean write8(reg_t reg, byte value) {
         boolean retVal = false;
