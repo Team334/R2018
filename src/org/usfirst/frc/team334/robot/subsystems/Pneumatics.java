@@ -37,7 +37,8 @@ public class Pneumatics extends Subsystem {
         if (mTransmissionState != TransmissionState.LOW_SPEED) {
             mTransmissionState = TransmissionState.LOW_SPEED;
             pancakeL.set(DoubleSolenoid.Value.kReverse);
-            pancakeR.set(DoubleSolenoid.Value.kReverse);
+            pancakeR.set(DoubleSolenoid.Value.kForward);
+            System.out.println("LOW");
         }
     }
 
@@ -45,7 +46,8 @@ public class Pneumatics extends Subsystem {
         if (mTransmissionState != TransmissionState.HIGH_SPEED) {
             mTransmissionState = TransmissionState.HIGH_SPEED;
             pancakeL.set(DoubleSolenoid.Value.kForward);
-            pancakeR.set(DoubleSolenoid.Value.kForward);
+            pancakeR.set(DoubleSolenoid.Value.kReverse);
+            System.out.println("HI");
         }
     }
 

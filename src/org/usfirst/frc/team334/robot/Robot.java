@@ -7,7 +7,6 @@ import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -173,7 +172,6 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         // Runs any commands that are queued from OI
         Scheduler.getInstance().run();
-        System.out.println(Drive.rEncoderLeft.get());
     }
 
     @Override
