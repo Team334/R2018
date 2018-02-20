@@ -7,6 +7,8 @@ import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToScaleCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToSwitchCommand;
+import org.usfirst.frc.team334.robot.commands.intake.GrabPowerCubeCommand;
+import org.usfirst.frc.team334.robot.commands.intake.ReleasePowerCubeCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -29,6 +31,8 @@ public class OI {
     private Button raiseElevatorToScale;
     private Button raiseElevatorToExchange;
     private Button collapseElevator;
+    private Button grabBox;
+    private Button releaseBox;
 
     public OI() {
         leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -51,6 +55,11 @@ public class OI {
         collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.COLLAPSE_ELEVATOR_BUTTON);
 
+        grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
+        		Constants.GRAB_BUTTON);
+        releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
+        		Constants.RELEASE_BUTTON);  
+
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
 
@@ -58,6 +67,8 @@ public class OI {
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
         collapseElevator.whenPressed(new CollapseElevatorCommand());
+        grabBox.whileHeld(new GrabPowerCubeCommand());
+        releaseBox.whileHeld(new ReleasePowerCubeCommand());
     }
 
     public Joystick getLeftJoystick() {

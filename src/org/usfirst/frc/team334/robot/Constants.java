@@ -13,7 +13,10 @@ public class Constants {
      */
 
     public static final int SWITCH_GEAR_CONTROL = 0;
-    public static final int ELEVATOR_CONTROL = 1;
+    public static final int ELEVATOR_CONTROL = 2;
+    public static final int GRAB_CONTROL = 2;
+    public static final int RELEASE_CONTROL = 2;
+    public static final int INTAKE_SPEED_HIGH_CONTROL = 2;
 
     // Buttons mappings for left joystick
     public static final int SWITCH_GEAR_BUTTON = 1;
@@ -25,6 +28,9 @@ public class Constants {
     public static final int COLLAPSE_ELEVATOR_BUTTON = 5;
 
     public static final int FORCE_COMPRESSOR_START_BUTTON = 2;
+    public static final int GRAB_BUTTON = -1;
+    public static final int RELEASE_BUTTON = -1;
+    public static final int INTAKE_SPEED_HIGH_BUTTON = -1;
 
     // DriveTrain ports
     public static final int DRIVETRAIN_MC_L = 5;
@@ -112,5 +118,15 @@ public class Constants {
     // Subsystem speed multipliers
     public static final double DRIVETRAIN_SPEED_MULTIPLIER = 1;
     public static final double ELEVATOR_SPEED_MULTIPLIER = 0.1;
-
+    
+  //Intake
+    public static final int INTAKE_MOTOR_L = -1;
+    public static final int INTAKE_MOTOR_R = -1;
+    public static final int INTAKE_LIMITSWITCH_1 = -1;
+    public static final int INTAKE_LIMITSWITCH_2 = -1;
+    public static final double INTAKE_SPEED = 0.25;
+    public static final double INTAKE_SPEED_HIGH = 1;
+    public static final double INTAKE_OUT_SPEED = -0.25;
+    public static final double INTAKE_OUT_SPEED_HIGH = -1;
+    public static final double RELEASE_TIME = 30;
 }
