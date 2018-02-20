@@ -28,10 +28,8 @@ public class ReleasePowerCubeCommand extends Command {
 	@Override
 	protected void execute() {
 		// increments timer if the box isnt touching any of the limit switches to keep the command running for some additional time
-		if (Robot.sRollerIntake.getLimitSwitch1() == false && Robot.sRollerIntake.getLimitSwitch2()== false) {
-			timer++;
-		}
-		else {
+		timer++;
+		if (Robot.sRollerIntake.getLimitSwitch1() || Robot.sRollerIntake.getLimitSwitch2()) {
 			timer = 0;
 		}
 	}

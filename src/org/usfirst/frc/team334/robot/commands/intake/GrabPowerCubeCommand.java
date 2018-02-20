@@ -33,7 +33,7 @@ public class GrabPowerCubeCommand extends Command {
 	@Override
 	protected boolean isFinished() {
 		// if cube touches either of the 2 limit switches, end command
-		return Robot.sRollerIntake.getLimitSwitch1() == true || Robot.sRollerIntake.getLimitSwitch2() == true;
+		return Robot.sRollerIntake.getLimitSwitch1() || Robot.sRollerIntake.getLimitSwitch2();
 	}
 
 	// Called once after isFinished returns true

@@ -2,8 +2,6 @@ package org.usfirst.frc.team334.robot;
 
 import java.util.ArrayList;
 
-import org.usfirst.frc.team334.robot.commands.climber.ExtendClimberCommand;
-import org.usfirst.frc.team334.robot.commands.climber.RetractClimberCommand;
 import org.usfirst.frc.team334.robot.commands.drivetrain.ToggleTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
@@ -34,8 +32,6 @@ public class OI {
     private Button collapseElevator;
     private Button grabBox;
     private Button releaseBox;
-    private Button extendClimber; 
-    private Button retractClimber;
 
     public OI() {
         leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -60,12 +56,7 @@ public class OI {
         grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
         		Constants.GRAB_BUTTON);
         releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
-        		Constants.RELEASE_BUTTON);
-        extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL), 
-        		Constants.EXTEND_BUTTON);
-        retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL), 
-        		Constants.RETRACT_BUTTON);
-        
+        		Constants.RELEASE_BUTTON);  
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
@@ -76,8 +67,6 @@ public class OI {
         collapseElevator.whenPressed(new CollapseElevatorCommand());
         grabBox.whileHeld(new GrabPowerCubeCommand());
         releaseBox.whileHeld(new ReleasePowerCubeCommand());
-        extendClimber.whenPressed(new ExtendClimberCommand());
-        retractClimber.whenPressed(new RetractClimberCommand());
     }
 
     public Joystick getLeftJoystick() {
