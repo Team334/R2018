@@ -2,12 +2,10 @@ package org.usfirst.frc.team334.robot.commands.auton;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
-import org.usfirst.frc.team334.robot.pids.HeadingPIDSource;
+import org.usfirst.frc.team334.robot.pids.*;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,20 +13,12 @@ public class TurnCommand extends Command {
 
     private double heading;
 
-    private PIDSource gyroInput;
-    private PIDOutput out;
     private PIDController turnPID;
 
     public TurnCommand(double heading) {
         requires(Robot.sDrive);
-        out = new PIDOutput() {
-            @Override
-            public void pidWrite(double output) {
-            }
-        };
         this.heading = heading;
-        gyroInput = new HeadingPIDSource();
-        turnPID = new PIDController(Constants.TURN_P, Constants.TURN_I, Constants.TURN_D, gyroInput, out);
+        turnPID = new PIDController(Constants.TURN_P, Constants.TURN_I, Constants.TURN_D, new HeadingPIDSource(), new StandardPIDOutput());
         SmartDashboard.putNumber("Heading", Drive.rGyro.getHeading());
     }
 

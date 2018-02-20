@@ -2,8 +2,7 @@ package org.usfirst.frc.team334.robot.commands.auton;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
-import org.usfirst.frc.team334.robot.pids.HeadingPIDSource;
-import org.usfirst.frc.team334.robot.pids.StandardPIDOutput;
+import org.usfirst.frc.team334.robot.pids.*;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -50,10 +49,8 @@ public class DriveForwardCommand extends Command {
     @Override
     protected void execute() {
         if (Drive.rGyro.isInitialized()) {
-            multiplier = 0.4;
-
             // Go faster if your distance is less than 40 inches.
-            multiplier = (Math.abs(distance) < 40 * Constants.ENCODER_TICKS_PER_INCH) ? 2.5 : multiplier;
+            multiplier = (Math.abs(distance) < 40 * Constants.ENCODER_TICKS_PER_INCH) ? 1 : 0.4;
 
             Robot.sDrive.setLeft(driveForwardDistancePID.get() * multiplier + driveForwardHeadingPID.get());
             Robot.sDrive.setRight(driveForwardDistancePID.get() * multiplier - driveForwardHeadingPID.get());

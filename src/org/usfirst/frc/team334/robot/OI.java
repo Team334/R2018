@@ -15,31 +15,32 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
-	// Joysticks and Xbox controls
-	private Joystick leftJoystick;
-	private Joystick rightJoystick;
-	private XboxController xbox;
-	private ArrayList<GenericHID> controls;
+    
+    // Joysticks and Xbox controls
+    private Joystick leftJoystick;
+    private Joystick rightJoystick;
+    private XboxController xbox;
+    private ArrayList<GenericHID> controls;
 
-	// Button controls
-	private Button shiftGears;
+    // Button controls
+    private Button shiftGears;
 
-	private Button raiseElevatorToSwitch;
-	private Button raiseElevatorToScale;
-	private Button raiseElevatorToExchange;
-	private Button collapseElevator;
+    private Button raiseElevatorToSwitch;
+    private Button raiseElevatorToScale;
+    private Button raiseElevatorToExchange;
+    private Button collapseElevator;
 
-	public OI() {
-		leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
-		rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
-		xbox = new XboxController(Constants.XBOX);
-		controls = new ArrayList<>();
-		controls.add(leftJoystick);
-		controls.add(rightJoystick);
-		controls.add(xbox);
+    public OI() {
+        leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
+        rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
+        xbox = new XboxController(Constants.XBOX);
+        controls = new ArrayList<>();
+        controls.add(leftJoystick);
+        controls.add(rightJoystick);
+        controls.add(xbox);
 
-		// Init Buttons
-		shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
+        // Init Buttons
+        shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
 
         raiseElevatorToSwitch = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.ELEVATOR_TO_SWITCH_BUTTON);
@@ -49,27 +50,26 @@ public class OI {
                 Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
         collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.COLLAPSE_ELEVATOR_BUTTON);
-        
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
-        
+
         raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
         collapseElevator.whenPressed(new CollapseElevatorCommand());
     }
 
-	public Joystick getLeftJoystick() {
-		return this.leftJoystick;
-	}
+    public Joystick getLeftJoystick() {
+        return this.leftJoystick;
+    }
 
-	public Joystick getRightJoystick() {
-		return this.rightJoystick;
-	}
+    public Joystick getRightJoystick() {
+        return this.rightJoystick;
+    }
 
-	public XboxController getXBoxController() {
-		return this.xbox;
-	}
+    public XboxController getXBoxController() {
+        return this.xbox;
+    }
 
 }
