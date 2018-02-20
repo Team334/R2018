@@ -16,111 +16,125 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
 
-    // FMS -> retrieves auton information
-    private DriverStation fms = DriverStation.getInstance();
+	// FMS -> retrieves auton information
+	private DriverStation fms = DriverStation.getInstance();
 
-    // Initialize subsystems
-    public static Drive sDrive;
-    public static Elevator sElevator;
-    public static Pneumatics sPneumatics;
-    public static RollerIntake sRollerIntake;
+	// Initialize subsystems
+	public static Drive sDrive;
+	public static Elevator sElevator;
+	public static Pneumatics sPneumatics;
+	public static RollerIntake sRollerIntake;
 
-    // Initialize commands
-    private Command leftLeft;
-    private Command leftRight;
-    private Command rightRight;
-    private Command rightLeft;
+	// Initialize commands
+	private Command leftLeft;
+	private Command leftRight;
+	private Command rightRight;
+	private Command rightLeft;
 
-    public static OI m_oi;
-    
-    private static VisionData vision;
+	public static OI m_oi;
 
-    @Override
-    public void robotInit() {
-        sDrive = new Drive();
-        sElevator = new Elevator();
-        sPneumatics = new Pneumatics();
-        sRollerIntake = new RollerIntake();
+	public static double AbsoluteHeading;
 
-        leftLeft = new StartLeftEndLeftScenario();
-        leftRight = new StartLeftEndRightScenario();
-        rightRight = new StartRightEndRightScenario();
-        rightLeft = new StartRightEndLeftScenario();
+	private static VisionData vision;
 
-        m_oi = new OI();
-        
-        vision = new VisionData();
+	@Override
+	public void robotInit() {
+		sDrive = new Drive();
+		sElevator = new Elevator();
+		sPneumatics = new Pneumatics();
+		sRollerIntake = new RollerIntake();
 
-        // Shows current commands that are running
-        SmartDashboard.putData(Scheduler.getInstance());
+		leftLeft = new LeftStartLeftSwitchLeftScale();
+		leftRight = new LeftStartLeftSwitchRightScale();
+		rightRight = new RightStartRightSwitchRightScale();
+		rightLeft = new RightStartRightSwitchLeftScale();
 
-        System.out.println("ROBOT INITIALIZED");
-    }
+		m_oi = new OI();
 
-    @Override
-    public void disabledInit() {
-        Scheduler.getInstance().removeAll();
-    }
+		vision = new VisionData();
 
-    @Override
-    public void disabledPeriodic() {
-    }
+		// Shows current commands that are running
+		SmartDashboard.putData(Scheduler.getInstance());
 
-    @Override
-    public void autonomousInit() {
-        Scheduler.getInstance().removeAll();
+		System.out.println("ROBOT INITIALIZED");
+	}
 
-        // Gets info from "Game Data" in FRC Driver Station
-        String fieldConfig = fms.getGameSpecificMessage();
-        SmartDashboard.putString("Field Config", fieldConfig);
-        SmartDashboard.putNumber("Start Location", fms.getLocation());
+	@Override
+	public void disabledInit() {
+		Scheduler.getInstance().removeAll();
+	}
 
-        // Checks info from FMS to schedule correct auton command.
-        switch (fieldConfig) {
-        case "LLR":
-            Scheduler.getInstance().add(leftLeft);
-            break;
-        case "LRR":
-            Scheduler.getInstance().add(leftRight);
-            break;
-        case "LRL":
-            Scheduler.getInstance().add(leftRight);
-            break;
-        case "RRL":
-            Scheduler.getInstance().add(rightRight);
-            break;
-        case "RLL":
-            Scheduler.getInstance().add(rightLeft);
-            break;
-        case "RLR":
-            Scheduler.getInstance().add(rightLeft);
-            break;
-        default:
-            System.out.println("FAILURE IN AUTON");
-        }
-    }
+	@Override
+	public void disabledPeriodic() {
+	}
 
-    @Override
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	@Override
+	public void autonomousInit() {
+		AbsoluteHeading = 0;
 
-    @Override
-    public void teleopInit() {
-        Scheduler.getInstance().removeAll();
-        TankDriveCommand tankDrive = new TankDriveCommand();
-        tankDrive.start();
-    }
+		Drive.rEncoderLeft.reset();
+		Drive.rEncoderRight.reset();
+		Drive.rGyro.resetHeading();
 
-    @Override
-    public void teleopPeriodic() {
-        // Runs any commands that are queued from OI
-        Scheduler.getInstance().run();
-    }
+		Robot.sDrive.setNormal();
 
-    @Override
-    public void testPeriodic() {
+		Scheduler.getInstance().removeAll();
 
-    }
+		// Gets info from "Game Data" in FRC Driver Station
+		String fieldConfig = fms.getGameSpecificMessage();
+		SmartDashboard.putString("Field Config", fieldConfig);
+		SmartDashboard.putNumber("Start Location", fms.getLocation());
+
+		// Checks info from FMS to schedule correct auton command.
+		// switch (fieldConfig) {
+		// case "LLR":
+		// Scheduler.getInstance().add(leftLeft);
+		// break;
+		// case "LRR":
+		// Scheduler.getInstance().add(leftRight);
+		// break;
+		// case "LRL":
+		// Scheduler.getInstance().add(leftRight);
+		// break;
+		// case "RRL":
+		// Scheduler.getInstance().add(rightRight);
+		// break;
+		// case "RLL":
+		// Scheduler.getInstance().add(rightLeft);
+		// break;
+		// case "RLR":
+		// Scheduler.getInstance().add(rightLeft);
+		// break;
+		// default:
+		// System.out.println("FAILURE IN AUTON");
+		// }
+		Scheduler.getInstance().add(leftLeft);
+	}
+
+	@Override
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+		System.out.println(Drive.rGyro.getHeading());
+	}
+
+	@Override
+	public void teleopInit() {
+		Scheduler.getInstance().removeAll();
+		TankDriveCommand tankDrive = new TankDriveCommand();
+		Robot.sDrive.setInvert();
+		tankDrive.start();
+	}
+
+	@Override
+	public void teleopPeriodic() {
+		// Runs any commands that are queued from OI
+		Scheduler.getInstance().run();
+		System.out.println(Drive.rEncoderLeft.get());
+	}
+
+	@Override
+	public void testPeriodic() {
+
+	}
 
 }
