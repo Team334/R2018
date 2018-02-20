@@ -4,9 +4,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class RollerIntake extends Subsystem {
 
-	@Override
-	protected void initDefaultCommand() {
+    @Override
+    protected void initDefaultCommand() {
 
-	}
+    }
 
 }

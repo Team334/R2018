@@ -7,19 +7,19 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 
 public class HeadingPIDSource implements PIDSource {
 
-	@Override
-	public void setPIDSourceType(PIDSourceType pidSource) {
+    @Override
+    public void setPIDSourceType(PIDSourceType pidSource) {
 
-	}
+    }
 
-	@Override
-	public PIDSourceType getPIDSourceType() {
-		return PIDSourceType.kDisplacement;
-	}
+    @Override
+    public PIDSourceType getPIDSourceType() {
+        return PIDSourceType.kDisplacement;
+    }
 
-	@Override
-	public double pidGet() {
-		return Drive.rGyro.getHeading();
-	}
+    @Override
+    public double pidGet() {
+        return Drive.rGyro.getHeading();
+    }
 
 }

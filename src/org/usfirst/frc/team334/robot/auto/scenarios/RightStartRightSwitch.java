@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class RightStartRightSwitch extends CommandGroup {
 
-	public RightStartRightSwitch() {
-		addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
-		addSequential(new TurnCommand(-90)); // Turn to switch
-		// Drop cube command
-	}
+    public RightStartRightSwitch() {
+        addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
+        addSequential(new TurnCommand(-90)); // Turn to switch
+        // Drop cube command
+    }
 
 }
