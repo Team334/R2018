@@ -2,11 +2,15 @@ package org.usfirst.frc.team334.robot;
 
 import java.util.ArrayList;
 
+import org.usfirst.frc.team334.robot.commands.climber.ExtendClimberCommand;
+import org.usfirst.frc.team334.robot.commands.climber.RetractClimberCommand;
 import org.usfirst.frc.team334.robot.commands.drivetrain.ToggleTransmissionCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToScaleCommand;
 import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToSwitchCommand;
+import org.usfirst.frc.team334.robot.commands.intake.GrabPowerCubeCommand;
+import org.usfirst.frc.team334.robot.commands.intake.ReleasePowerCubeCommand;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,6 +32,10 @@ public class OI {
     private Button raiseElevatorToScale;
     private Button raiseElevatorToExchange;
     private Button collapseElevator;
+    private Button grabBox;
+    private Button releaseBox;
+    private Button extendClimber; 
+    private Button retractClimber;
 
     public OI() {
         leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
@@ -49,6 +57,14 @@ public class OI {
                 Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
         collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
                 Constants.COLLAPSE_ELEVATOR_BUTTON);
+        grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
+        		Constants.GRAB_BUTTON);
+        releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
+        		Constants.RELEASE_BUTTON);
+        extendClimber = new JoystickButton(controls.get(Constants.EXTEND_CONTROL), 
+        		Constants.EXTEND_BUTTON);
+        retractClimber = new JoystickButton(controls.get(Constants.RETRACT_CONTROL), 
+        		Constants.RETRACT_BUTTON);
         
 
         // Button Actions
@@ -58,6 +74,10 @@ public class OI {
         raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
         raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
         collapseElevator.whenPressed(new CollapseElevatorCommand());
+        grabBox.whileHeld(new GrabPowerCubeCommand());
+        releaseBox.whileHeld(new ReleasePowerCubeCommand());
+        extendClimber.whenPressed(new ExtendClimberCommand());
+        retractClimber.whenPressed(new RetractClimberCommand());
     }
 
     public Joystick getLeftJoystick() {
