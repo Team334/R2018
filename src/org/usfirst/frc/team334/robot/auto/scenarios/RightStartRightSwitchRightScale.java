@@ -10,10 +10,12 @@ public class RightStartRightSwitchRightScale extends CommandGroup {
 	public RightStartRightSwitchRightScale() {
 		addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SCALE_DIAGONAL));
 		addSequential(new WaitCommand(0.3));
-		addSequential(new TurnCommand(Constants.TURN_TO_SCALE_FROM_RIGHT));
-		addSequential(new WaitCommand(0.5));
-		addSequential(new TurnCommand(Constants.TURN_TO_SWITCH_CUBE_FROM_RIGHT));
+		addSequential(new TurnCommand(-45)); // Turn to scale diagonally
+		addSequential(new WaitCommand(0.5)); // Placeholder for drop box command
+		addSequential(new TurnCommand(-90)); // Turn to box
 		addSequential(new DriveForwardCommand(Constants.SWITCH_GAP_DISTANCE_AFTER_TURN));
+		// Intake command
+		// Drop cube command
 	}
 
 }

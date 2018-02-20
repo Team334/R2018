@@ -9,7 +9,8 @@ public class LeftStartLeftSwitch extends CommandGroup {
 
 	public LeftStartLeftSwitch() {
 		addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
-		addSequential(new TurnCommand(Constants.TURN_TO_SCALE_FROM_LEFT_PARALLEL));
+		addSequential(new TurnCommand(90)); // Turn to switch
+		// Drop cube command
 	}
 
 }

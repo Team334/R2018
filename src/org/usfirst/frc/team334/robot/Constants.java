@@ -40,12 +40,6 @@ public class Constants {
 	public static final int PANCAKE_R_INPUT = 2;
 	public static final int PANCAKE_R_OUTPUT = 3;
 
-	// Ultrasonic Sensors - Drivetrain
-	public static final int ULTRASONIC_L_DRIVETRAIN_PING = 0;
-	public static final int ULTRASONIC_L_DRIVETRAIN_ECHO = 1;
-	public static final int ULTRASONIC_R_DRIVETRAIN_PING = 2;
-	public static final int ULTRASONIC_R_DRIVETRAIN_ECHO = 3;
-
 	// Encoders - Drivetrain
 	public static final int ENCODER_L_DRIVETRAIN_A = 3;
 	public static final int ENCODER_L_DRIVETRAIN_B = 2;
@@ -108,17 +102,11 @@ public class Constants {
 	public static final int DISTANCE_TO_SWITCH_PARALLEL = 120;
 	public static final int DISTANCE_TO_SWITCH_REAR = 147;
 	public static final int DISTANCE_TO_SCALE_DIAGONAL = 230;
-	public static final int TURN_TO_SCALE_FROM_LEFT = 45;
-	public static final int TURN_TO_SCALE_FROM_RIGHT = -45;
 	public static final int SCALE_GAP_DISTANCE_AFTER_TURN = 5;
 	public static final int BACK_AWAY_FROM_SCALE = -10;
-	public static final int TURN_TO_SWITCH_CUBE_FROM_LEFT = 90;
-	public static final int TURN_TO_SWITCH_CUBE_FROM_RIGHT = -90;
 	public static final int SWITCH_GAP_DISTANCE_AFTER_TURN = 50;
-	public static final int TURN_TO_SCALE_FROM_LEFT_PARALLEL = 90;
-	public static final int TURN_TO_SCALE_FROM_RIGHT_PARALLEL = -90;
-	public static final int TURN_AWAY_FROM_SWITCH_PARALLEL_FROM_LEFT = -90;
-	public static final int TURN_AWAY_FROM_SWITCH_PARALLEL_FROM_RIGHT = 90;
+	public static final int ALLEYWAY_DISTANCE_FROM_ALLIANCE_WALL = 220;
+	public static final int ALLEYWAY_TOTAL_LENGTH = 240;
 
 	// Subsystem speed multipliers
 	public static final double DRIVETRAIN_SPEED_MULTIPLIER = 1;

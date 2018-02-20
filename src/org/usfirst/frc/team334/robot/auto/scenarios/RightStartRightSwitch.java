@@ -10,7 +10,8 @@ public class RightStartRightSwitch extends CommandGroup {
 
 	public RightStartRightSwitch() {
 		addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
-		addSequential(new TurnCommand(Constants.TURN_TO_SCALE_FROM_RIGHT_PARALLEL));
+		addSequential(new TurnCommand(-90)); // Turn to switch
+		// Drop cube command
 	}
 
 }

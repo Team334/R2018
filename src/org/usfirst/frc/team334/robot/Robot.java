@@ -2,10 +2,7 @@ package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
-import org.usfirst.frc.team334.robot.subsystems.Drive;
-import org.usfirst.frc.team334.robot.subsystems.Elevator;
-import org.usfirst.frc.team334.robot.subsystems.Pneumatics;
-import org.usfirst.frc.team334.robot.subsystems.RollerIntake;
+import org.usfirst.frc.team334.robot.subsystems.*;
 import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.DriverStation;
