@@ -5,7 +5,7 @@ import org.usfirst.frc.team334.robot.subsystems.Drive;
 import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.PIDSourceType;
 
-public class GyroPIDSource implements PIDSource {
+public class HeadingPIDSource implements PIDSource {
 
     @Override
     public void setPIDSourceType(PIDSourceType pidSource) {

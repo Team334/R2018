@@ -5,8 +5,8 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 /**
- * Roborio comms with TK1 for vision. 
- * To use, just create an instance and call getter methods.
+ * Roborio comms with TK1 for vision. To use, just create an instance and call
+ * getter methods.
  * 
  * double offset = VisionData.getOffset();
  */
