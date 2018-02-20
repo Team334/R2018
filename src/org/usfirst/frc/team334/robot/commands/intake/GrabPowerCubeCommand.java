@@ -14,7 +14,7 @@ public class GrabPowerCubeCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("GRABPOWERCUBECOMMAND HAS BEEN INITIALIZED");
+		System.out.println("GRABPOWERCUBECOMMAND INITIALIZED");
 		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON)) {
 			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_SPEED_HIGH);
 		}
@@ -32,8 +32,8 @@ public class GrabPowerCubeCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		// if cube gets within a certain range(INTAKE_GRAB_DISTANCE) of the ultrasonic, the command stops running
-		return Robot.sRollerIntake.getRangeInches() <= Constants.INTAKE_GRAB_DISTANCE;
+		// if cube touches either of the 2 limit switches, end command
+		return Robot.sRollerIntake.getLimitSwitch1() == true || Robot.sRollerIntake.getLimitSwitch2() == true;
 	}
 
 	// Called once after isFinished returns true
@@ -41,7 +41,7 @@ public class GrabPowerCubeCommand extends Command {
 	protected void end() {
 		Robot.sRollerIntake.setMotorSpeed(0);
 		
-		System.out.println("GRABPOWERCUBECOMMAND HAS ENDED");
+		System.out.println("GRABPOWERCUBECOMMAND ENDED");
 	}
 
 	// Called when another command which requires one or more of the same
@@ -50,6 +50,6 @@ public class GrabPowerCubeCommand extends Command {
 	protected void interrupted() {
 		Robot.sRollerIntake.setMotorSpeed(0);
 		
-		System.out.println("GRABPOWERCUBECOMMAND HAS BEEN INTERRUPTED");
+		System.out.println("GRABPOWERCUBECOMMAND INTERRUPTED");
 	}
 }

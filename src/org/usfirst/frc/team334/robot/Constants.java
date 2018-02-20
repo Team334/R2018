@@ -123,15 +123,16 @@ public class Constants {
   //Intake
     public static final int INTAKE_MOTOR_L = 0;
     public static final int INTAKE_MOTOR_R = 1;
-    public static final int INTAKE_ULTRASONIC_PING = 3;
-    public static final int INTAKE_ULTRASONIC_OUTPUT = 4;
+    public static final int INTAKE_LIMITSWITCH_1 = 3;
+    public static final int INTAKE_LIMITSWITCH_2 = 4;
     public static final double INTAKE_GRAB_DISTANCE = 0.5;
     public static final double INTAKE_RELEASE_DISTANCE = 10;
     public static final double INTAKE_SPEED = 0.25;
     public static final double INTAKE_SPEED_HIGH = 1;
     public static final double INTAKE_OUT_SPEED = -0.25;
     public static final double INTAKE_OUT_SPEED_HIGH = -1;
-      	
+    public static final double RELEASE_TIME = 30;
+    
     //Climber
     public static final int CLIMBER_MOTOR_1 = 10000;
     public static final int CLIMER_MOTOR_2 = 10001;

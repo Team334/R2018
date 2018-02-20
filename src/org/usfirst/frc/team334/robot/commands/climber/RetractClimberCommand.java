@@ -12,7 +12,7 @@ public class RetractClimberCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("RETRACTCLIMBERCOMMAND HAS BEEN INITIALIZED");
+    	System.out.println("RETRACTCLIMBERCOMMAND INITIALIZED");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -28,14 +28,14 @@ public class RetractClimberCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.sClimber.setClimberSpeed(0);
-    	System.out.println("RETRACTCLIMBERCOMMAND HAS ENDED");
+    	System.out.println("RETRACTCLIMBERCOMMAND ENDED");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
     	Robot.sClimber.setClimberSpeed(0);
-    	System.out.println("RETRACTCLIMBERCOMMAND HAS BEEN INTERRUPTED");
+    	System.out.println("RETRACTCLIMBERCOMMAND INTERRUPTED");
     }
 }
 
