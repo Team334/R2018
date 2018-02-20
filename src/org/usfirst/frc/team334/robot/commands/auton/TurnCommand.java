@@ -25,9 +25,9 @@ public class TurnCommand extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.AbsoluteHeading += heading;
+        Robot.absoluteHeading += heading;
         turnPID.reset();
-        turnPID.setSetpoint(Robot.AbsoluteHeading);
+        turnPID.setSetpoint(Robot.absoluteHeading);
         turnPID.setAbsoluteTolerance(0);
         turnPID.setOutputRange(-0.6, 0.6);
         turnPID.enable();

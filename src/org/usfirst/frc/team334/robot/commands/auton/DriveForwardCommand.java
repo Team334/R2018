@@ -34,7 +34,7 @@ public class DriveForwardCommand extends Command {
         Drive.rEncoderLeft.reset();
 
         driveForwardHeadingPID.reset();
-        driveForwardHeadingPID.setSetpoint(Robot.AbsoluteHeading);
+        driveForwardHeadingPID.setSetpoint(Robot.absoluteHeading);
         driveForwardHeadingPID.setAbsoluteTolerance(0);
         driveForwardHeadingPID.setOutputRange(-1, 1);
         driveForwardHeadingPID.enable();

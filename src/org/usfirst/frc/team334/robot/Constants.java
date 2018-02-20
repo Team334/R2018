@@ -105,6 +105,7 @@ public class Constants {
     public static final int SCALE_GAP_DISTANCE_AFTER_TURN = 5;
     public static final int BACK_AWAY_FROM_SCALE = -10;
     public static final int SWITCH_GAP_DISTANCE_AFTER_TURN = 50;
+    public static final int ALLEYWAY_GAP_DISTANCE_AFTER_TURN = 30;
     public static final int ALLEYWAY_DISTANCE_FROM_ALLIANCE_WALL = 220;
     public static final int ALLEYWAY_TOTAL_LENGTH = 240;
 

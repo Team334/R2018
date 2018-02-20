@@ -8,7 +8,9 @@ import org.usfirst.frc.team334.robot.vision.VisionData;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
@@ -21,16 +23,14 @@ public class Robot extends TimedRobot {
     public static Elevator sElevator;
     public static Pneumatics sPneumatics;
     public static RollerIntake sRollerIntake;
-
-    // Initialize commands
-    private Command leftLeft;
-    private Command leftRight;
-    private Command rightRight;
-    private Command rightLeft;
-
+    
+    private CommandGroup auton_command;
+    
+    private SendableChooser<Boolean> m_chooser;
+    
     public static OI m_oi;
 
-    public static double AbsoluteHeading;
+    public static double absoluteHeading;
 
     private static VisionData vision;
 
@@ -41,11 +41,10 @@ public class Robot extends TimedRobot {
         sPneumatics = new Pneumatics();
         sRollerIntake = new RollerIntake();
 
-        leftLeft = new LeftStartLeftSwitchLeftScale();
-        leftRight = new LeftStartLeftSwitchRightScale();
-        rightRight = new RightStartRightSwitchRightScale();
-        rightLeft = new RightStartRightSwitchLeftScale();
-
+        m_chooser = new SendableChooser<>();
+        m_chooser.addDefault("Default (no scale)", false);
+        m_chooser.addObject("Do Scale", true);
+        
         m_oi = new OI();
 
         vision = new VisionData();
@@ -67,7 +66,7 @@ public class Robot extends TimedRobot {
 
     @Override
     public void autonomousInit() {
-        AbsoluteHeading = 0;
+        absoluteHeading = 0;
 
         Drive.rEncoderLeft.reset();
         Drive.rEncoderRight.reset();
@@ -80,32 +79,80 @@ public class Robot extends TimedRobot {
         // Gets info from "Game Data" in FRC Driver Station
         String fieldConfig = fms.getGameSpecificMessage();
         SmartDashboard.putString("Field Config", fieldConfig);
-        SmartDashboard.putNumber("Start Location", fms.getLocation());
-
+        SmartDashboard.putNumber("Start Location", fms.getLocation()); // 1 - left
+                                                                       // 2 - middle
+                                                                       // 3 - right
+        
+        boolean doScaleAuton = m_chooser.getSelected().booleanValue(); // 0 = switch only
+                                                       // 1 = scale and switch
+        
         // Checks info from FMS to schedule correct auton command.
-        // switch (fieldConfig) {
-        // case "LLR":
-        // Scheduler.getInstance().add(leftLeft);
-        // break;
-        // case "LRR":
-        // Scheduler.getInstance().add(leftRight);
-        // break;
-        // case "LRL":
-        // Scheduler.getInstance().add(leftRight);
-        // break;
-        // case "RRL":
-        // Scheduler.getInstance().add(rightRight);
-        // break;
-        // case "RLL":
-        // Scheduler.getInstance().add(rightLeft);
-        // break;
-        // case "RLR":
-        // Scheduler.getInstance().add(rightLeft);
-        // break;
-        // default:
-        // System.out.println("FAILURE IN AUTON");
-        // }
-        Scheduler.getInstance().add(leftLeft);
+        if (fms.getLocation() == 1) { // LEFT START
+            switch (fieldConfig) {
+                // switch same side
+                case "LRL":
+                    if (doScaleAuton)
+                        auton_command = new LeftStartLeftSwitchRightScale();
+                    else 
+                        auton_command = new LeftStartLeftSwitch();
+                    break;
+                case "LLL":
+                    if (doScaleAuton)
+                        auton_command = new LeftStartLeftSwitchLeftScale();
+                    else 
+                        auton_command = new LeftStartLeftSwitch();
+                    break;
+                // switch on other side
+                case "RLR":
+                    if (doScaleAuton)
+                        auton_command = new LeftStartRightSwitchLeftScale();
+                    else 
+                        auton_command = new LeftStartRightSwitch();
+                    break;
+                case "RRR":
+                    if (doScaleAuton)
+                        auton_command = new LeftStartLeftSwitchLeftScale();
+                    else 
+                        auton_command = new LeftStartRightSwitch();
+                    break;
+                default:
+                    auton_command = new CrossLine();
+                    break;
+            }
+        } else if (fms.getLocation() == 3) { // RIGHT START
+            switch (fieldConfig) {
+                // switch on other side
+                case "LRL":
+                    if (doScaleAuton)
+                        auton_command = new RightStartLeftSwitchRightScale();
+                    else 
+                        auton_command = new RightStartLeftSwitch();
+                    break;
+                case "LLL":
+                    if (doScaleAuton)
+                        auton_command = new RightStartLeftSwitchLeftScale();
+                    else 
+                        auton_command = new RightStartLeftSwitch();
+                    break;
+                // switch same side
+                case "RLR":
+                    if (doScaleAuton)
+                        auton_command = new RightStartRightSwitchLeftScale();
+                    else 
+                        auton_command = new RightStartLeftSwitch();
+                    break;
+                case "RRR":
+                    if (doScaleAuton)
+                        auton_command = new RightStartRightSwitchRightScale();
+                    else 
+                        auton_command = new RightStartRightSwitch();
+                    break;
+                default:
+                    auton_command = new CrossLine();
+                    break;
+            }
+        }
+        Scheduler.getInstance().add(auton_command);
     }
 
     @Override
