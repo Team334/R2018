@@ -119,11 +119,11 @@ public class Constants {
     public static final double DRIVETRAIN_SPEED_MULTIPLIER = 1;
     public static final double ELEVATOR_SPEED_MULTIPLIER = 0.1;
     
-  //Intake
-    public static final int INTAKE_MOTOR_L = -1;
-    public static final int INTAKE_MOTOR_R = -1;
-    public static final int INTAKE_LIMITSWITCH_1 = -1;
-    public static final int INTAKE_LIMITSWITCH_2 = -1;
+    // Intake
+    public static final int INTAKE_MOTOR_L = 10; // PLACEHOLDER
+    public static final int INTAKE_MOTOR_R = 11; // PLACEHOLDER
+    public static final int INTAKE_LIMITSWITCH_1 = 12; // PLACEHOLDER
+    public static final int INTAKE_LIMITSWITCH_2 = 13; // PLACEHOLDER
     public static final double INTAKE_SPEED = 0.25;
     public static final double INTAKE_SPEED_HIGH = 1;
     public static final double INTAKE_OUT_SPEED = -0.25;
