@@ -116,7 +116,6 @@ public class Robot extends TimedRobot {
                     break;
                 default:
                     auton_command = new CrossLine();
-                    break;
             }
         } else if (fms.getLocation() == 3) { // RIGHT START
             switch (fieldConfig) {
@@ -150,6 +149,8 @@ public class Robot extends TimedRobot {
                     auton_command = new CrossLine();
                     break;
             }
+        } else {
+            
         }
         Scheduler.getInstance().add(auton_command);
     }
