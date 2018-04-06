@@ -14,13 +14,10 @@ public class GrabPowerCubeCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("GRABPOWERCUBECOMMAND INITIALIZED");
-		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON)) {
+		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON))
 			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_SPEED_HIGH);
-		}
-		else {
+		else
 			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_SPEED);
-		}
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -39,17 +36,13 @@ public class GrabPowerCubeCommand extends Command {
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.sRollerIntake.setMotorSpeed(0);
-		
-		System.out.println("GRABPOWERCUBECOMMAND ENDED");
+		Robot.sRollerIntake.foldStop();
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.sRollerIntake.setMotorSpeed(0);
-		
-		System.out.println("GRABPOWERCUBECOMMAND INTERRUPTED");
+		Robot.sRollerIntake.foldStop();
 	}
 }

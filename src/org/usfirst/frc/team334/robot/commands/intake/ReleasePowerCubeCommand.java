@@ -15,7 +15,7 @@ public class ReleasePowerCubeCommand extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		System.out.println("RELEASEPOWERCUBECOMMAND INITIALIZED");
+	    setTimeout(2);
 		if (Robot.m_oi.getLeftJoystick().getRawButton(Constants.INTAKE_SPEED_HIGH_BUTTON)) {
 			Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED_HIGH);
 		}
@@ -27,26 +27,19 @@ public class ReleasePowerCubeCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		// increments timer if the box isnt touching any of the limit switches to keep the command running for some additional time
-		timer++;
-		if (Robot.sRollerIntake.getLimitSwitch1() || Robot.sRollerIntake.getLimitSwitch2()) {
-			timer = 0;
-		}
+	    
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		// if the timer is greater than the Constant, then the command ends.
-		return timer >= Constants.RELEASE_TIME;
+		return isTimedOut();
 	}
 
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
 		Robot.sRollerIntake.setMotorSpeed(0);
-		
-		System.out.println("RELEASEPOWERCUBECOMMAND ENDED");
 	}
 
 	// Called when another command which requires one or more of the same
@@ -54,7 +47,5 @@ public class ReleasePowerCubeCommand extends Command {
 	@Override
 	protected void interrupted() {
 		Robot.sRollerIntake.setMotorSpeed(0);
-		
-		System.out.println("RELEASEPOWERCUBECOMMAND INTERRUPTED");
 	}
 }

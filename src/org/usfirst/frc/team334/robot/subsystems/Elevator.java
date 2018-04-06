@@ -46,13 +46,13 @@ public class Elevator extends PIDSubsystem {
 
     @Override
     protected double returnPIDInput() {
-        return rEncoder.get();
+        return rEncoder.get(); // sets pidsource
     }
 
     @Override
     protected void usePIDOutput(double output) {
         System.out.println("Error: " + output + "Encoder Value: " + rEncoder.get());
-        setMotors(output * Constants.ELEVATOR_SPEED_MULTIPLIER);
+        setMotors(output * Constants.ELEVATOR_SPEED_MULTIPLIER); // move elevator
     }
 
     public boolean isTooHigh() {

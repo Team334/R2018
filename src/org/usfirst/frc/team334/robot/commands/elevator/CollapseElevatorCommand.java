@@ -30,7 +30,7 @@ public class CollapseElevatorCommand extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.sElevator.onTarget() || Robot.sElevator.isTooLow();
+        return Robot.sElevator.onTarget() || Robot.sElevator.isTooLow() || Robot.sElevator.isTooHigh();
     }
 
     // Called once after isFinished returns true

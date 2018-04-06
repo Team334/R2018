@@ -71,7 +71,7 @@ public class Robot extends TimedRobot {
         Drive.rEncoderRight.reset();
         Drive.rGyro.resetHeading();
 
-        Robot.sDrive.setNormal();
+        Robot.sDrive.setNormal(); // set motors negative just for auton
 
         Scheduler.getInstance().removeAll();
 
@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
                                                                        // 3 - right
         
         boolean doScaleAuton = m_chooser.getSelected().booleanValue(); // 0 = switch only
-                                                       // 1 = scale and switch
+                                                                       // 1 = scale and switch
         
         // Checks info from FMS to schedule correct auton command.
         if (fms.getLocation() == 1) { // LEFT START
@@ -149,9 +149,10 @@ public class Robot extends TimedRobot {
                     auton_command = new CrossLine();
                     break;
             }
-        } else {
-            
+        } else { // MIDDLE START
+            auton_command = new CrossLine();
         }
+        
         Scheduler.getInstance().add(auton_command);
     }
 

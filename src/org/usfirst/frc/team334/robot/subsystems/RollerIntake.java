@@ -8,27 +8,48 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RollerIntake extends Subsystem {
 	private VictorSP leftMotor;
 	private VictorSP rightMotor;
-	private DigitalInput rLimitSwitch1;
-	private DigitalInput rLimitSwitch2;
+	private VictorSP windowMotor;
+	private DigitalInput rBoxLimitSwitch1;
+	private DigitalInput rBoxLimitSwitch2;
+	private DigitalInput rFoldLimitSwitch;
 	
 	public RollerIntake() {
 		leftMotor = new VictorSP(Constants.INTAKE_MOTOR_L);
 		rightMotor = new VictorSP(Constants.INTAKE_MOTOR_R);
-		rLimitSwitch1 = new DigitalInput(Constants.INTAKE_LIMITSWITCH_1);
-		rLimitSwitch2 = new DigitalInput(Constants.INTAKE_LIMITSWITCH_2);
+		windowMotor = new VictorSP(Constants.INTAKE_WINDOW_MOTOR);
+		rBoxLimitSwitch1 = new DigitalInput(Constants.INTAKE_BOX_LIMITSWITCH_1);
+		rBoxLimitSwitch2 = new DigitalInput(Constants.INTAKE_BOX_LIMITSWITCH_2);
+		rFoldLimitSwitch = new DigitalInput(Constants.INTAKE_FOLD_LIMITSWITCH);
 	}
+	
     public void setMotorSpeed(double speed) {
     	leftMotor.set(-speed);
     	rightMotor.set(speed);
     }
 
     public boolean getLimitSwitch1() {
-    	return rLimitSwitch1.get();
+    	return rBoxLimitSwitch1.get();
     } 
     
     public boolean getLimitSwitch2() {
-    	return rLimitSwitch1.get();
+    	return rBoxLimitSwitch2.get();
     } 
+    
+    public boolean getFoldLimitSwtich() {
+        return rFoldLimitSwitch.get();
+    }
+    
+    public void foldIntake() {
+        windowMotor.set(0.4);
+    }
+    
+    public void unfoldIntake() {
+        windowMotor.set(-0.4);
+    }
+    
+    public void foldStop() {
+        windowMotor.stopMotor();
+    }
     
     public void initDefaultCommand() {
     }

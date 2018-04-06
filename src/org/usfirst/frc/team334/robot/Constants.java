@@ -123,8 +123,10 @@ public class Constants {
     // Intake
     public static final int INTAKE_MOTOR_L = 10; // PLACEHOLDER
     public static final int INTAKE_MOTOR_R = 11; // PLACEHOLDER
-    public static final int INTAKE_LIMITSWITCH_1 = 12; // PLACEHOLDER
-    public static final int INTAKE_LIMITSWITCH_2 = 13; // PLACEHOLDER
+    public static final int INTAKE_WINDOW_MOTOR = 111; // PLACEHOLDER
+    public static final int INTAKE_BOX_LIMITSWITCH_1 = 12; // PLACEHOLDER
+    public static final int INTAKE_BOX_LIMITSWITCH_2 = 13; // PLACEHOLDER
+    public static final int INTAKE_FOLD_LIMITSWITCH = -2; // PLACEHOLDER
     public static final double INTAKE_SPEED = 0.25;
     public static final double INTAKE_SPEED_HIGH = 1;
     public static final double INTAKE_OUT_SPEED = -0.25;
