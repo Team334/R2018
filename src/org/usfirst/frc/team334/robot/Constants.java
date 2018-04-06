@@ -63,7 +63,8 @@ public class Constants {
     // Elevator Sensors (Limit Switches + Potentiometer)
     public static final int ELEVATOR_LIMIT_TOP = 6;
     public static final int ELEVATOR_LIMIT_BOTTOM = 7;
-    public static final int ELEVATOR_POTENTIOMETER = 4;
+    public static final int ELEVATOR_ENCODER_A = 8;
+    public static final int ELEVATOR_ENCODER_B = 9;
 
     // Elevator Pot PID
     public static final double ELEVATOR_POT_P = 0;
