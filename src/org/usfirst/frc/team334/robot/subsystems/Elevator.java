@@ -16,7 +16,7 @@ public class Elevator extends PIDSubsystem {
     private DigitalInput rTopLimit;
     private DigitalInput rBottomLimit;
 
-    private Encoder rEncoder;
+    public static Encoder rEncoder;
 
     public Elevator() {
         super(Constants.ELEVATOR_POT_P, Constants.ELEVATOR_POT_I, Constants.ELEVATOR_POT_D);

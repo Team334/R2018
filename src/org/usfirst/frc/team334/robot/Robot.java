@@ -6,6 +6,8 @@ import org.usfirst.frc.team334.robot.subsystems.*;
 import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -14,6 +16,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
 
+    Joystick xd = new Joystick(1);
+    
     // FMS -> retrieves auton information
     private DriverStation fms = DriverStation.getInstance();
 
@@ -71,7 +75,7 @@ public class Robot extends TimedRobot {
         Drive.rEncoderRight.reset();
         Drive.rGyro.resetHeading();
 
-        Robot.sDrive.setNormal(); // set motors negative just for auton
+        Robot.sDrive.setNormal(); // reverse motors just for auton
 
         Scheduler.getInstance().removeAll();
 
@@ -84,6 +88,8 @@ public class Robot extends TimedRobot {
         
         boolean doScaleAuton = m_chooser.getSelected().booleanValue(); // 0 = switch only
                                                                        // 1 = scale and switch
+        
+        doScaleAuton = false;
         
         // Checks info from FMS to schedule correct auton command.
         if (fms.getLocation() == 1) { // LEFT START
@@ -174,6 +180,8 @@ public class Robot extends TimedRobot {
     public void teleopPeriodic() {
         // Runs any commands that are queued from OI
         Scheduler.getInstance().run();
+        System.out.println(Robot.sElevator.rEncoder.get());
+        
     }
 
     @Override
