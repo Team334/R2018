@@ -181,7 +181,7 @@ public class Robot extends TimedRobot {
         // Runs any commands that are queued from OI
         Scheduler.getInstance().run();
         System.out.println(Robot.sElevator.rEncoder.get());
-        
+        Robot.sRollerIntake.setMotorSpeed(.5);
     }
 
     @Override

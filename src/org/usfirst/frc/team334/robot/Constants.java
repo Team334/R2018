@@ -28,9 +28,9 @@ public class Constants {
     public static final int COLLAPSE_ELEVATOR_BUTTON = 5;
 
     public static final int FORCE_COMPRESSOR_START_BUTTON = 2;
-    public static final int GRAB_BUTTON = -1;
-    public static final int RELEASE_BUTTON = -1;
-    public static final int INTAKE_SPEED_HIGH_BUTTON = -1;
+    public static final int GRAB_BUTTON = 3; // PLACEHOLDER
+    public static final int RELEASE_BUTTON = 4; // PLACEHOLDER
+    public static final int INTAKE_SPEED_HIGH_BUTTON = 5; // PLACEHOLDER
 
     // DriveTrain ports
     public static final int DRIVETRAIN_MC_L = 5;
@@ -121,9 +121,9 @@ public class Constants {
     public static final double ELEVATOR_SPEED_MULTIPLIER = 0.1;
     
     // Intake
-    public static final int INTAKE_MOTOR_L = 10; // PLACEHOLDER
-    public static final int INTAKE_MOTOR_R = 11; // PLACEHOLDER
-    public static final int INTAKE_WINDOW_MOTOR = 17; // PLACEHOLDER
+    public static final int INTAKE_MOTOR_L = 2;
+    public static final int INTAKE_MOTOR_R = 3;
+    public static final int INTAKE_WINDOW_MOTOR = 4;
     public static final int INTAKE_BOX_LIMITSWITCH_1 = 12; // PLACEHOLDER
     public static final int INTAKE_BOX_LIMITSWITCH_2 = 13; // PLACEHOLDER
     public static final int INTAKE_FOLD_LIMITSWITCH = 30; // PLACEHOLDER
