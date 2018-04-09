@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightStartRightSwitch extends CommandGroup {
 
     public RightStartRightSwitch() {
+        addParallel(new UnfoldIntakeCommand());
         addParallel(new SetElevatorToSwitchCommand());
         addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
         addSequential(new TurnCommand(-90)); // Turn to switch
