@@ -9,17 +9,16 @@ import edu.wpi.first.wpilibj.command.PIDSubsystem;
 
 public class Elevator extends PIDSubsystem {
 
-    // 775 pros
     private VictorSP pro1;
     private VictorSP pro2;
 
     private DigitalInput rTopLimit;
     private DigitalInput rBottomLimit;
 
-    public static Encoder rEncoder;
+    public Encoder rEncoder;
 
     public Elevator() {
-        super(Constants.ELEVATOR_POT_P, Constants.ELEVATOR_POT_I, Constants.ELEVATOR_POT_D);
+        super(Constants.ELEVATOR_ENC_P, Constants.ELEVATOR_ENC_I, Constants.ELEVATOR_ENC_D);
 
         pro1 = new VictorSP(Constants.ELEVATOR_MOTOR_L);
         pro2 = new VictorSP(Constants.ELEVATOR_MOTOR_R);
@@ -35,8 +34,13 @@ public class Elevator extends PIDSubsystem {
     }
 
     public void setMotors(double speed) {
-        pro1.set(speed);
-        pro2.set(speed);
+        if (!isTooHigh() && !isTooLow()) {
+            pro1.set(speed);
+            pro2.set(speed);
+        } else {
+            pro1.set(speed); // PLACEHOLDER
+            pro2.set(speed); // PLACEHOLDER
+        }
     }
 
     public void stop() {
@@ -46,13 +50,12 @@ public class Elevator extends PIDSubsystem {
 
     @Override
     protected double returnPIDInput() {
-        return rEncoder.get(); // sets pidsource
+        return rEncoder.get(); // Sets PIDSource
     }
 
     @Override
     protected void usePIDOutput(double output) {
-        System.out.println("Error: " + output + "Encoder Value: " + rEncoder.get());
-        setMotors(output * Constants.ELEVATOR_SPEED_MULTIPLIER); // move elevator
+        setMotors(output * Constants.ELEVATOR_SPEED_MULTIPLIER); // Move elevator
     }
 
     public boolean isTooHigh() {
@@ -61,10 +64,6 @@ public class Elevator extends PIDSubsystem {
 
     public boolean isTooLow() {
         return rBottomLimit.get();
-    }
-
-    public Encoder getEncoder() {
-        return rEncoder;
     }
 
     public void initDefaultCommand() {

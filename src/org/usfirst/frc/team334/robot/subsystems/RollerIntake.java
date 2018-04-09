@@ -8,10 +8,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class RollerIntake extends Subsystem {
 	private VictorSP leftMotor;
 	private VictorSP rightMotor;
-	private VictorSP windowMotor;
+	public static VictorSP windowMotor;
 	private DigitalInput rBoxLimitSwitch1;
 	private DigitalInput rBoxLimitSwitch2;
-	private DigitalInput rFoldLimitSwitch;
 	
 	public RollerIntake() {
 		leftMotor = new VictorSP(Constants.INTAKE_MOTOR_L);
@@ -19,7 +18,6 @@ public class RollerIntake extends Subsystem {
 		windowMotor = new VictorSP(Constants.INTAKE_WINDOW_MOTOR);
 		rBoxLimitSwitch1 = new DigitalInput(Constants.INTAKE_BOX_LIMITSWITCH_1);
 		rBoxLimitSwitch2 = new DigitalInput(Constants.INTAKE_BOX_LIMITSWITCH_2);
-		rFoldLimitSwitch = new DigitalInput(Constants.INTAKE_FOLD_LIMITSWITCH);
 	}
 	
     public void setMotorSpeed(double speed) {
@@ -33,18 +31,10 @@ public class RollerIntake extends Subsystem {
     
     public boolean getLimitSwitch2() {
     	return rBoxLimitSwitch2.get();
-    } 
-    
-    public boolean getFoldLimitSwtich() {
-        return rFoldLimitSwitch.get();
     }
     
-    public void foldIntake() {
-        windowMotor.set(0.4);
-    }
-    
-    public void unfoldIntake() {
-        windowMotor.set(-0.4);
+    public void setWindowSpeed(double speed) {
+        windowMotor.set(speed);
     }
     
     public void foldStop() {

@@ -10,34 +10,28 @@ public class UnfoldIntakeCommand extends Command {
 		requires(Robot.sRollerIntake);
 	}
 
-	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		setTimeout(1);
+		setTimeout(1.1);
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-	    Robot.sRollerIntake.unfoldIntake();
+	    Robot.sRollerIntake.setWindowSpeed(0.8);
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut(); // intake hits 90 degrees to elevator
+		return isTimedOut();
 	}
 
-	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		Robot.sRollerIntake.setMotorSpeed(0);
+		Robot.sRollerIntake.foldStop();
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
-		Robot.sRollerIntake.setMotorSpeed(0);
+		Robot.sRollerIntake.foldStop();
 	}
 }

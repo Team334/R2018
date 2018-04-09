@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CrossLine extends CommandGroup {
 
     public CrossLine() {
-        addParallel(new UnfoldIntakeCommand());
         addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
     }
 

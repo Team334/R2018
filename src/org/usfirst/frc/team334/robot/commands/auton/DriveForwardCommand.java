@@ -51,7 +51,7 @@ public class DriveForwardCommand extends Command {
         if (Drive.rGyro.isInitialized()) {
             // Go faster if your distance is less than 40 inches.
             multiplier = (Math.abs(distance) < 40 * Constants.ENCODER_TICKS_PER_INCH) ? 1 : 0.4;
-
+            
             Robot.sDrive.setLeft(driveForwardDistancePID.get() * multiplier + driveForwardHeadingPID.get());
             Robot.sDrive.setRight(driveForwardDistancePID.get() * multiplier - driveForwardHeadingPID.get());
         }
@@ -64,7 +64,6 @@ public class DriveForwardCommand extends Command {
 
     @Override
     protected void end() {
-        System.out.println("DRIVE STOP");
         driveForwardHeadingPID.disable();
         driveForwardDistancePID.disable();
         Robot.sDrive.stop();
@@ -72,7 +71,6 @@ public class DriveForwardCommand extends Command {
 
     @Override
     protected void interrupted() {
-        System.out.println("DRIVE COMMAND INTERRUPTED");
         driveForwardHeadingPID.disable();
         driveForwardDistancePID.disable();
         Robot.sDrive.stop();

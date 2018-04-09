@@ -11,22 +11,17 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * DriveTrain for 2018 Robot 6 Victors (3 per side)
- */
+DriveTrain for 2018 Robot 6 Victors (3 per side)
+**/
 
 public class Drive extends Subsystem {
-
-    public enum DriveControlState {
-        TANK_DRIVE_JOYSTICK_CONTROL, TURN_TO_HEADING, DRIVE_TOWARDS_SWITCH, DRIVE_TOWARDS_SCALE
-    }
-
-    private DriveControlState mDriveControlState;
 
     // Sensor declarations
     public static Encoder rEncoderLeft;
     public static Encoder rEncoderRight;
     public static BNO055 rGyro;
-
+    
+    // Motor declarations
     private WPI_TalonSRX miniCimL;
     private WPI_TalonSRX miniCimR;
     private WPI_TalonSRX cim1L;
@@ -34,6 +29,7 @@ public class Drive extends Subsystem {
     private WPI_TalonSRX cim1R;
     private WPI_TalonSRX cim2R;
 
+    // Motor list declarations
     ArrayList<WPI_TalonSRX> left;
     ArrayList<WPI_TalonSRX> right;
 
@@ -75,13 +71,13 @@ public class Drive extends Subsystem {
 
     public void setLeft(double speed) {
         for (WPI_TalonSRX talon : left) {
-            talon.set(speed * 0.5);
+            talon.set(speed * 0.75);
         }
     }
 
     public void setRight(double speed) {
         for (WPI_TalonSRX talon : right) {
-            talon.set(speed * 0.5);
+            talon.set(speed * 0.75);
         }
     }
 
