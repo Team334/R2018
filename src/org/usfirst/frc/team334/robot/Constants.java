@@ -84,7 +84,8 @@ public class Constants {
     public static final double DRIVE_DISTANCE_PID_I = 0;
     public static final double DRIVE_DISTANCE_PID_D = 0.02;
 
-    public static final double TURN_P = 0.03;
+    // 0.03 Original P-Value
+    public static final double TURN_P = 0.02;
     public static final double TURN_I = 0;
     public static final double TURN_D = 0.04;
 
@@ -94,7 +95,7 @@ public class Constants {
     public static final double ENCODER_TICKS_PER_INCH = 20.3718327157626;
     public static final double DISTANCE_TO_BASELINE = ENCODER_TICKS_PER_INCH * 15;
     public static final int DISTANCE_FROM_WALL = 20;
-    public static final int DISTANCE_TO_SWITCH_PARALLEL = 120;
+    public static final int DISTANCE_TO_SWITCH_PARALLEL = 135;
     public static final int DISTANCE_TO_SWITCH_REAR = 147;
     public static final int DISTANCE_TO_SCALE_DIAGONAL = 230;
     public static final int SCALE_GAP_DISTANCE_AFTER_TURN = 5;
