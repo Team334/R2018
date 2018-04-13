@@ -5,8 +5,6 @@ import org.usfirst.frc.team334.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AngleIntakeCommand extends Command {
-
-    // ENTIRE COMMAND IS PLACEHOLDER
     
 	public AngleIntakeCommand() {
 		requires(Robot.sRollerIntake);
@@ -24,7 +22,7 @@ public class AngleIntakeCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return isTimedOut(); //
+		return isTimedOut();
 	}
 
 	@Override

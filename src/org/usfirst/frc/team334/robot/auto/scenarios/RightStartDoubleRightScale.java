@@ -7,9 +7,10 @@ import org.usfirst.frc.team334.robot.commands.intake.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class RightStartRightSwitchRightScale extends CommandGroup {
+public class RightStartDoubleRightScale extends CommandGroup {
 
-    public RightStartRightSwitchRightScale() {
+    public RightStartDoubleRightScale() {
+        addParallel(new UnfoldIntakeCommand());
         addParallel(new SetElevatorToScaleCommand());
         addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SCALE_DIAGONAL));
         addSequential(new TurnCommand(-45)); // Turn to scale diagonally
@@ -18,7 +19,9 @@ public class RightStartRightSwitchRightScale extends CommandGroup {
         addSequential(new CollapseElevatorCommand());
         addParallel(new GrabPowerCubeAutonCommand(2));
         addSequential(new DriveForwardCommand(Constants.SWITCH_GAP_DISTANCE_AFTER_TURN));
-        addSequential(new SetElevatorToSwitchCommand());
+        addParallel(new SetElevatorToScaleCommand());
+        addSequential(new TurnCommand(135));
+        addSequential(new DriveForwardCommand(Constants.DOUBLE_SCALE_GAP_DISTANCE));
         addSequential(new ReleasePowerCubeAutonCommand());
     }
 

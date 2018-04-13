@@ -16,7 +16,7 @@ public class RightStartLeftSwitch extends CommandGroup {
         addParallel(new SetElevatorToSwitchCommand());
         addSequential(new DriveForwardCommand(Constants.ALLEYWAY_TOTAL_LENGTH));
         addSequential(new TurnCommand(-90)); // Turn to switch
-        addSequential(new ReleasePowerCubeCommand());
+        addSequential(new ReleasePowerCubeAutonCommand());
     }
 
 }

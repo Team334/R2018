@@ -6,15 +6,12 @@ import org.usfirst.frc.team334.robot.pids.*;
 import org.usfirst.frc.team334.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveForwardCommand extends Command {
 
     private double distance;
-    private double multiplier;
 
-    private PIDSource encoderInput;
     private PIDController driveForwardHeadingPID;
     private PIDController driveForwardDistancePID;
 
@@ -22,11 +19,21 @@ public class DriveForwardCommand extends Command {
     public DriveForwardCommand(double distance) {
         requires(Robot.sDrive);
         this.distance = Constants.ENCODER_TICKS_PER_INCH * distance;
-        encoderInput = Drive.rEncoderLeft;
-        driveForwardHeadingPID = new PIDController(Constants.DRIVE_HEADING_PID_P, Constants.DRIVE_HEADING_PID_I,
-                Constants.DRIVE_HEADING_PID_D, new HeadingPIDSource(), new StandardPIDOutput());
-        driveForwardDistancePID = new PIDController(Constants.DRIVE_DISTANCE_PID_P, Constants.DRIVE_DISTANCE_PID_I,
-                Constants.DRIVE_DISTANCE_PID_D, encoderInput, new StandardPIDOutput());
+        
+        driveForwardHeadingPID = new PIDController(
+            Constants.DRIVE_HEADING_PID_P,
+            Constants.DRIVE_HEADING_PID_I,
+            Constants.DRIVE_HEADING_PID_D,
+            new HeadingPIDSource(),
+            new StandardPIDOutput()
+        );
+        driveForwardDistancePID = new PIDController(
+            Constants.DRIVE_DISTANCE_PID_P,
+            Constants.DRIVE_DISTANCE_PID_I,
+            Constants.DRIVE_DISTANCE_PID_D,
+            Drive.rEncoderLeft,
+            new StandardPIDOutput()
+        );
     }
 
     @Override
@@ -49,11 +56,8 @@ public class DriveForwardCommand extends Command {
     @Override
     protected void execute() {
         if (Drive.rGyro.isInitialized()) {
-            // Go faster if your distance is less than 40 inches.
-            multiplier = (Math.abs(distance) < 40 * Constants.ENCODER_TICKS_PER_INCH) ? 1 : 0.4;
-            
-            Robot.sDrive.setLeft(driveForwardDistancePID.get() * multiplier + driveForwardHeadingPID.get());
-            Robot.sDrive.setRight(driveForwardDistancePID.get() * multiplier - driveForwardHeadingPID.get());
+            Robot.sDrive.setLeft(driveForwardDistancePID.get() + driveForwardHeadingPID.get());
+            Robot.sDrive.setRight(driveForwardDistancePID.get() - driveForwardHeadingPID.get());
         }
     }
 

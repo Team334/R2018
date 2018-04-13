@@ -71,13 +71,13 @@ public class Drive extends Subsystem {
 
     public void setLeft(double speed) {
         for (WPI_TalonSRX talon : left) {
-            talon.set(speed * 0.75);
+            talon.set(speed);
         }
     }
 
     public void setRight(double speed) {
         for (WPI_TalonSRX talon : right) {
-            talon.set(speed * 0.75);
+            talon.set(speed);
         }
     }
 

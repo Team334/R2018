@@ -2,8 +2,9 @@ package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.ElevatorCommand;
+import org.usfirst.frc.team334.robot.commands.intake.IntakePitchCommand;
 import org.usfirst.frc.team334.robot.subsystems.*;
-import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -13,8 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
-    
-    // FMS -> retrieves auton information
+   
     private DriverStation fms = DriverStation.getInstance();
 
     // Initialize subsystems
@@ -31,8 +31,6 @@ public class Robot extends TimedRobot {
     public static OI m_oi;
 
     public static double absoluteHeading;
-
-    private static VisionData vision;
 
     @Override
     public void robotInit() {
@@ -53,11 +51,10 @@ public class Robot extends TimedRobot {
         
         m_oi = new OI();
 
-        vision = new VisionData();
-
         // Shows starting position selector
-        SmartDashboard.putData(position_chooser);
+        SmartDashboard.putData("Starting Position Selector", position_chooser);
         // Shows scale auton option
+        SmartDashboard.putData("Auton Scale Selector", m_chooser);
     }
 
     @Override
@@ -103,18 +100,20 @@ public class Robot extends TimedRobot {
                 case "LRL":
                     if (doScaleAuton) {
                         auton_command = new LeftStartLeftSwitchRightScale();
+                        // auton_command = new LeftStartDoubleRightScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "L:LRL+S");
                     } else {
-                        auton_command = new LeftStartLeftSwitch2(); // PLACEHOLDER
+                        auton_command = new LeftStartLeftSwitch();
                         SmartDashboard.putString("Scenario", "L:LRL");
                     }
                     break;
                 case "LLL":
                     if (doScaleAuton) {
                         auton_command = new LeftStartLeftSwitchLeftScale();
+                        // auton_command = new LeftStartDoubleLeftScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "L:LLL+S");
                     } else { 
-                        auton_command = new LeftStartLeftSwitch2(); // PLACEHOLDER
+                        auton_command = new LeftStartLeftSwitch();
                         SmartDashboard.putString("Scenario", "L:LLL");
                     }
                     break;
@@ -122,18 +121,20 @@ public class Robot extends TimedRobot {
                 case "RLR":
                     if (doScaleAuton) {
                         auton_command = new LeftStartRightSwitchLeftScale();
+                        // auton_command = new LeftStartDoubleLeftScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "L:RLR+S");
                     } else { 
-                        auton_command = new LeftStartRightSwitch2(); // PLACEHOLDER
+                        auton_command = new LeftStartRightSwitch();
                         SmartDashboard.putString("Scenario", "L:RLR");
                     }
                     break;
                 case "RRR":
                     if (doScaleAuton) {
-                        auton_command = new LeftStartLeftSwitchLeftScale();
+                        auton_command = new LeftStartRightSwitchRightScale();
+                        // auton_command = new LeftStartDoubleRightScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "L:RRR+S");
                     } else {
-                        auton_command = new LeftStartRightSwitch2(); // PLACEHOLDER
+                        auton_command = new LeftStartRightSwitch();
                         SmartDashboard.putString("Scenario", "L:RRR");
                     }
                     break;
@@ -146,18 +147,20 @@ public class Robot extends TimedRobot {
                 case "LRL":
                     if (doScaleAuton) {
                         auton_command = new RightStartLeftSwitchRightScale();
+                        // auton_command = new RightStartDoubleRightScale();
                         SmartDashboard.putString("Scenario", "R:LRL+S");
                     } else {
-                        auton_command = new RightStartLeftSwitch2(); // PLACEHOLDER
+                        auton_command = new RightStartLeftSwitch();
                         SmartDashboard.putString("Scenario", "R:LRL");
                     }
                     break;
                 case "LLL":
                     if (doScaleAuton) {
                         auton_command = new RightStartLeftSwitchLeftScale();
+                        // auton_command = new RightStartDoubleLeftScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "R:LLL+S");
                     } else { 
-                        auton_command = new RightStartLeftSwitch2(); // PLACEHOLDER
+                        auton_command = new RightStartLeftSwitch();
                         SmartDashboard.putString("Scenario", "R:LLL");
                     }
                     break;
@@ -165,18 +168,20 @@ public class Robot extends TimedRobot {
                 case "RLR":
                     if (doScaleAuton) {
                         auton_command = new RightStartRightSwitchLeftScale();
+                        // auton_command = new RightStartDoubleLeftScale(); DOUBLE SCALE
                         SmartDashboard.putString("Scenario", "R:RLR+S");
                     } else {
-                        auton_command = new RightStartRightSwitch2(); // PLACEHOLDER
+                        auton_command = new RightStartRightSwitch();
                         SmartDashboard.putString("Scenario", "R:RLR");
                     }
                     break;
                 case "RRR":
                     if (doScaleAuton) {
                         auton_command = new RightStartRightSwitchRightScale();
+                        // auton_command = new RightStartDoubleRightScale(); DOUBLE SCALE 
                         SmartDashboard.putString("Scenario", "R:RRR+S");
                     } else {
-                        auton_command = new RightStartRightSwitch2(); // PLACEHOLDER
+                        auton_command = new RightStartRightSwitch();
                         SmartDashboard.putString("Scenario", "R:RRR");
                     }
                     break;
@@ -195,22 +200,26 @@ public class Robot extends TimedRobot {
     public void autonomousPeriodic() {
         SmartDashboard.putData(Scheduler.getInstance());
         Scheduler.getInstance().run();
-        System.out.println(Drive.rGyro.getHeading());
     }
 
     @Override
     public void teleopInit() {
         Scheduler.getInstance().removeAll();
+        // Initialize Tank-Drive control via Joysticks
         TankDriveCommand tankDrive = new TankDriveCommand();
         Robot.sDrive.setInvert();
         tankDrive.start();
+        // Initialize Elevator control via Joysticks
+        ElevatorCommand elevator = new ElevatorCommand();
+        elevator.start();
+        // Initialize Intake control via Joysticks
+        IntakePitchCommand intake = new IntakePitchCommand();
+        intake.start();
     }
 
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        Robot.sElevator.setMotors(m_oi.getElevatorJoystick().getY());
-        System.out.println(Drive.rGyro.getHeading());
     }
     
 }

@@ -2,23 +2,26 @@ package org.usfirst.frc.team334.robot.commands.intake;
 
 import org.usfirst.frc.team334.robot.Constants;
 import org.usfirst.frc.team334.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ReleasePowerCubeAutonCommand extends Command {
-	
-	public ReleasePowerCubeAutonCommand() {
+public class GrabPowerCubeAutonCommand extends Command {
+    
+    private double duration;
+
+    public GrabPowerCubeAutonCommand(double duration) {
+	    this.duration = duration;
 		requires(Robot.sRollerIntake);
 	}
 
 	@Override
 	protected void initialize() {
-	    setTimeout(1);
-		Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_OUT_SPEED);
+		setTimeout(duration);
 	}
 
 	@Override
 	protected void execute() {
-	    
+	    Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_SPEED);
 	}
 
 	@Override

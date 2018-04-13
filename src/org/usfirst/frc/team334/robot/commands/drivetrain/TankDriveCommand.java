@@ -20,8 +20,8 @@ public class TankDriveCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.sDrive.setLeft(Constants.DRIVETRAIN_SPEED_MULTIPLIER * Robot.m_oi.getLeftJoystick().getY());
-        Robot.sDrive.setRight(Constants.DRIVETRAIN_SPEED_MULTIPLIER * Robot.m_oi.getRightJoystick().getY());
+        Robot.sDrive.setLeft(Robot.m_oi.getLeftJoystick().getY() * Constants.DRIVETRAIN_SPEED_MULTIPLIER);
+        Robot.sDrive.setRight(Robot.m_oi.getRightJoystick().getY() * Constants.DRIVETRAIN_SPEED_MULTIPLIER);
     }
 
     // Make this return true when this Command no longer needs to run execute()

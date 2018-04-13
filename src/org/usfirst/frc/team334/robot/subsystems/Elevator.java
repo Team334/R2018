@@ -34,12 +34,12 @@ public class Elevator extends PIDSubsystem {
     }
 
     public void setMotors(double speed) {
-        if (!isTooHigh() && !isTooLow()) {
+        if ((isTooHigh() && speed > 0) || (isTooLow() && speed < 0)) {
+            pro1.set(0);
+            pro2.set(0);
+        } else {
             pro1.set(speed);
             pro2.set(speed);
-        } else {
-            pro1.set(speed); // PLACEHOLDER
-            pro2.set(speed); // PLACEHOLDER
         }
     }
 

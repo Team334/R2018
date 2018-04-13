@@ -14,7 +14,7 @@ public class LeftStartLeftSwitch extends CommandGroup {
         addParallel(new SetElevatorToSwitchCommand());
         addSequential(new DriveForwardCommand(Constants.DISTANCE_TO_SWITCH_PARALLEL));
         addSequential(new TurnCommand(90)); // Turn to switch
-        addSequential(new ReleasePowerCubeCommand());
+        addSequential(new ReleasePowerCubeAutonCommand());
     }
 
 }

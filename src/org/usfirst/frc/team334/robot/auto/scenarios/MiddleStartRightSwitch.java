@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class MiddleStartRightSwitch extends CommandGroup {
     
-    // -90 is turn left, 90 is turn right
     public MiddleStartRightSwitch() {
         addParallel(new AngleIntakeCommand());
         addSequential(new DriveForwardCommand(Constants.DISTANCE_HALFWAY_TO_SWITCH));
@@ -19,4 +18,5 @@ public class MiddleStartRightSwitch extends CommandGroup {
         addSequential(new DriveForwardCommand(Constants.DISTANCE_HALFWAY_TO_SWITCH));
         addSequential(new ReleasePowerCubeCommand());
     }
+    
 }
