@@ -5,15 +5,18 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GrabPowerCubeCommand extends Command {
+public class GrabPowerCubeAutonCommand extends Command {
+    
+    private double duration;
 
-	public GrabPowerCubeCommand() {
+    public GrabPowerCubeAutonCommand(double duration) {
+	    this.duration = duration;
 		requires(Robot.sRollerIntake);
 	}
 
 	@Override
 	protected void initialize() {
-		
+		setTimeout(duration);
 	}
 
 	@Override
@@ -23,7 +26,7 @@ public class GrabPowerCubeCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return isTimedOut();
 	}
 
 	@Override

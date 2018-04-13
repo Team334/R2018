@@ -7,23 +7,23 @@ import org.usfirst.frc.team334.robot.commands.intake.*;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class LeftStartRightSwitchRightScale extends CommandGroup {
+public class RightStartDoubleLeftScale extends CommandGroup {
 
-    public LeftStartRightSwitchRightScale() {
+    public RightStartDoubleLeftScale() {
         addParallel(new UnfoldIntakeCommand());
-        addSequential(new DriveForwardCommand(Constants.ALLEYWAY_DISTANCE_FROM_ALLIANCE_WALL));
-        addSequential(new TurnCommand(90)); // Turn to alleyway
-        addParallel(new SetElevatorToSwitchCommand());
-        addSequential(new DriveForwardCommand(Constants.ALLEYWAY_TOTAL_LENGTH));
-        addSequential(new TurnCommand(90)); // Turn to switch
-        addSequential(new ReleasePowerCubeAutonCommand());
-        addParallel(new TurnCommand(30)); // Turn to switch cube
-        addSequential(new CollapseElevatorCommand());
-        addParallel(new GrabPowerCubeAutonCommand(2));
-        addSequential(new DriveForwardCommand(Constants.SWITCH_GAP_DISTANCE_AFTER_ALLEYWAY_DROP));
         addParallel(new SetElevatorToScaleCommand());
-        addSequential(new TurnCommand(180)); // Turn to scale
-        addSequential(new WaitCommand(1));
+        addSequential(new DriveForwardCommand(Constants.ALLEYWAY_DISTANCE_FROM_ALLIANCE_WALL));
+        addSequential(new TurnCommand(-90)); // Turn to alleyway
+        addSequential(new DriveForwardCommand(Constants.ALLEYWAY_TOTAL_LENGTH));
+        addSequential(new TurnCommand(90)); // Turn to scale
+        addSequential(new ReleasePowerCubeAutonCommand());
+        addSequential(new TurnCommand(180)); // Turn to cube pickup location
+        addParallel(new CollapseElevatorCommand());
+        addParallel(new GrabPowerCubeAutonCommand(2));
+        addSequential(new DriveForwardCommand(Constants.DOUBLE_SCALE_GAP_DISTANCE));
+        addSequential(new TurnCommand(180));
+        addParallel(new SetElevatorToScaleCommand());
+        addSequential(new DriveForwardCommand(Constants.DOUBLE_SCALE_GAP_DISTANCE));
         addSequential(new ReleasePowerCubeAutonCommand());
     }
 

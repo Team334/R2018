@@ -2,73 +2,56 @@ package org.usfirst.frc.team334.robot;
 
 import java.util.ArrayList;
 
+import org.usfirst.frc.team334.robot.commands.drivetrain.FillAirTanksCommand;
 import org.usfirst.frc.team334.robot.commands.drivetrain.ToggleTransmissionCommand;
-import org.usfirst.frc.team334.robot.commands.elevator.CollapseElevatorCommand;
-import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToExchangeCommand;
-import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToScaleCommand;
-import org.usfirst.frc.team334.robot.commands.elevator.SetElevatorToSwitchCommand;
-import org.usfirst.frc.team334.robot.commands.intake.GrabPowerCubeCommand;
-import org.usfirst.frc.team334.robot.commands.intake.ReleasePowerCubeCommand;
+import org.usfirst.frc.team334.robot.commands.intake.*;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
     
-    // Joysticks and Xbox controls
+    // Joystick controls
     private Joystick leftJoystick;
     private Joystick rightJoystick;
-    private XboxController xbox;
+    private Joystick elevatorJoystick;
+    private Joystick intakeJoystick;
     private ArrayList<GenericHID> controls;
 
     // Button controls
     private Button shiftGears;
 
-    private Button raiseElevatorToSwitch;
-    private Button raiseElevatorToScale;
-    private Button raiseElevatorToExchange;
-    private Button collapseElevator;
     private Button grabBox;
     private Button releaseBox;
+    
+    private Button compressme;
 
     public OI() {
         leftJoystick = new Joystick(Constants.JOYSTICK_LEFT);
         rightJoystick = new Joystick(Constants.JOYSTICK_RIGHT);
-        xbox = new XboxController(Constants.XBOX);
+        elevatorJoystick = new Joystick(Constants.ELEVATOR_CONTROL);
+        intakeJoystick = new Joystick(Constants.JOYSTICK_INTAKE_PITCH);
         controls = new ArrayList<>();
         controls.add(leftJoystick);
         controls.add(rightJoystick);
-        controls.add(xbox);
+        controls.add(elevatorJoystick);
+        controls.add(intakeJoystick);
 
-        // Init Buttons
-        shiftGears = new JoystickButton(controls.get(Constants.SWITCH_GEAR_CONTROL), Constants.SWITCH_GEAR_BUTTON);
-
-        raiseElevatorToSwitch = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
-                Constants.ELEVATOR_TO_SWITCH_BUTTON);
-        raiseElevatorToScale = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
-                Constants.ELEVATOR_TO_SCALE_BUTTON);
-        raiseElevatorToExchange = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
-                Constants.ELEVATOR_TO_EXCHANGE_BUTTON);
-        collapseElevator = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL),
-                Constants.COLLAPSE_ELEVATOR_BUTTON);
-
-        grabBox = new JoystickButton(controls.get(Constants.GRAB_CONTROL), 
-        		Constants.GRAB_BUTTON);
-        releaseBox = new JoystickButton(controls.get(Constants.RELEASE_CONTROL), 
-        		Constants.RELEASE_BUTTON);  
+        // Initialize Buttons
+        shiftGears = new JoystickButton(controls.get(Constants.JOYSTICK_LEFT), Constants.SWITCH_GEAR_BUTTON);
+        grabBox = new JoystickButton(controls.get(Constants.JOYSTICK_INTAKE_PITCH), Constants.GRAB_BUTTON);
+        releaseBox = new JoystickButton(controls.get(Constants.JOYSTICK_INTAKE_PITCH), Constants.RELEASE_BUTTON);
+        compressme = new JoystickButton(controls.get(Constants.ELEVATOR_CONTROL), Constants.COMPRESS_ME);
 
         // Button Actions
         shiftGears.whenPressed(new ToggleTransmissionCommand());
-
-        raiseElevatorToSwitch.whenPressed(new SetElevatorToSwitchCommand());
-        raiseElevatorToScale.whenPressed(new SetElevatorToScaleCommand());
-        raiseElevatorToExchange.whenPressed(new SetElevatorToExchangeCommand());
-        collapseElevator.whenPressed(new CollapseElevatorCommand());
         grabBox.whileHeld(new GrabPowerCubeCommand());
-        releaseBox.whileHeld(new ReleasePowerCubeCommand());
+        releaseBox.whenPressed(new ReleasePowerCubeCommand());
+        
+        compressme.whileHeld(new FillAirTanksCommand());
+        
     }
 
     public Joystick getLeftJoystick() {
@@ -79,8 +62,12 @@ public class OI {
         return this.rightJoystick;
     }
 
-    public XboxController getXBoxController() {
-        return this.xbox;
+    public Joystick getElevatorJoystick() {
+        return this.elevatorJoystick;
+    }
+    
+    public Joystick getIntakeJoystick() {
+        return this.intakeJoystick;
     }
 
 }

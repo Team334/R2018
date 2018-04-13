@@ -5,9 +5,9 @@ import org.usfirst.frc.team334.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class GrabPowerCubeCommand extends Command {
-
-	public GrabPowerCubeCommand() {
+public class IntakePitchCommand extends Command {
+    
+	public IntakePitchCommand() {
 		requires(Robot.sRollerIntake);
 	}
 
@@ -18,7 +18,7 @@ public class GrabPowerCubeCommand extends Command {
 
 	@Override
 	protected void execute() {
-	    Robot.sRollerIntake.setMotorSpeed(Constants.INTAKE_SPEED);
+        Robot.sRollerIntake.setWindowSpeed(-Robot.m_oi.getIntakeJoystick().getY() * Constants.INTAKE_FOLD_SPEED_MULTIPLIER);
 	}
 
 	@Override
@@ -28,11 +28,11 @@ public class GrabPowerCubeCommand extends Command {
 
 	@Override
 	protected void end() {
-		Robot.sRollerIntake.setMotorSpeed(0);
+		Robot.sRollerIntake.foldStop();
 	}
 
 	@Override
 	protected void interrupted() {
-		Robot.sRollerIntake.setMotorSpeed(0);
+		Robot.sRollerIntake.foldStop();
 	}
 }

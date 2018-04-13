@@ -2,8 +2,9 @@ package org.usfirst.frc.team334.robot;
 
 import org.usfirst.frc.team334.robot.auto.scenarios.*;
 import org.usfirst.frc.team334.robot.commands.drivetrain.TankDriveCommand;
+import org.usfirst.frc.team334.robot.commands.elevator.ElevatorCommand;
+import org.usfirst.frc.team334.robot.commands.intake.IntakePitchCommand;
 import org.usfirst.frc.team334.robot.subsystems.*;
-import org.usfirst.frc.team334.robot.vision.VisionData;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -13,8 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends TimedRobot {
-
-    // FMS -> retrieves auton information
+   
     private DriverStation fms = DriverStation.getInstance();
 
     // Initialize subsystems
@@ -26,15 +26,15 @@ public class Robot extends TimedRobot {
     private CommandGroup auton_command;
     
     private SendableChooser<Boolean> m_chooser;
+    private SendableChooser<String> position_chooser;
     
     public static OI m_oi;
 
     public static double absoluteHeading;
 
-    private static VisionData vision;
-
     @Override
     public void robotInit() {
+        
         sDrive = new Drive();
         sElevator = new Elevator();
         sPneumatics = new Pneumatics();
@@ -44,14 +44,17 @@ public class Robot extends TimedRobot {
         m_chooser.addDefault("Default (no scale)", false);
         m_chooser.addObject("Do Scale", true);
         
+        position_chooser = new SendableChooser<>();
+        position_chooser.addDefault("M", "M");
+        position_chooser.addObject("R", "R");
+        position_chooser.addObject("L", "L");
+        
         m_oi = new OI();
 
-        vision = new VisionData();
-
-        // Shows current commands that are running
-        SmartDashboard.putData(Scheduler.getInstance());
-
-        System.out.println("ROBOT INITIALIZED");
+        // Shows starting position selector
+        SmartDashboard.putData("Starting Position Selector", position_chooser);
+        // Shows scale auton option
+        SmartDashboard.putData("Auton Scale Selector", m_chooser);
     }
 
     @Override
@@ -61,6 +64,8 @@ public class Robot extends TimedRobot {
 
     @Override
     public void disabledPeriodic() {
+        SmartDashboard.putString("Starting Position", position_chooser.getSelected().toString());
+        SmartDashboard.putBoolean("Gyro Initialization", Drive.rGyro.isInitialized());
     }
 
     @Override
@@ -70,114 +75,151 @@ public class Robot extends TimedRobot {
         Drive.rEncoderLeft.reset();
         Drive.rEncoderRight.reset();
         Drive.rGyro.resetHeading();
+        Robot.sElevator.rEncoder.reset();
 
-        Robot.sDrive.setNormal();
+        Robot.sDrive.setNormal(); // Reverse motors just for auton
 
         Scheduler.getInstance().removeAll();
 
         // Gets info from "Game Data" in FRC Driver Station
         String fieldConfig = fms.getGameSpecificMessage();
         SmartDashboard.putString("Field Config", fieldConfig);
-        SmartDashboard.putNumber("Start Location", fms.getLocation()); // 1 - left
-                                                                       // 2 - middle
-                                                                       // 3 - right
+        SmartDashboard.putString("Starting Pos", position_chooser.getSelected().toString());
         
+        String startPos = position_chooser.getSelected().toString();
+                
         boolean doScaleAuton = m_chooser.getSelected().booleanValue(); // 0 = switch only
-                                                       // 1 = scale and switch
+                                                                       // 1 = scale and switch
+        
+        doScaleAuton = false;
         
         // Checks info from FMS to schedule correct auton command.
-        if (fms.getLocation() == 1) { // LEFT START
+        if (startPos.equals("L")) { // LEFT START
             switch (fieldConfig) {
-                // switch same side
+                // Switch same side
                 case "LRL":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new LeftStartLeftSwitchRightScale();
-                    else 
+                        // auton_command = new LeftStartDoubleRightScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "L:LRL+S");
+                    } else {
                         auton_command = new LeftStartLeftSwitch();
+                        SmartDashboard.putString("Scenario", "L:LRL");
+                    }
                     break;
                 case "LLL":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new LeftStartLeftSwitchLeftScale();
-                    else 
+                        // auton_command = new LeftStartDoubleLeftScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "L:LLL+S");
+                    } else { 
                         auton_command = new LeftStartLeftSwitch();
+                        SmartDashboard.putString("Scenario", "L:LLL");
+                    }
                     break;
-                // switch on other side
+                // Switch opposite side
                 case "RLR":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new LeftStartRightSwitchLeftScale();
-                    else 
+                        // auton_command = new LeftStartDoubleLeftScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "L:RLR+S");
+                    } else { 
                         auton_command = new LeftStartRightSwitch();
+                        SmartDashboard.putString("Scenario", "L:RLR");
+                    }
                     break;
                 case "RRR":
-                    if (doScaleAuton)
-                        auton_command = new LeftStartLeftSwitchLeftScale();
-                    else 
+                    if (doScaleAuton) {
+                        auton_command = new LeftStartRightSwitchRightScale();
+                        // auton_command = new LeftStartDoubleRightScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "L:RRR+S");
+                    } else {
                         auton_command = new LeftStartRightSwitch();
+                        SmartDashboard.putString("Scenario", "L:RRR");
+                    }
                     break;
                 default:
                     auton_command = new CrossLine();
             }
-        } else if (fms.getLocation() == 3) { // RIGHT START
+        } else if (startPos.equals("R")) { // RIGHT START
             switch (fieldConfig) {
-                // switch on other side
+                // Switch opposite side
                 case "LRL":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new RightStartLeftSwitchRightScale();
-                    else 
+                        // auton_command = new RightStartDoubleRightScale();
+                        SmartDashboard.putString("Scenario", "R:LRL+S");
+                    } else {
                         auton_command = new RightStartLeftSwitch();
+                        SmartDashboard.putString("Scenario", "R:LRL");
+                    }
                     break;
                 case "LLL":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new RightStartLeftSwitchLeftScale();
-                    else 
+                        // auton_command = new RightStartDoubleLeftScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "R:LLL+S");
+                    } else { 
                         auton_command = new RightStartLeftSwitch();
+                        SmartDashboard.putString("Scenario", "R:LLL");
+                    }
                     break;
-                // switch same side
+                // Switch same side
                 case "RLR":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new RightStartRightSwitchLeftScale();
-                    else 
-                        auton_command = new RightStartLeftSwitch();
+                        // auton_command = new RightStartDoubleLeftScale(); DOUBLE SCALE
+                        SmartDashboard.putString("Scenario", "R:RLR+S");
+                    } else {
+                        auton_command = new RightStartRightSwitch();
+                        SmartDashboard.putString("Scenario", "R:RLR");
+                    }
                     break;
                 case "RRR":
-                    if (doScaleAuton)
+                    if (doScaleAuton) {
                         auton_command = new RightStartRightSwitchRightScale();
-                    else 
+                        // auton_command = new RightStartDoubleRightScale(); DOUBLE SCALE 
+                        SmartDashboard.putString("Scenario", "R:RRR+S");
+                    } else {
                         auton_command = new RightStartRightSwitch();
+                        SmartDashboard.putString("Scenario", "R:RRR");
+                    }
                     break;
                 default:
                     auton_command = new CrossLine();
-                    break;
+                    SmartDashboard.putString("Scenario", "Cross");
             }
-        } else {
-            
+        } else { // MIDDLE START
+            auton_command = new CrossLine();
+            SmartDashboard.putString("Scenario", "Cross");
         }
         Scheduler.getInstance().add(auton_command);
     }
 
     @Override
     public void autonomousPeriodic() {
+        SmartDashboard.putData(Scheduler.getInstance());
         Scheduler.getInstance().run();
-        System.out.println(Drive.rGyro.getHeading());
     }
 
     @Override
     public void teleopInit() {
         Scheduler.getInstance().removeAll();
+        // Initialize Tank-Drive control via Joysticks
         TankDriveCommand tankDrive = new TankDriveCommand();
         Robot.sDrive.setInvert();
         tankDrive.start();
+        // Initialize Elevator control via Joysticks
+        ElevatorCommand elevator = new ElevatorCommand();
+        elevator.start();
+        // Initialize Intake control via Joysticks
+        IntakePitchCommand intake = new IntakePitchCommand();
+        intake.start();
     }
 
     @Override
     public void teleopPeriodic() {
-        // Runs any commands that are queued from OI
         Scheduler.getInstance().run();
     }
-
-    @Override
-    public void testPeriodic() {
-
-    }
-
+    
 }
